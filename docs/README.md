@@ -9,7 +9,7 @@ Tail JSONL Logs
 1. ...
 
    ```sh
-   import 
+   import
 
    # < TODO: Add example code here >
    ```

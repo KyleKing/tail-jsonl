@@ -5,7 +5,7 @@
 ```sh
 git clone https://github.com/kyleking/tail-jsonl.git
 cd tail-jsonl
-poetry install 
+poetry install
 
 # See the available tasks
 poetry run doit list
