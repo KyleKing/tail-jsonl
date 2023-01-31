@@ -23,34 +23,39 @@ line_length = 120
 multi_line_output = 5
 
 [tool.poetry]
-name = "tail_jsonl"
-version = "0.0.1"
-description = "Tail JSONL Logs"
-license = "MIT"
 authors = ["Kyle King <dev.act.kyle@gmail.com>"]
-maintainers = []
-repository = "https://github.com/kyleking/tail-jsonl"
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9"
+] # https://pypi.org/classifiers/
+description = "Tail JSONL Logs"
 documentation = "https://tail-jsonl.kyleking.me"
-readme = "docs/README.md"
 include = ["LICENSE.md"]
 keywords = []
-classifiers = [
-    "Development Status :: 1 - Planning",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-] # https://pypi.org/classifiers/
+license = "MIT"
+maintainers = []
+name = "tail_jsonl"
+readme = "docs/README.md"
+repository = "https://github.com/kyleking/tail-jsonl"
+version = "0.0.1"
+
+
+[tool.poetry.scripts]
+tail-jsonl = "tail_jsonl:main"
+
+[tool.poetry.dependencies]
+calcipy = ">=0.21.3"
+python = "^3.8.12"
+rich = ">=13.3.1"
+
+[tool.poetry.dev-dependencies]
+calcipy = {extras = ["dev", "lint", "test"], version = "*"}
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kyleking/tail-jsonl/issues"
 "Changelog" = "https://github.com/kyleking/tail-jsonl/blob/main/docs/docs/CHANGELOG.md"
-
-[tool.poetry.dependencies]
-python = "^3.8.12"
-calcipy = ">=0.21.3"
-
-[tool.poetry.dev-dependencies]
-calcipy = { version = "*", extras = ["dev", "lint", "test"] }

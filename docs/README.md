@@ -2,25 +2,26 @@
 
 Tail JSONL Logs
 
+## Background
+
+I wanted to find a tool that could:
+
+1. Convert a stream of JSONL logs into a readable `logfmt`-like output with minimal configuration
+1. Show exceptions on their own line
+
+I investigated a lot of alternatives such as: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), [jq](https://github.com/stedolan/jq), [textualog](https://github.com/rhuygen/textualog), etc. but None had the exception formatting I wanted.
+
 ## Installation
 
-1. `poetry add `
-
-1. ...
-
-   ```sh
-   import
-
-   # < TODO: Add example code here >
-   ```
-
-1. ...
+```sh
+pipx install tail-jsonl
+```
 
 ## Usage
 
-<!-- < TODO: Show an example (screenshots, terminal recording, etc.) > -->
-
-For more example code, see the [scripts] directory or the [tests].
+```sh
+echo '{"message": "message", "timestamp": "2023-01-01T01:01:01.0123456Z", "level": "debug", "data": true, "more-data": [null, true, -123.123]}' | tail-jsonl
+```
 
 ## Project Status
 
@@ -54,6 +55,4 @@ If you have any security issue to report, please contact the project maintainers
 [contributor-covenant]: https://www.contributor-covenant.org
 [developer_guide]: ./docs/DEVELOPER_GUIDE.md
 [license]: https://github.com/kyleking/tail-jsonl/LICENSE
-[scripts]: https://github.com/kyleking/tail-jsonl/scripts
 [style_guide]: ./docs/STYLE_GUIDE.md
-[tests]: https://github.com/kyleking/tail-jsonl/tests

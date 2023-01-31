@@ -1,0 +1,4 @@
+{"jsonrpc": "2.0", "method": "sum", "params": [ null, 1, 2, 4, false, true], "id": "1"}
+{"jsonrpc": "2.0", "method": "notify_hello", "params": [7]}
+{"jsonrpc": "2.0", "method": "subtract", "params": [42, 23], "id": "2"}
+{"event": "Testing", "user_id": "UUID('f86f89aa-a260-431a-a3a6-7b37a695e012'), UUID('f86f89aa-a260-431a-a3a6-7b37a695e012'), UUID('f86f89aa-a260-431a-a3a6-7b37a695e012'), UUID('f86f89aa-a260-431a-a3a6-7b37a695e012'), UUID('f86f89aa-a260-431a-a3a6-7b37a695e012'), UUID('f86f89aa-a260-431a-a3a6-7b37a695e012')", "something": 123, "level": "debug", "timestamp": "2022-12-22T16:52:28.380253Z", "func_name": "<module>", "filename": "test.py", "lineno": 15, "exception": "line 1\n\t\tline 2 ....    \n\t...?"}
