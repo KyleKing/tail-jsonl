@@ -786,6 +786,24 @@ files = [
 ]
 
 [[package]]
+name = "deepdiff6"
+version = "6.2.0"
+description = "Deep Difference and Search of any Python object/data. Recreate objects by adding adding deltas to each other."
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "deepdiff6-6.2.0-py3-none-any.whl", hash = "sha256:83d8bfcdc12c3d769d3337f0e91f49cf4ba6b040706ab8698112e306f909a102"},
+    {file = "deepdiff6-6.2.0.tar.gz", hash = "sha256:15fb1d93c1d6b605ffde588a1666fb212f9fb802cb1a499fb0db19b5acdb8426"},
+]
+
+[package.dependencies]
+ordered-set = ">=4.0.2,<4.2.0"
+
+[package.extras]
+cli = ["clevercsv (==0.7.4)", "click (==8.1.3)", "pyyaml (==6.0)", "toml (==0.10.2)"]
+
+[[package]]
 name = "defusedxml"
 version = "0.7.1"
 description = "XML bomb protection for Python stdlib modules"
@@ -875,6 +893,20 @@ importlib-metadata = ">=4.4"
 
 [package.extras]
 toml = ["tomli"]
+
+[[package]]
+name = "dotted-notation"
+version = "0.9.2"
+description = "Dotted notation parser with pattern matching"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "dotted-notation-0.9.2.tar.gz", hash = "sha256:6bdb8d4cb45eab77ce0744e6143baadd4ac6b7710d04c5d9e4db276e1343ea0e"},
+]
+
+[package.dependencies]
+pyparsing = ">=2.4"
 
 [[package]]
 name = "eradicate"
@@ -2748,6 +2780,21 @@ files = [
 ]
 
 [[package]]
+name = "ordered-set"
+version = "4.1.0"
+description = "An OrderedSet is a custom MutableSet that remembers its order, so that every"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "ordered-set-4.1.0.tar.gz", hash = "sha256:694a8e44c87657c59292ede72891eb91d34131f6531463aab3009191c77364a8"},
+    {file = "ordered_set-4.1.0-py3-none-any.whl", hash = "sha256:046e1132c71fcf3330438a539928932caf51ddbc582496833e23de611de14562"},
+]
+
+[package.extras]
+dev = ["black", "mypy", "pytest"]
+
+[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
@@ -3206,7 +3253,7 @@ markdown = ">=3.2"
 name = "pyparsing"
 version = "3.0.9"
 description = "pyparsing module - Classes and methods to define and execute parsing grammars"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6.8"
 files = [
@@ -3307,6 +3354,25 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
 
 [[package]]
+name = "pytest-cache-assert"
+version = "3.0.7"
+description = "Cache assertion data to simplify regression testing of complex serializable data"
+category = "dev"
+optional = false
+python-versions = ">=3.8.4,<4.0.0"
+files = [
+    {file = "pytest_cache_assert-3.0.7-py3-none-any.whl", hash = "sha256:d9b9e80c90e60b08dab0eeb991b4af3b6242ed759967fee9cdde7f72124ef2b2"},
+    {file = "pytest_cache_assert-3.0.7.tar.gz", hash = "sha256:63dcc46d7a2a0d97b8500d43138a09418eb617f60373cd5805ca450f02a76c45"},
+]
+
+[package.dependencies]
+arrow = ">=1.2.3"
+beartype = ">=0.11.0"
+deepdiff6 = ">=6.2.0"
+pydantic = ">=1.8.1"
+pytest = ">=5.0.0"
+
+[[package]]
 name = "pytest-cov"
 version = "4.0.0"
 description = "Pytest plugin for measuring coverage."
@@ -3356,6 +3422,22 @@ files = [
 
 [package.dependencies]
 pytest = ">=3.0.0,<8.0.0"
+
+[[package]]
+name = "pytest-pretty"
+version = "1.0.1"
+description = "pytest plugin for printing summary data as I want it"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pytest_pretty-1.0.1-py3-none-any.whl", hash = "sha256:c1039f05ee1a11e1d9e586faea79c7437d74d899d95e8f2824e884d2117329bd"},
+    {file = "pytest_pretty-1.0.1.tar.gz", hash = "sha256:d5221cb69384d581b490edd15e22d607e00772e02e6a393292626c626ff1c075"},
+]
+
+[package.dependencies]
+pytest = ">=7"
+rich = ">=12"
 
 [[package]]
 name = "pytest-randomly"
@@ -4021,6 +4103,18 @@ files = [
 ]
 
 [[package]]
+name = "tomli-w"
+version = "1.0.0"
+description = "A lil' TOML writer"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tomli_w-1.0.0-py3-none-any.whl", hash = "sha256:9f2a07e8be30a0729e533ec968016807069991ae2fd921a78d42f429ae5f4463"},
+    {file = "tomli_w-1.0.0.tar.gz", hash = "sha256:f463434305e0336248cac9c2dc8076b707d8a12d019dd349f5c1e382dd1ae1b9"},
+]
+
+[[package]]
 name = "tomlkit"
 version = "0.11.6"
 description = "Style preserving TOML library"
@@ -4568,4 +4662,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.12"
-content-hash = "e175a546ab6932a4cb1ae2f96245ec109c3d6c8cd033df6aefbbc2fb3231de24"
+content-hash = "a522e02e1301358655e0815b271d3b28a179779a74856b1f5786b5fcb6e74295"

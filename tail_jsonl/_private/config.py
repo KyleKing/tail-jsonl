@@ -1,6 +1,7 @@
 """Configuration."""
 
 from functools import cached_property
+from typing import Dict, List
 
 from beartype import beartype
 from pydantic import BaseModel, Field
@@ -30,7 +31,7 @@ class Styles(BaseModel):
     value: str = ''
 
     @cached_property
-    def _level_lookup(self) -> dict[str, str]:
+    def _level_lookup(self) -> Dict[str, str]:
         return {
             'ERROR': self.level_error,
             'WARNING': self.level_warn,
@@ -48,11 +49,11 @@ class Styles(BaseModel):
 class Keys(BaseModel):
     """Special Keys."""
 
-    timestamp: list[str] = Field(default_factory=lambda: ['timestamp'])
-    level: list[str] = Field(default_factory=lambda: ['level'])
-    message: list[str] = Field(default_factory=lambda: ['event', 'message'])
+    timestamp: List[str] = Field(default_factory=lambda: ['timestamp'])
+    level: List[str] = Field(default_factory=lambda: ['level'])
+    message: List[str] = Field(default_factory=lambda: ['event', 'message'])
 
-    on_own_line: list[str] = Field(default_factory=lambda: ['exception'])
+    on_own_line: List[str] = Field(default_factory=lambda: ['exception'])
 
 
 class Config(BaseModel):

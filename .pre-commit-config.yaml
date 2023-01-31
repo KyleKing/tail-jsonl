@@ -80,7 +80,7 @@ repos:
         # args: ["--baseline", ".secrets.baseline"]
         exclude: poetry\.lock|.*/cassettes/.*\.yaml
   - repo: https://github.com/lyz-code/yamlfix/
-    rev: 1.6.0
+    rev: 1.7.0
     hooks:
       - id: yamlfix
         exclude: \.copier-answers\.yml|.*/cassettes/.*\.yaml

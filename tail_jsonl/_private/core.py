@@ -2,7 +2,7 @@
 
 import json
 from copy import copy
-from typing import Any
+from typing import Any, Dict, List
 
 from beartype import beartype
 from loguru import logger
@@ -14,7 +14,7 @@ from .config import Config
 
 
 @beartype
-def pop_key(data: dict, keys: list[str], fallback: str) -> Any:
+def pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore[type-arg]
     """Recursively pop whichever key matches first or default to the fallback."""
     try:
         key = keys.pop(0)
@@ -29,10 +29,10 @@ class Record(BaseModel):
     timestamp: str
     level: str
     message: str
-    data: dict
+    data: Dict  # type: ignore[type-arg]
 
     @classmethod
-    def from_line(cls, data: dict, config: Config) -> 'Record':
+    def from_line(cls, data: Dict, config: Config) -> 'Record':  # type: ignore[type-arg]
         """Extract Record from jsonl."""
         return cls(
             timestamp=pop_key(data, copy(config.keys.timestamp), '<no timestamp>'),
