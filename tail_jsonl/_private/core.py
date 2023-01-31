@@ -2,25 +2,41 @@
 
 import json
 from copy import copy
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
+import dotted
 from beartype import beartype
 from loguru import logger
 from pydantic import BaseModel
 from rich.console import Console
 from rich.text import Text
 
-from .config import Config
+from ..config import Config
+
+
+@beartype
+def _dot_pop(data: Dict, key: str) -> Optional[str]:  # type: ignore[type-arg]
+    value = dotted.get(data, key)
+    if isinstance(value, str):
+        dotted.remove(data, key)
+        return value
+    return None
+
+
+@beartype
+def _pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore[type-arg]
+    """Recursively pop each key while searching for a match."""
+    try:
+        key = keys.pop(0)
+        return _dot_pop(data, key) or _pop_key(data, keys, fallback)
+    except IndexError:
+        return fallback
 
 
 @beartype
 def pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore[type-arg]
-    """Recursively pop whichever key matches first or default to the fallback."""
-    try:
-        key = keys.pop(0)
-        return data.pop(key, None) or pop_key(data, keys, fallback)
-    except IndexError:
-        return fallback
+    """Safely find the first key in the data or default to the fallback."""
+    return _pop_key(data, copy(keys), fallback)
 
 
 class Record(BaseModel):
@@ -35,9 +51,9 @@ class Record(BaseModel):
     def from_line(cls, data: Dict, config: Config) -> 'Record':  # type: ignore[type-arg]
         """Extract Record from jsonl."""
         return cls(
-            timestamp=pop_key(data, copy(config.keys.timestamp), '<no timestamp>'),
-            level=pop_key(data, copy(config.keys.level), '<no level>'),
-            message=pop_key(data, copy(config.keys.message), '<no message>'),
+            timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
+            level=pop_key(data, config.keys.level, '<no level>'),
+            message=pop_key(data, config.keys.message, '<no message>'),
             data=data,
         )
 

@@ -1,0 +1,12 @@
+{
+  "_info": [
+    {
+      "func_args": {
+        "logs_index": 0
+      },
+      "test_file": "_private/test_core.py",
+      "test_name": "test_core"
+    }
+  ],
+  "_json": "2023-01-31 06:16:00.910671-05:00 DEBUG   debug-level log      record: \n{'elapsed': {'repr': '0:00:00.340931', 'seconds': 0.340931}, 'exception': None, \n'extra': {'data': {'key1': 123}}, 'file': {'name': 'dodo.py', 'path': \n'/Users/kyleking/Developer/packages/tail-jsonl/dodo.py'}, 'function': \n'<module>', 'level': {'icon': '\ud83d\udc1e', 'no': 10}, 'line': 31, 'module': 'dodo', \n'name': 'dodo', 'process': {'id': 16268, 'name': 'MainProcess'}, 'thread': \n{'id': 8821244160, 'name': 'MainThread'}, 'time': {'timestamp': \n1675160160.910671}}\n \u221f text: 2023-01-31 06:16:00.910 | DEBUG    | dodo:<module>:31 - debug-level log\n\n"
+}

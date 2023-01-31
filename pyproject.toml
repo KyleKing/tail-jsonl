@@ -62,8 +62,9 @@ tail-jsonl = "tail_jsonl:main"
 "Changelog" = "https://github.com/kyleking/tail-jsonl/blob/main/docs/docs/CHANGELOG.md"
 
 [tool.poetry.group.dev.dependencies]
+# Keep in-sync with the noxfile
 calcipy = {extras = ["dev", "lint", "test"], version = "*"}
-pytest-cache-assert = "^3.0.7"
+pytest-cache-assert = ">=3.0.7"
 pytest-pretty = ">=1.0.1"
 tomli-w = ">=1.0.0"
 

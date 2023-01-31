@@ -49,11 +49,11 @@ class Styles(BaseModel):
 class Keys(BaseModel):
     """Special Keys."""
 
-    timestamp: List[str] = Field(default_factory=lambda: ['timestamp'])
-    level: List[str] = Field(default_factory=lambda: ['level'])
-    message: List[str] = Field(default_factory=lambda: ['event', 'message'])
+    timestamp: List[str] = Field(default_factory=lambda: ['timestamp', 'record.time.repr'])
+    level: List[str] = Field(default_factory=lambda: ['level', 'record.level.name'])
+    message: List[str] = Field(default_factory=lambda: ['event', 'record.message'])
 
-    on_own_line: List[str] = Field(default_factory=lambda: ['exception'])
+    on_own_line: List[str] = Field(default_factory=lambda: ['text', 'exception'])
 
 
 class Config(BaseModel):
