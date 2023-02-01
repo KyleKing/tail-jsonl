@@ -34,8 +34,8 @@ cat tests/data/logs.jsonl | jq '.record' --compact-output | tail-jsonl
 # An example stern command (also consider -o=extjson)
 stern envvars --context staging --container gateway --since="60m" --output raw | tail-jsonl
 
-# Or with Docker Compoce
-docker compose logs --follow | tail-jsonl
+# Or with Docker Compose (note that awk, cut, and grep all buffer. For awk, add '; system("")')
+docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RSTART+3, RLENGTH); system("") }' | tail-jsonl
 ```
 
 ![.github/assets/demo.gif](https://raw.githubusercontent.com/KyleKing/tail-jsonl/main/.github/assets/demo.gif)
