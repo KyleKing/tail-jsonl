@@ -14,6 +14,19 @@ from rich.text import Text
 from ..config import Config
 
 
+class FoldedText(Text):
+    """Indent Folded Text."""
+
+    def wrap(*args, **kwargs):
+        """Extend wrap.
+
+        Source: https://github.com/Textualize/rich/blob/b89d0362e8ebcb18902f0f0a206879f1829b5c0b/rich/text.py#L1151-L1198
+
+        """
+        lines = super().wrap(*args, **kwargs)
+        return lines[0] + [f"{' ' * 3}{line}" for line in lines[1:]]
+
+
 @beartype
 def _dot_pop(data: Dict, key: str) -> Optional[str]:  # type: ignore[type-arg]
     value = dotted.get(data, key)
@@ -68,7 +81,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
         console.print('')  # Line break
         return
 
-    text = Text(tab_size=4)  # FIXME: Why isn't this indenting what is wrapped?
+    text = FoldedText()
     text.append(f'{record.timestamp: <28}', style=config.styles.timestamp)
     text.append(f' {record.level: <7}', style=config.styles.get_level_style(record.level))
     text.append(f' {record.message: <20}', style=config.styles.message)
