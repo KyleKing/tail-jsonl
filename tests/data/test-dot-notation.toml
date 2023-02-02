@@ -1,0 +1,2 @@
+[keys]
+message = ["\"this.message\"", 'record.message']
