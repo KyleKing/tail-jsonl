@@ -9,6 +9,7 @@ from beartype import beartype
 from beartype.typing import Dict, Optional
 from rich.console import Console
 
+from . import __version__
 from ._private.core import print_record
 from .config import Config
 
@@ -30,9 +31,13 @@ def _load_config(config_path: Optional[str]) -> Config:
 @beartype
 def main() -> None:  # pragma: no cover
     """CLI Entrypoint."""
-    # PLANNED: Add a flag (-v & store_true) to log debug information
+    # PLANNED: Add a flag (--debug & store_true) to print debugging information
 
     parser = argparse.ArgumentParser(description='Pipe JSONL Logs for pretty printing')
+    parser.add_argument(
+        '-v', '--version', action='version',
+        version=f'%(prog)s {__version__}', help="Show program's version number and exit.",
+    )
     parser.add_argument('--config-path', help='Path to a configuration file')
     options = parser.parse_args(sys.argv[1:])
 
