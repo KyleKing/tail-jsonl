@@ -86,7 +86,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
         text.append(f' {key}:', style=config.styles.key)
         text.append(f' {str(value): <10}', style=config.styles.value)
 
-    console.print(text)
+    console.print(text, end='\n    ')
     for key, line in full_lines:
         new_text = Text()
         new_text.append(f' ∟ {key}', style='bold green')
