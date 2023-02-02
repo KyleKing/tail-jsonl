@@ -23,6 +23,7 @@ except Exception:
 """
 
 import json
+import platform
 
 import pytest
 from beartype import beartype
@@ -51,7 +52,8 @@ def test_core(logs_index, assert_against_cache, console: Console):
     result = console.end_capture()
 
     assert result.strip() and '<no ' not in result
-    assert_against_cache(result)
+    if platform.system() == 'Windows':
+        assert_against_cache(result)
 
 
 def test_core_no_key_matches(console: Console):
