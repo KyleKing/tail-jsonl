@@ -37,7 +37,7 @@ from ..configuration import TEST_DATA_DIR
 
 @beartype
 def read_logs() -> List[str]:
-    return (TEST_DATA_DIR / 'logs.jsonl').read_text().strip().split('\n')
+    return (TEST_DATA_DIR / 'logs.jsonl').read_text(encoding='utf-8').strip().split('\n')
 
 
 LOGS = read_logs()
