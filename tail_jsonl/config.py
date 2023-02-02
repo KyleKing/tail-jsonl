@@ -1,9 +1,9 @@
 """Configuration."""
 
 from functools import cached_property
-from typing import Dict, List
 
 from beartype import beartype
+from beartype.typing import Dict, List
 from pydantic import BaseModel, Field
 
 

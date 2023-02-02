@@ -2,10 +2,10 @@
 
 import json
 from copy import copy
-from typing import Any, Dict, List, Optional
 
 import dotted
 from beartype import beartype
+from beartype.typing import Any, Dict, List, Optional
 from loguru import logger
 from pydantic import BaseModel
 from rich.console import Console

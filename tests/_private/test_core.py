@@ -22,10 +22,11 @@ except Exception:
 
 """
 
-from typing import List
+import json
 
 import pytest
 from beartype import beartype
+from beartype.typing import List
 from rich.console import Console
 
 from tail_jsonl._private.core import print_record
@@ -53,7 +54,7 @@ def test_core(logs_index, assert_against_cache, console: Console):
     assert_against_cache(result)
 
 
-def test_no_key_matches(console: Console):
+def test_core_no_key_matches(console: Console):
     print_record('{"key": null}', console, Config())
 
     result = console.end_capture()
@@ -61,9 +62,17 @@ def test_no_key_matches(console: Console):
     assert result.strip() == '<no timestamp>               <no level> <no message>         key: None'
 
 
-def test_bad_json(console: Console):
+def test_core_bad_json(console: Console):
     print_record('{"bad json": None}', console, Config())
 
     result = console.end_capture()
 
     assert result.strip() == ''
+
+
+def test_core_wrap(console: Console):
+    print_record(json.dumps({key: '-' * 3 for key in range(3)}), console, Config())
+
+    result = console.end_capture()
+
+    assert result.strip() == """<no timestamp>               <no level> <no message>         0: ---        1: \n---        2: ---"""
