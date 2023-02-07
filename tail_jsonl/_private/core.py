@@ -58,6 +58,10 @@ class Record(BaseModel):
         )
 
 
+_PRE_STR = '⦿ '
+"""Prefix each line with a sumbol while waiting for indent on wrap."""
+
+
 @beartype
 def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record."""
@@ -72,6 +76,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
     message_style = config.styles.message or level_style
 
     text = Text()
+    text.append(_PRE_STR, style=level_style)
     text.append(f'{record.timestamp: <28}', style=config.styles.timestamp)
     text.append(f' {record.level: <7}', style=level_style)
     text.append(f' {record.message: <20}', style=message_style)

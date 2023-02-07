@@ -30,7 +30,7 @@ from beartype import beartype
 from beartype.typing import List
 from rich.console import Console
 
-from tail_jsonl._private.core import print_record
+from tail_jsonl._private.core import _PRE_STR, print_record
 from tail_jsonl.config import Config
 
 from ..configuration import TEST_DATA_DIR
@@ -61,7 +61,7 @@ def test_core_no_key_matches(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == '<no timestamp>               <no level> <no message>         key: None'
+    assert result.strip() == f'{_PRE_STR}<no timestamp>               <no level> <no message>         key: None'
 
 
 def test_core_bad_json(console: Console):
@@ -77,4 +77,5 @@ def test_core_wrap(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == """<no timestamp>               <no level> <no message>         0: ---        1: \n---        2: ---"""
+    assert result.strip(
+    ) == f"""{_PRE_STR}<no timestamp>               <no level> <no message>         0: ---        1: \n---        2: ---"""
