@@ -1,5 +1,10 @@
 ## Unreleased
 
+### Fix
+
+- bump 1.1 without release
+- test loading user config and escaping dot-notation
+
 ### Feat
 
 - use a symbol to indicate each line
@@ -12,10 +17,6 @@
 - end didn't work as hoped
 - switch to beartype.typing
 - folded text doesn't work as expected
-
-### Fix
-
-- test loading user config and escaping dot-notation
 
 ## 1.0.0 (2023-01-31)
 

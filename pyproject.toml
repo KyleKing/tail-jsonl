@@ -9,7 +9,7 @@ pythons = ["3.8"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "1.1.0"
+version = "1.1.1"
 version_files = ["pyproject.toml", "tail_jsonl/__init__.py"]
 
 [tool.isort]
@@ -42,7 +42,7 @@ maintainers = []
 name = "tail_jsonl"
 readme = "docs/README.md"
 repository = "https://github.com/kyleking/tail-jsonl"
-version = "1.1.0"
+version = "1.1.1"
 
 [tool.poetry.dependencies]
 python = "^3.8.12"
