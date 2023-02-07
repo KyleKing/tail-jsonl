@@ -52,7 +52,7 @@ def test_core(logs_index, assert_against_cache, console: Console):
     result = console.end_capture()
 
     assert result.strip() and '<no ' not in result
-    if platform.system() == 'Windows':
+    if platform.system() != 'Windows':
         assert_against_cache(result)
 
 
