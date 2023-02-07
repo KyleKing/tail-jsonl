@@ -2,10 +2,10 @@
 
 import json
 from copy import copy
-from typing import Any, Dict, List, Optional
 
 import dotted
 from beartype import beartype
+from beartype.typing import Any, Dict, List, Optional
 from loguru import logger
 from pydantic import BaseModel
 from rich.console import Console
@@ -58,6 +58,10 @@ class Record(BaseModel):
         )
 
 
+_PRE_STR = '⦿ '
+"""Prefix each line with a sumbol while waiting for indent on wrap."""
+
+
 @beartype
 def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record."""
@@ -68,10 +72,14 @@ def print_record(line: str, console: Console, config: Config) -> None:
         console.print('')  # Line break
         return
 
-    text = Text(tab_size=4)  # FIXME: Why isn't this indenting what is wrapped?
+    level_style = config.styles.get_level_style(record.level)
+    message_style = config.styles.message or level_style
+
+    text = Text()
+    text.append(_PRE_STR, style=level_style)
     text.append(f'{record.timestamp: <28}', style=config.styles.timestamp)
-    text.append(f' {record.level: <7}', style=config.styles.get_level_style(record.level))
-    text.append(f' {record.message: <20}', style=config.styles.message)
+    text.append(f' {record.level: <7}', style=level_style)
+    text.append(f' {record.message: <20}', style=message_style)
 
     full_lines = []
     for key in config.keys.on_own_line:

@@ -16,4 +16,4 @@ def test_create_default_config():
 
     config = tomli_w.dumps(Config().dict())
 
-    assert tomllib.loads(expected_config.read_text()) == tomllib.loads(config)
+    assert tomllib.loads(expected_config.read_text(encoding='utf-8')) == tomllib.loads(config)

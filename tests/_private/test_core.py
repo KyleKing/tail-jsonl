@@ -22,13 +22,15 @@ except Exception:
 
 """
 
-from typing import List
+import json
+import platform
 
 import pytest
 from beartype import beartype
+from beartype.typing import List
 from rich.console import Console
 
-from tail_jsonl._private.core import print_record
+from tail_jsonl._private.core import _PRE_STR, print_record
 from tail_jsonl.config import Config
 
 from ..configuration import TEST_DATA_DIR
@@ -36,7 +38,7 @@ from ..configuration import TEST_DATA_DIR
 
 @beartype
 def read_logs() -> List[str]:
-    return (TEST_DATA_DIR / 'logs.jsonl').read_text().strip().split('\n')
+    return (TEST_DATA_DIR / 'logs.jsonl').read_text(encoding='utf-8').strip().split('\n')
 
 
 LOGS = read_logs()
@@ -50,20 +52,31 @@ def test_core(logs_index, assert_against_cache, console: Console):
     result = console.end_capture()
 
     assert result.strip() and '<no ' not in result
-    assert_against_cache(result)
+    if platform.system() != 'Windows':
+        assert_against_cache(result)
 
 
-def test_no_key_matches(console: Console):
+def test_core_no_key_matches(console: Console):
     print_record('{"key": null}', console, Config())
 
     result = console.end_capture()
 
-    assert result.strip() == '<no timestamp>               <no level> <no message>         key: None'
+    assert result.strip() == f'{_PRE_STR}<no timestamp>               <no level> <no message>         key: None'
 
 
-def test_bad_json(console: Console):
+def test_core_bad_json(console: Console):
     print_record('{"bad json": None}', console, Config())
 
     result = console.end_capture()
 
     assert result.strip() == ''
+
+
+def test_core_wrap(console: Console):
+    print_record(json.dumps({key: '-' * 3 for key in range(3)}), console, Config())
+    expected = f'{_PRE_STR}<no timestamp>               <no level> <no message>         0: ---        1: \n---        2: ---'
+
+    result = console.end_capture()
+
+    if platform.system() != 'Windows':
+        assert result.strip() == expected
