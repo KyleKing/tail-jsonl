@@ -51,10 +51,10 @@ poetry run doit run lock document deploy_docs publish
 |-----------------------------------|--------------|-----------|------------|------------|
 | `tail_jsonl/__init__.py`          |            7 |         0 |          0 | 100.0%     |
 | `tail_jsonl/_private/__init__.py` |            0 |         0 |          0 | 100.0%     |
-| `tail_jsonl/_private/core.py`     |           63 |         0 |          0 | 100.0%     |
+| `tail_jsonl/_private/core.py`     |           65 |         0 |          0 | 100.0%     |
 | `tail_jsonl/config.py`            |           28 |         0 |          0 | 100.0%     |
 | `tail_jsonl/main.py`              |           21 |         0 |         10 | 100.0%     |
-| **Totals**                        |          119 |         0 |         10 | 100.0%     |
+| **Totals**                        |          121 |         0 |         10 | 100.0%     |
 
-Generated on: 2023-02-01
+Generated on: 2023-02-06
 <!-- {cte} -->
