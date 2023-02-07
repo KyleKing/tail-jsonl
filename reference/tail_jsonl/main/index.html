@@ -725,23 +725,23 @@
 
       <details class="quote">
         <summary>Source code in <code>tail_jsonl/main.py</code></summary>
-        <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="21 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="22 "></span><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;CLI Entrypoint.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="24 "></span>    <span class="c1"># PLANNED: Add a flag (-v &amp; store_true) to log debug information</span>
-<span class="linenos" data-linenos="25 "></span>
-<span class="linenos" data-linenos="26 "></span>    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Pipe JSONL Logs for pretty printing&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="27 "></span>    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--config-path&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to a configuration file&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="28 "></span>    <span class="n">options</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-<span class="linenos" data-linenos="29 "></span>
-<span class="linenos" data-linenos="30 "></span>    <span class="n">user_config</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># type: ignore[type-arg]</span>
-<span class="linenos" data-linenos="31 "></span>    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">config_path</span><span class="p">:</span>
-<span class="linenos" data-linenos="32 "></span>        <span class="n">tomllib</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
-<span class="linenos" data-linenos="33 "></span>
-<span class="linenos" data-linenos="34 "></span>    <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">()</span>
-<span class="linenos" data-linenos="35 "></span>    <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="o">**</span><span class="n">user_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="36 "></span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">():</span>
-<span class="linenos" data-linenos="37 "></span>        <span class="n">print_record</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">console</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+        <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="31 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="32 "></span><span class="k">def</span> <span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+<span class="linenos" data-linenos="33 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;CLI Entrypoint.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="34 "></span>    <span class="c1"># PLANNED: Add a flag (--debug &amp; store_true) to print debugging information</span>
+<span class="linenos" data-linenos="35 "></span>
+<span class="linenos" data-linenos="36 "></span>    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Pipe JSONL Logs for pretty printing&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="37 "></span>    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+<span class="linenos" data-linenos="38 "></span>        <span class="s1">&#39;-v&#39;</span><span class="p">,</span> <span class="s1">&#39;--version&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s1">&#39;version&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="39 "></span>        <span class="n">version</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;%(prog)s </span><span class="si">{</span><span class="n">__version__</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Show program&#39;s version number and exit.&quot;</span><span class="p">,</span>
+<span class="linenos" data-linenos="40 "></span>    <span class="p">)</span>
+<span class="linenos" data-linenos="41 "></span>    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--config-path&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to a configuration file&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="42 "></span>    <span class="n">options</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<span class="linenos" data-linenos="43 "></span>
+<span class="linenos" data-linenos="44 "></span>    <span class="n">config</span> <span class="o">=</span> <span class="n">_load_config</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span>
+<span class="linenos" data-linenos="45 "></span>    <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">()</span>
+<span class="linenos" data-linenos="46 "></span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">():</span>
+<span class="linenos" data-linenos="47 "></span>        <span class="n">print_record</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">console</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
 </code></pre></div>
       </details>
   </div>
@@ -761,11 +761,11 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 31, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 31, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2023</span>
       
     
   </small>

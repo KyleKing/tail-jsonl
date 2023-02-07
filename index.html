@@ -796,8 +796,8 @@
 <span class="linenos" data-linenos=" 8 "></span><span class="c1"># An example stern command (also consider -o=extjson)</span>
 <span class="linenos" data-linenos=" 9 "></span>stern<span class="w"> </span>envvars<span class="w"> </span>--context<span class="w"> </span>staging<span class="w"> </span>--container<span class="w"> </span>gateway<span class="w"> </span>--since<span class="o">=</span><span class="s2">&quot;60m&quot;</span><span class="w"> </span>--output<span class="w"> </span>raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl
 <span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="c1"># Or with Docker Compoce</span>
-<span class="linenos" data-linenos="12 "></span>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--follow<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl
+<span class="linenos" data-linenos="11 "></span><span class="c1"># Or with Docker Compose (note that awk, cut, and grep all buffer. For awk, add &#39;; system(&quot;&quot;)&#39;)</span>
+<span class="linenos" data-linenos="12 "></span>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>--follow<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;match($0, / \| \{.+/) { print substr($0, RSTART+3, RLENGTH); system(&quot;&quot;) }&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl
 </code></pre></div>
 <p><img alt=".github/assets/demo.gif" src="https://raw.githubusercontent.com/KyleKing/tail-jsonl/main/.github/assets/demo.gif" /></p>
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">⚓︎</a></h2>
@@ -826,7 +826,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 31, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 1, 2023</span>
       
         <br>
         Created:
