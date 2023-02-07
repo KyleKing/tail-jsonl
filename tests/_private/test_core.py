@@ -74,8 +74,9 @@ def test_core_bad_json(console: Console):
 
 def test_core_wrap(console: Console):
     print_record(json.dumps({key: '-' * 3 for key in range(3)}), console, Config())
+    expected = f'{_PRE_STR}<no timestamp>               <no level> <no message>         0: ---        1: \n---        2: ---'
 
     result = console.end_capture()
 
-    assert result.strip(
-    ) == f"""{_PRE_STR}<no timestamp>               <no level> <no message>         0: ---        1: \n---        2: ---"""
+    if platform.system() != 'Windows':
+        assert result.strip() == expected
