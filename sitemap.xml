@@ -2,67 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://tail-jsonl.kyleking.me/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/docs/Advanced_Documentation/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/docs/CHANGELOG/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/docs/CODE_TAG_SUMMARY/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/docs/DEVELOPER_GUIDE/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/docs/STYLE_GUIDE/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/modules/tail_jsonl/_code_diagrams/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>None</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/reference/tail_jsonl/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/reference/tail_jsonl/config/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/reference/tail_jsonl/main/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/reference/tail_jsonl/_private/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://tail-jsonl.kyleking.me/reference/tail_jsonl/_private/core/</loc>
-         <lastmod>2023-02-07</lastmod>
+         <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

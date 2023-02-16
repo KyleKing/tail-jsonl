@@ -954,7 +954,7 @@
 <span class="linenos" data-linenos="69 "></span>        <span class="n">record</span> <span class="o">=</span> <span class="n">Record</span><span class="o">.</span><span class="n">from_line</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
 <span class="linenos" data-linenos="70 "></span>    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
 <span class="linenos" data-linenos="71 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Error in tail-json to parse line&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">)</span>
-<span class="linenos" data-linenos="72 "></span>        <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># Line break</span>
+<span class="linenos" data-linenos="72 "></span>        <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">_PRE_STR</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Print the unmodified line</span>
 <span class="linenos" data-linenos="73 "></span>        <span class="k">return</span>
 <span class="linenos" data-linenos="74 "></span>
 <span class="linenos" data-linenos="75 "></span>    <span class="n">level_style</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">styles</span><span class="o">.</span><span class="n">get_level_style</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">level</span><span class="p">)</span>
@@ -1001,11 +1001,11 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 16, 2023</span>
       
         <br>
         Created:
-        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 7, 2023</span>
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 16, 2023</span>
       
     
   </small>
