@@ -1,4 +1,4 @@
-"""Public CLI interface."""
+"""Start the command line program."""
 
 import argparse
 import fileinput
@@ -7,16 +7,12 @@ from pathlib import Path
 
 from beartype import beartype
 from beartype.typing import Dict, Optional
+from corallium.tomllib import tomllib
 from rich.console import Console
 
 from . import __version__
 from ._private.core import print_record
 from .config import Config
-
-try:
-    import tomllib
-except ModuleNotFoundError:
-    import tomli as tomllib  # type: ignore[no-redef]
 
 
 @beartype
@@ -29,7 +25,7 @@ def _load_config(config_path: Optional[str]) -> Config:
 
 
 @beartype
-def main() -> None:  # pragma: no cover
+def start() -> None:  # pragma: no cover
     """CLI Entrypoint."""
     # PLANNED: Add a flag (--debug & store_true) to print debugging information
 
