@@ -69,7 +69,7 @@ def test_core_bad_json(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == ''
+    assert result.strip() == f'{_PRE_STR} {{"bad json": None}}'
 
 
 def test_core_wrap(console: Console):

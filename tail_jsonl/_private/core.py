@@ -69,7 +69,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
         record = Record.from_line(json.loads(line), config=config)
     except Exception:
         logger.exception('Error in tail-json to parse line', line=line)
-        console.print('')  # Line break
+        console.print(f"{_PRE_STR} {line}")  # Print the unmodified line
         return
 
     level_style = config.styles.get_level_style(record.level)
