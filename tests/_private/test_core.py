@@ -30,7 +30,7 @@ from beartype import beartype
 from beartype.typing import List
 from rich.console import Console
 
-from tail_jsonl._private.core import _PRE_STR, print_record
+from tail_jsonl._private.core import print_record
 from tail_jsonl.config import Config
 
 from ..configuration import TEST_DATA_DIR
@@ -51,7 +51,8 @@ def test_core(logs_index, assert_against_cache, console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() and '<no ' not in result
+    assert result.strip()
+    assert '<no ' not in result
     if platform.system() != 'Windows':
         assert_against_cache(result)
 
@@ -61,7 +62,7 @@ def test_core_no_key_matches(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == f'{_PRE_STR}<no timestamp>               <no level> <no message>         key: None'
+    assert result.strip() == "<no timestamp>               [NOTSET ] <no message> level= data={'key': None}"
 
 
 def test_core_bad_json(console: Console):
@@ -69,14 +70,14 @@ def test_core_bad_json(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == f'{_PRE_STR} {{"bad json": None}}'
+    assert result.strip() == '{"bad json": None}'
 
 
 def test_core_wrap(console: Console):
     print_record(json.dumps({key: '-' * 3 for key in range(3)}), console, Config())
-    expected = f'{_PRE_STR}<no timestamp>               <no level> <no message>         0: ---        1: \n---        2: ---'
 
     result = console.end_capture()
 
     if platform.system() != 'Windows':
+        expected = "<no timestamp>               [NOTSET ] <no message> level= data={'0': '---', \n'1': '---', '2': '---'}"  # noqa: E501
         assert result.strip() == expected

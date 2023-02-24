@@ -40,7 +40,7 @@ pytest-pretty = ">=1.0.1"
 tomli-w = ">=1.0.0"
 
 [tool.poetry.scripts]
-tail-jsonl = "tail_jsonl:scripts:start"
+tail-jsonl = "tail_jsonl:scripts.start"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kyleking/tail-jsonl/issues"
