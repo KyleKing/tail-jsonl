@@ -12,4 +12,4 @@ def test_core_escapping_dot_notation(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == "<no timestamp>               [NOTSET ] this-dot-message level= data={'this.key':\n'key'}"
+    assert result.strip() == '<no timestamp>               [NOTSET ] this-dot-message this.key=key'

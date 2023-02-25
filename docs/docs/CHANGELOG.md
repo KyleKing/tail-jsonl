@@ -1,15 +1,16 @@
 ## Unreleased
 
+### Refactor
+
+- migrate to corallium's rich_printer and styles
+
+## 1.1.2 (2023-02-16)
+
 ### Fix
 
 - show non-JSON lines
 
 ## 1.1.1 (2023-02-06)
-
-### Fix
-
-- bump 1.1 without release
-- test loading user config and escaping dot-notation
 
 ### Feat
 
@@ -17,6 +18,11 @@
 - indent by four spaces on wrap
 - add version arg
 - indent folded text
+
+### Fix
+
+- bump 1.1 without release
+- test loading user config and escaping dot-notation
 
 ### Refactor
 

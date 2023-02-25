@@ -15,7 +15,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9"
+  "Programming Language :: Python :: 3.9",
 ] # https://pypi.org/classifiers/
 description = "Pretty Print Tailed JSONL Logs"
 documentation = "https://tail-jsonl.kyleking.me"
@@ -30,7 +30,7 @@ version = "1.1.2"
 
 [tool.poetry.dependencies]
 python = "^3.8.12"
-corallium = ">=0.0.1rc2"
+corallium = ">=0.1.0"
 dotted-notation = ">=0.9.2"
 
 [tool.poetry.group.dev.dependencies]
@@ -40,7 +40,7 @@ pytest-pretty = ">=1.0.1"
 tomli-w = ">=1.0.0"
 
 [tool.poetry.scripts]
-tail-jsonl = "tail_jsonl:scripts.start"
+tail-jsonl = "tail_jsonl.scripts:start"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kyleking/tail-jsonl/issues"
@@ -52,5 +52,5 @@ pythonVersion = "3.8"
 
 [tool.pytest.ini_options]
 filterwarnings = [
-  "ignore::beartype.roar.BeartypeDecorHintPep585DeprecationWarning"
+  "ignore::beartype.roar.BeartypeDecorHintPep585DeprecationWarning",
 ]

@@ -62,7 +62,7 @@ def test_core_no_key_matches(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == "<no timestamp>               [NOTSET ] <no message> level= data={'key': None}"
+    assert result.strip() == '<no timestamp>               [NOTSET ] <no message> key=None'
 
 
 def test_core_bad_json(console: Console):
@@ -79,5 +79,5 @@ def test_core_wrap(console: Console):
     result = console.end_capture()
 
     if platform.system() != 'Windows':
-        expected = "<no timestamp>               [NOTSET ] <no message> level= data={'0': '---', \n'1': '---', '2': '---'}"  # noqa: E501
+        expected = '<no timestamp>               [NOTSET ] <no message> 0=--- 1=--- 2=---'  # noqa: E501
         assert result.strip() == expected

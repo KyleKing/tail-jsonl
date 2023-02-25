@@ -44,5 +44,14 @@ poetry config pypi-token.pypi ...
 ## Current Status
 
 <!-- {cts} COVERAGE -->
+| File                              |   Statements |   Missing |   Excluded | Coverage   |
+|-----------------------------------|--------------|-----------|------------|------------|
+| `tail_jsonl/__init__.py`          |            3 |         0 |          0 | 100.0%     |
+| `tail_jsonl/_private/__init__.py` |            0 |         0 |          0 | 100.0%     |
+| `tail_jsonl/_private/core.py`     |           47 |         1 |          0 | 97.9%      |
+| `tail_jsonl/config.py`            |           11 |         0 |          0 | 100.0%     |
+| `tail_jsonl/scripts.py`           |           18 |         0 |         10 | 100.0%     |
+| **Totals**                        |           79 |         1 |         10 | 98.7%      |
 
+Generated on: 2023-02-25
 <!-- {cte} -->

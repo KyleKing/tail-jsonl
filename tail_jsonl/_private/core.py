@@ -1,6 +1,7 @@
 """Core print logic."""
 
 import json
+import logging
 from copy import copy
 
 import dotted
@@ -69,12 +70,16 @@ def print_record(line: str, console: Console, config: Config) -> None:
         console.print(line)  # Print the unmodified line
         return
 
-    logline = record.dict()
+    if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
+        record.data['_level_name'] = record.level
     rich_printer(  # noqa: CAC001
-        message=logline.pop('message'),
+        message=record.message,
         is_header=False,
-        _this_level=get_level(name=logline['level']),
+        _this_level=_this_level,
         _is_text=False,
         _console=console,
-        **logline,
+        _styles=config.styles,
+        _keys_on_own_line=config.keys.on_own_line,
+        timestamp=record.timestamp,
+        **record.data,
     )

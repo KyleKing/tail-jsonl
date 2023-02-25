@@ -2,6 +2,6 @@
 
 from pprint import pprint
 
-from tail_jsonl import replace_me
+from tail_jsonl.scripts import start
 
 pprint(locals())  # noqa: T203

@@ -2,17 +2,17 @@
 level = ["level", "record.level.name"]
 message = ["event", "record.message"]
 # Provide a list of keys that should be shown on their own line
-on_own_line = ["exception", "text"]
-timestamp = ["record.time.repr", "timestamp"]
+on_own_line = ["text", "exception"]
+timestamp = ["timestamp", "record.time.repr"]
 
 [styles]
-key = "#02bcce"
-level_debug = "dim blue"
-level_error = "#24283b"
-level_fallback = "#af2ab4"
-level_info = "green"
-level_warn = "yellow"
-message = "bold #a9b1d6"
-timestamp = "#7b819d"
-value = "#ab8ce3"
-value_own_line = "#ab8ce3"
+timestamp = "#8DAAA1"
+message = "bold"
+level_error = "#e77d8f"
+level_warn = "#d8b172"
+level_info = "#a8cd76"
+level_debug = "#82a1f1"
+level_fallback = "#b69bf1"
+key = "#8DAAA1"
+value = "#A28EAB"
+value_own_line = "#AAA18D"
