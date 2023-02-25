@@ -1,18 +1,30 @@
 [keys]
+# Provide the list of key names to search when looking for the value.
+#   The default is designed for loguru, structlog, and most common log formats.
+#   Please open a PR if there are additional keys that should be part of the defaults
+#
+# Note: the keys will be parsed with dot-notation, so if you have . or # in the key name,
+#   double quote the string to pass the string verbatim without parsing
+
+timestamp = ["timestamp", "record.time.repr"]
 level = ["level", "record.level.name"]
 message = ["event", "message", "record.message"]
+
 # Provide a list of keys that should be shown on their own line
 on_own_line = ["text", "exception"]
-timestamp = ["timestamp", "record.time.repr"]
 
 [styles]
+# Specify custom style formatting
+
 timestamp = "#8DAAA1"
 message = "bold"
+
 level_error = "#e77d8f"
 level_warn = "#d8b172"
 level_info = "#a8cd76"
 level_debug = "#82a1f1"
 level_fallback = "#b69bf1"
+
 key = "#8DAAA1"
 value = "#A28EAB"
 value_own_line = "#AAA18D"

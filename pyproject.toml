@@ -49,8 +49,3 @@ tail-jsonl = "tail_jsonl.scripts:start"
 [tool.pyright]
 include = ["tail_jsonl"]
 pythonVersion = "3.8"
-
-[tool.pytest.ini_options]
-filterwarnings = [
-  "ignore::beartype.roar.BeartypeDecorHintPep585DeprecationWarning",
-]
