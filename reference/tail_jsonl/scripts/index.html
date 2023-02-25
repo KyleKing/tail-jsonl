@@ -736,11 +736,12 @@
 <span class="linenos" data-linenos="36 "></span>    <span class="p">)</span>
 <span class="linenos" data-linenos="37 "></span>    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--config-path&#39;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s1">&#39;Path to a configuration file&#39;</span><span class="p">)</span>
 <span class="linenos" data-linenos="38 "></span>    <span class="n">options</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
-<span class="linenos" data-linenos="39 "></span>
-<span class="linenos" data-linenos="40 "></span>    <span class="n">config</span> <span class="o">=</span> <span class="n">_load_config</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span>
-<span class="linenos" data-linenos="41 "></span>    <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">()</span>
-<span class="linenos" data-linenos="42 "></span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">():</span>
-<span class="linenos" data-linenos="43 "></span>        <span class="n">print_record</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">console</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<span class="linenos" data-linenos="39 "></span>    <span class="n">sys</span><span class="o">.</span><span class="n">argv</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Remove CLI before calling fileinput</span>
+<span class="linenos" data-linenos="40 "></span>
+<span class="linenos" data-linenos="41 "></span>    <span class="n">config</span> <span class="o">=</span> <span class="n">_load_config</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">config_path</span><span class="p">)</span>
+<span class="linenos" data-linenos="42 "></span>    <span class="n">console</span> <span class="o">=</span> <span class="n">Console</span><span class="p">()</span>
+<span class="linenos" data-linenos="43 "></span>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fileinput</span><span class="o">.</span><span class="n">input</span><span class="p">():</span>
+<span class="linenos" data-linenos="44 "></span>        <span class="n">print_record</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">console</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
 </code></pre></div>
       </details>
   </div>
