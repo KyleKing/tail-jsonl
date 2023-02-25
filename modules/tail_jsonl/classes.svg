@@ -46,7 +46,7 @@
 <polygon fill="none" stroke="black" points="160.5,-0.5 160.5,-114.5 431.5,-114.5 431.5,-0.5 160.5,-0.5"/>
 <text text-anchor="start" x="276" y="-99.3" font-family="Times,serif" font-size="14.00">Record</text>
 <polyline fill="none" stroke="black" points="160.5,-91.5 431.5,-91.5"/>
-<text text-anchor="start" x="253.5" y="-76.3" font-family="Times,serif" font-size="14.00">data : dict, Dict</text>
+<text text-anchor="start" x="253.5" y="-76.3" font-family="Times,serif" font-size="14.00">data : Dict, dict</text>
 <text text-anchor="start" x="253.5" y="-61.3" font-family="Times,serif" font-size="14.00">level : str</text>
 <text text-anchor="start" x="253.5" y="-46.3" font-family="Times,serif" font-size="14.00">message : str</text>
 <text text-anchor="start" x="253.5" y="-31.3" font-family="Times,serif" font-size="14.00">timestamp : str</text>
