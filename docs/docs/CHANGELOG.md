@@ -1,5 +1,21 @@
 ## Unreleased
 
+### Fix
+
+- ensure keys are unique without losing any arguments
+
+## 1.2.1 (2023-02-25)
+
+### Fix
+
+- resolve bugs in tail-jsonl config-path parsing
+
+## 1.2.0 (2023-02-25)
+
+### Feat
+
+- update color scheme and resolve log issues
+
 ### Refactor
 
 - migrate to corallium's rich_printer and styles

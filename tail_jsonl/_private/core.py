@@ -74,8 +74,6 @@ def print_record(line: str, console: Console, config: Config) -> None:
         record.data['_level_name'] = record.level
 
     printer_kwargs = {
-        **record.data,
-        # Ensure that there is no repeat keyword arguments
         'message': record.message,
         'is_header': False,
         '_this_level': _this_level,
@@ -85,4 +83,9 @@ def print_record(line: str, console: Console, config: Config) -> None:
         '_keys_on_own_line': config.keys.on_own_line,
         'timestamp': record.timestamp,
     }
-    rich_printer(**printer_kwargs)
+    keys = set(printer_kwargs)
+    rich_printer(
+        **printer_kwargs,
+        # Ensure that there is no repeat keyword arguments
+        **{f'_{key}' if key in keys else key: value for key, value in record.data.items()},
+    )
