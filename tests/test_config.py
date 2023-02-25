@@ -1,15 +1,14 @@
 from pathlib import Path
 
-import tomli_w
 from corallium.tomllib import tomllib  # type: ignore[no-redef]
 
-from tail_jsonl.config import Config
+from tail_jsonl.scripts import _load_config
 
 
 def test_create_default_config():
     """Create the default config for the README."""
-    expected_config = Path(__file__).parent / 'config_default.toml'
+    example_config = Path(__file__).parent / 'config_default.toml'
 
-    config = tomli_w.dumps(Config().dict())
+    config = _load_config(config_path=str(example_config))
 
-    assert tomllib.loads(expected_config.read_text(encoding='utf-8')) == tomllib.loads(config), config
+    assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config

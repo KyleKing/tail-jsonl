@@ -1,6 +1,6 @@
 [keys]
 level = ["level", "record.level.name"]
-message = ["event", "record.message"]
+message = ["event", "message", "record.message"]
 # Provide a list of keys that should be shown on their own line
 on_own_line = ["text", "exception"]
 timestamp = ["timestamp", "record.time.repr"]
