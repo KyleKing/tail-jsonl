@@ -1,0 +1,16 @@
+[keys]
+on_own_line = ["text", "file", "process", "thread", "extra", "exception"]
+
+[styles]
+timestamp = "#7c819d"
+message = "bold #aeb6dc"
+
+level_error = "#F08B8D"
+level_warn = "#F6A788"
+level_info = "#bbf57d"
+level_debug = "#7FBCF5"
+level_fallback = ""
+
+key = "#449baa"
+value = "#ac8de4"
+value_own_line = "italic"

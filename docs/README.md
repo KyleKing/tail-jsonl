@@ -11,6 +11,8 @@ I wanted to find a tool that could:
 
 I investigated a lot of alternatives such as: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), [jq](https://github.com/stedolan/jq), [textualog](https://github.com/rhuygen/textualog), etc. but nothing would both cleanly format the JSONL data and show the exception.
 
+![.github/assets/demo.gif](https://raw.githubusercontent.com/KyleKing/tail-jsonl/main/.github/assets/demo.gif)
+
 ## Installation
 
 [Install with `pipx`](https://pypi.org/project/pipx/)
@@ -28,7 +30,7 @@ Pipe JSONL output from any file, kubernetes (such as [stern](https://github.com/
 echo '{"message": "message", "timestamp": "2023-01-01T01:01:01.0123456Z", "level": "debug", "data": true, "more-data": [null, true, -123.123]}' | tail-jsonl
 cat tests/data/logs.jsonl | tail-jsonl
 
-# Optionall, pre-filter or format with jq, grep, awk, or other tools
+# Optionally, pre-filter or format with jq, grep, awk, or other tools
 cat tests/data/logs.jsonl | jq '.record' --compact-output | tail-jsonl
 
 # An example stern command (also consider -o=extjson)
@@ -37,8 +39,6 @@ stern envvars --context staging --container gateway --since="60m" --output raw |
 # Or with Docker Compose (note that awk, cut, and grep all buffer. For awk, add '; system("")')
 docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RSTART+3, RLENGTH); system("") }' | tail-jsonl
 ```
-
-![.github/assets/demo.gif](https://raw.githubusercontent.com/KyleKing/tail-jsonl/main/.github/assets/demo.gif)
 
 ## Configuration
 

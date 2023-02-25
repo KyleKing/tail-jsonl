@@ -1,7 +1,7 @@
 from rich.console import Console
 
-from tail_jsonl._private.core import _PRE_STR, print_record
-from tail_jsonl.main import _load_config
+from tail_jsonl._private.core import print_record
+from tail_jsonl.scripts import _load_config
 
 from .configuration import TEST_DATA_DIR
 
@@ -12,4 +12,4 @@ def test_core_escapping_dot_notation(console: Console):
 
     result = console.end_capture()
 
-    assert result.strip() == f'{_PRE_STR}<no timestamp>               <no level> this-dot-message     this.key: key'
+    assert result.strip() == '<no timestamp>               [NOTSET ] this-dot-message this.key=key'

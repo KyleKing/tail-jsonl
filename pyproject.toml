@@ -1,39 +1,23 @@
 [build-system]
 build-backend = "poetry.core.masonry.api"
-requires = [
-  "poetry-core",
-]
-
-[tool.calcipy.test]
-pythons = ["3.8"]
+requires = ["poetry-core"]
 
 [tool.commitizen]
-name = "cz_conventional_commits"
-version = "1.1.2"
-version_files = ["pyproject.toml", "tail_jsonl/__init__.py"]
-
-[tool.isort]
-balanced_wrapping = true
-default_section = "THIRDPARTY"
-force_grid_wrap = 0
-include_trailing_comma = true
-known_first_party = "tail_jsonl"
-length_sort = false
-line_length = 120
-multi_line_output = 5
+version = "1.2.2"
+version_files = ["pyproject.toml:^version", "tail_jsonl/__init__.py:^__version"]
 
 [tool.poetry]
 authors = ["Kyle King <dev.act.kyle@gmail.com>"]
 classifiers = [
-  "Development Status :: 1 - Planning",
+  "Development Status :: 5 - Production/Stable",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9"
+  "Programming Language :: Python :: 3.9",
 ] # https://pypi.org/classifiers/
-description = "Tail JSONL Logs"
+description = "Pretty Print Tailed JSONL Logs"
 documentation = "https://tail-jsonl.kyleking.me"
 include = ["LICENSE.md"]
 keywords = []
@@ -42,33 +26,26 @@ maintainers = []
 name = "tail_jsonl"
 readme = "docs/README.md"
 repository = "https://github.com/kyleking/tail-jsonl"
-version = "1.1.2"
+version = "1.2.2"
 
 [tool.poetry.dependencies]
 python = "^3.8.12"
-beartype = ">=0.12.0"
-calcipy = ">=0.21.3"
+corallium = ">=0.1.0"
 dotted-notation = ">=0.9.2"
-loguru = ">=0.6.0"
-pydantic = ">=1.10.4"
-rich = ">=13.3.1"
-tomli = { version = ">=2.0.1", markers = "python_version < \"3.11\"" }
+
+[tool.poetry.group.dev.dependencies]
+calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.0.0rc6"}
+pytest-cache-assert = ">=3.0.7"
+pytest-pretty = ">=1.0.1"
+tomli-w = ">=1.0.0"
 
 [tool.poetry.scripts]
-tail-jsonl = "tail_jsonl:main"
+tail-jsonl = "tail_jsonl.scripts:start"
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kyleking/tail-jsonl/issues"
 "Changelog" = "https://github.com/kyleking/tail-jsonl/blob/main/docs/docs/CHANGELOG.md"
 
-[tool.poetry.group.dev.dependencies]
-# Keep in-sync with the noxfile
-calcipy = {extras = ["dev", "lint", "test"], version = "*"}
-pytest-cache-assert = ">=3.0.7"
-pytest-pretty = ">=1.0.1"
-tomli-w = ">=1.0.0"
-
-[tool.pytest.ini_options]
-filterwarnings = [
-  "ignore::beartype.roar.BeartypeDecorHintPep585DeprecationWarning"
-]
+[tool.pyright]
+include = ["tail_jsonl"]
+pythonVersion = "3.8"

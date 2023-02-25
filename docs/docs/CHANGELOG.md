@@ -2,14 +2,31 @@
 
 ### Fix
 
-- show non-JSON lines
+- ensure keys are unique without losing any arguments
 
-## 1.1.1 (2023-02-06)
+## 1.2.1 (2023-02-25)
 
 ### Fix
 
-- bump 1.1 without release
-- test loading user config and escaping dot-notation
+- resolve bugs in tail-jsonl config-path parsing
+
+## 1.2.0 (2023-02-25)
+
+### Feat
+
+- update color scheme and resolve log issues
+
+### Refactor
+
+- migrate to corallium's rich_printer and styles
+
+## 1.1.2 (2023-02-16)
+
+### Fix
+
+- show non-JSON lines
+
+## 1.1.1 (2023-02-06)
 
 ### Feat
 
@@ -17,6 +34,11 @@
 - indent by four spaces on wrap
 - add version arg
 - indent folded text
+
+### Fix
+
+- bump 1.1 without release
+- test loading user config and escaping dot-notation
 
 ### Refactor
 
