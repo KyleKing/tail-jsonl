@@ -36,6 +36,7 @@ def start() -> None:  # pragma: no cover
     )
     parser.add_argument('--config-path', help='Path to a configuration file')
     options = parser.parse_args(sys.argv[1:])
+    sys.argv = sys.argv[:1]  # Remove CLI before calling fileinput
 
     config = _load_config(options.config_path)
     console = Console()

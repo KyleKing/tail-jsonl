@@ -20,7 +20,7 @@ def _dot_pop(data: Dict, key: str) -> Optional[str]:  # type: ignore[type-arg]
     value = dotted.get(data, key)
     if isinstance(value, str):
         dotted.remove(data, key)
-        return value
+        return value or None
     return None
 
 
@@ -72,14 +72,17 @@ def print_record(line: str, console: Console, config: Config) -> None:
 
     if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
         record.data['_level_name'] = record.level
-    rich_printer(  # noqa: CAC001
-        message=record.message,
-        is_header=False,
-        _this_level=_this_level,
-        _is_text=False,
-        _console=console,
-        _styles=config.styles,
-        _keys_on_own_line=config.keys.on_own_line,
-        timestamp=record.timestamp,
+
+    printer_kwargs = {
         **record.data,
-    )
+        # Ensure that there is no repeat keyword arguments
+        'message': record.message,
+        'is_header': False,
+        '_this_level': _this_level,
+        '_is_text': False,
+        '_console': console,
+        '_styles': config.styles,
+        '_keys_on_own_line': config.keys.on_own_line,
+        'timestamp': record.timestamp,
+    }
+    rich_printer(**printer_kwargs)
