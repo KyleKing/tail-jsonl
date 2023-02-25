@@ -3,7 +3,7 @@ build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core"]
 
 [tool.commitizen]
-version = "1.2.1"
+version = "1.2.2"
 version_files = ["pyproject.toml:^version", "tail_jsonl/__init__.py:^__version"]
 
 [tool.poetry]
@@ -26,7 +26,7 @@ maintainers = []
 name = "tail_jsonl"
 readme = "docs/README.md"
 repository = "https://github.com/kyleking/tail-jsonl"
-version = "1.2.1"
+version = "1.2.2"
 
 [tool.poetry.dependencies]
 python = "^3.8.12"
