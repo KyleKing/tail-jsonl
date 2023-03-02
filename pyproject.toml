@@ -19,7 +19,7 @@ classifiers = [
 ] # https://pypi.org/classifiers/
 description = "Pretty Print Tailed JSONL Logs"
 documentation = "https://tail-jsonl.kyleking.me"
-include = ["LICENSE.md"]
+include = ["LICENSE"]
 keywords = []
 license = "MIT"
 maintainers = []
