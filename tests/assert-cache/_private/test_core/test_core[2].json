@@ -8,5 +8,5 @@
       "test_name": "test_core"
     }
   ],
-  "_json": "2023-01-31 06:16:00.911034-05:00 [WARNING] warning-level log record={'elapsed': \n{'repr': '0:00:00.341294', 'seconds': 0.341294}, 'exception': None, 'extra': {},\n'file': {'name': 'dodo.py', 'path': \n'/Users/kyleking/Developer/packages/tail-jsonl/dodo.py'}, 'function': \n'<module>', 'level': {'icon': '\u26a0\ufe0f', 'no': 30}, 'line': 33, 'module': 'dodo', \n'name': 'dodo', 'process': {'id': 16268, 'name': 'MainProcess'}, 'thread': \n{'id': 8821244160, 'name': 'MainThread'}, 'time': {'timestamp': \n1675160160.911034}}\n \u221f text: 2023-01-31 06:16:00.911 | WARNING  | dodo:<module>:33 - warning-level \nlog\n\n"
+  "_json": "2023-01-31 06:16:00.911034-05:00 [WARNING] warning-level log record={'elapsed': {'repr': '0:00:00.341294', 'seconds': \n0.341294}, 'exception': None, 'extra': {}, 'file': {'name': 'dodo.py', 'path': \n'/Users/kyleking/Developer/packages/tail-jsonl/dodo.py'}, 'function': '<module>', 'level': {'icon': '\u26a0\ufe0f', 'no': 30}, \n'line': 33, 'module': 'dodo', 'name': 'dodo', 'process': {'id': 16268, 'name': 'MainProcess'}, 'thread': {'id': \n8821244160, 'name': 'MainThread'}, 'time': {'timestamp': 1675160160.911034}}\n \u221f text: 2023-01-31 06:16:00.911 | WARNING  | dodo:<module>:33 - warning-level log\n\n"
 }
