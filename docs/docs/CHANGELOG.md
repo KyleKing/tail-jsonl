@@ -1,5 +1,13 @@
 ## Unreleased
 
+## 1.2.3 (2023-03-11)
+
+### Fix
+
+- remove the trailing new line and formatting on raw text
+
+## 1.2.2 (2023-02-25)
+
 ### Fix
 
 - ensure keys are unique without losing any arguments

@@ -67,7 +67,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
     try:
         record = Record.from_line(json.loads(line), config=config)
     except Exception:  # noqa: PIE786
-        console.print(line)  # Print the unmodified line
+        console.print(line.rstrip(), markup=False)  # Print the unmodified line
         return
 
     if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
