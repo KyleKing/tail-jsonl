@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 1.2.3 (2023-03-11)
+
 ### Fix
 
 - remove the trailing new line and formatting on raw text
