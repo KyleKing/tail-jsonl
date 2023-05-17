@@ -48,10 +48,10 @@ poetry config pypi-token.pypi ...
 |-----------------------------------|--------------|-----------|------------|------------|
 | `tail_jsonl/__init__.py`          |            3 |         0 |          0 | 100.0%     |
 | `tail_jsonl/_private/__init__.py` |            0 |         0 |          0 | 100.0%     |
-| `tail_jsonl/_private/core.py`     |           49 |         1 |          0 | 98.0%      |
+| `tail_jsonl/_private/core.py`     |           49 |         1 |          0 | 97.1%      |
 | `tail_jsonl/config.py`            |           11 |         0 |          0 | 100.0%     |
-| `tail_jsonl/scripts.py`           |           18 |         0 |         11 | 100.0%     |
-| **Totals**                        |           81 |         1 |         11 | 98.8%      |
+| `tail_jsonl/scripts.py`           |           18 |         0 |         11 | 95.5%      |
+| **Totals**                        |           81 |         1 |         11 | 97.3%      |
 
-Generated on: 2023-04-08
+Generated on: 2023-05-16
 <!-- {cte} -->
