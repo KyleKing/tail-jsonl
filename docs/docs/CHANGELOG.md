@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Fix
+
+- bump minimum pymdown dependency
+
 ## 1.2.3 (2023-03-11)
 
 ### Fix
