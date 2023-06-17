@@ -2,6 +2,7 @@
 
 ### Fix
 
+- don't highlight non-JSONL log lines
 - bump minimum pymdown dependency
 
 ## 1.2.3 (2023-03-11)
