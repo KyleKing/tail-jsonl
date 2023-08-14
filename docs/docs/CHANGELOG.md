@@ -1,4 +1,10 @@
-## Unreleased
+## 1.2.5 (2023-07-23)
+
+### Fix
+
+- migrate to pydantic v2
+
+## 1.2.4 (2023-06-17)
 
 ### Fix
 
