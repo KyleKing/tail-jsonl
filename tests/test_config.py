@@ -11,4 +11,4 @@ def test_create_default_config():
 
     config = _load_config(config_path=str(example_config))
 
-    assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config.dict()
+    assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config.model_dump()

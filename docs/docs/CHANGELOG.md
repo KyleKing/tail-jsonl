@@ -1,3 +1,9 @@
+## Unreleased
+
+### Fix
+
+- update dependencies
+
 ## 1.2.5 (2023-07-23)
 
 ### Fix
