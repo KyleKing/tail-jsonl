@@ -45,7 +45,7 @@ LOGS = read_logs()
 
 
 @pytest.mark.parametrize('logs_index', [*range(len(LOGS))])
-def test_core(logs_index, assert_against_cache, console: Console):
+def test_core(logs_index, snapshot, console: Console):
     """Smoketest core."""
     print_record(LOGS[logs_index], console, Config())
 
@@ -54,7 +54,7 @@ def test_core(logs_index, assert_against_cache, console: Console):
     assert result.strip()
     assert '<no ' not in result
     if platform.system() != 'Windows':
-        assert_against_cache(result)
+        assert result == snapshot
 
 
 def test_core_no_key_matches(console: Console):

@@ -35,8 +35,8 @@ dotted-notation = ">=0.9.2"
 
 [tool.poetry.group.dev.dependencies]
 calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.6.3"}
-pytest-cache-assert = ">=3.0.8"
 pytest-pretty = ">=1.0.1"
+syrupy = ">=4.4.0"
 tomli-w = ">=1.0.0"
 
 [tool.poetry.scripts]
