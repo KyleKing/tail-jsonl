@@ -14,6 +14,7 @@ name: CI Pipeline
 
 env:
   COLUMNS: 120
+  PYTEST_ADDOPTS: "--snapshot-warn-unused"
 
 jobs:
   lint:
