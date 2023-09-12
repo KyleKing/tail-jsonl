@@ -79,5 +79,5 @@ def test_core_wrap(console: Console):
     result = console.end_capture()
 
     if platform.system() != 'Windows':
-        expected = '<no timestamp>               [NOTSET ] <no message> 0=--- 1=--- 2=---'  # noqa: E501
+        expected = '<no timestamp>               [NOTSET ] <no message> 0=--- 1=--- 2=---'
         assert result.strip() == expected

@@ -2,7 +2,12 @@
 
 ### Fix
 
+- drop support for Python 3.8
 - update dependencies
+
+### Refactor
+
+- finish pydantic v2 migration
 
 ## 1.2.5 (2023-07-23)
 

@@ -66,7 +66,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record."""
     try:
         record = Record.from_line(json.loads(line), config=config)
-    except Exception:  # noqa: PIE786
+    except Exception:
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
         return
 
