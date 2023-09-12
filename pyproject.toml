@@ -14,7 +14,6 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
 ] # https://pypi.org/classifiers/
 description = "Pretty Print Tailed JSONL Logs"
@@ -29,12 +28,12 @@ repository = "https://github.com/kyleking/tail-jsonl"
 version = "1.2.5"
 
 [tool.poetry.dependencies]
-python = "^3.8.12"
+python = "^3.9.13"
 corallium = ">=0.3.3"
 dotted-notation = ">=0.9.2"
 
 [tool.poetry.group.dev.dependencies]
-calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=1.6.3"}
+calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=2.0.1"}
 pytest-pretty = ">=1.0.1"
 syrupy = ">=4.4.0"
 tomli-w = ">=1.0.0"
@@ -48,4 +47,4 @@ tail-jsonl = "tail_jsonl.scripts:start"
 
 [tool.pyright]
 include = ["tail_jsonl"]
-pythonVersion = "3.8"
+pythonVersion = "3.9"

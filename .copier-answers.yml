@@ -13,8 +13,8 @@ development_branch: main
 doc_dir: docs
 extends_calcipy: false
 install_extras: ''
-minimum_python: 3.8.12
-minimum_python_short: '3.8'
+minimum_python: 3.9.13
+minimum_python_short: '3.9'
 package_name_py: tail_jsonl
 project_description: Pretty Print Tailed JSONL Logs
 project_name: tail-jsonl
