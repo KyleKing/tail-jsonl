@@ -53,5 +53,5 @@ poetry config pypi-token.pypi ...
 | `tail_jsonl/scripts.py`           |           18 |         0 |         11 | 90.9%      |
 | **Totals**                        |           95 |         1 |         28 | 94.5%      |
 
-Generated on: 2023-09-12
+Generated on: 2023-10-14
 <!-- {cte} -->
