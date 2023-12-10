@@ -50,9 +50,6 @@
 
 - migrate to corallium's rich_printer and styles
 
-
-- begin migration to corallium and calcipy v1 with copier template
-
 ## 1.1.2 (2023-02-16)
 
 ### Fix
