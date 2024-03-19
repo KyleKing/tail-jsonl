@@ -9,7 +9,7 @@ I wanted to find a tool that could:
 1. Convert a stream of JSONL logs into a readable `logfmt`-like output with minimal configuration
 1. Show exceptions on their own line
 
-I investigated a lot of alternatives such as: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), [jq](https://github.com/stedolan/jq), [textualog](https://github.com/rhuygen/textualog), etc. but nothing would both cleanly format the JSONL data and show the exception.
+I investigated a lot of alternatives such as: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), [jq](https://github.com/stedolan/jq), [textualog](https://github.com/rhuygen/textualog), [logss](https://github.com/todoesverso/logss), etc. but nothing would both cleanly format the JSONL data and show the exception.
 
 ![.github/assets/demo.gif](https://raw.githubusercontent.com/KyleKing/tail-jsonl/main/.github/assets/demo.gif)
 
