@@ -74,7 +74,7 @@ def test_core_bad_json(console: Console):
 
 
 def test_core_wrap(console: Console):
-    print_record(json.dumps({key: '-' * 3 for key in range(3)}), console, Config())
+    print_record(json.dumps(dict.fromkeys(range(3), '-' * 3)), console, Config())
 
     result = console.end_capture()
 
