@@ -32,8 +32,7 @@ from rich.console import Console
 
 from tail_jsonl._private.core import print_record
 from tail_jsonl.config import Config
-
-from ..configuration import TEST_DATA_DIR
+from tests.configuration import TEST_DATA_DIR
 
 
 @beartype

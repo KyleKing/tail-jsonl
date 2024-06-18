@@ -19,12 +19,13 @@ on_own_line = ["text", "exception"]
 timestamp = "#8DAAA1"
 message = "bold"
 
+key = "#8DAAA1"
+value = "#A28EAB"
+value_own_line = "#AAA18D"
+
+[styles.colors]
 level_error = "#e77d8f"
 level_warn = "#d8b172"
 level_info = "#a8cd76"
 level_debug = "#82a1f1"
 level_fallback = "#b69bf1"
-
-key = "#8DAAA1"
-value = "#A28EAB"
-value_own_line = "#AAA18D"

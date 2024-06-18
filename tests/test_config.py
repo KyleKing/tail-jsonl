@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from corallium.tomllib import tomllib  # type: ignore[no-redef]
+from corallium.tomllib import tomllib
 
 from tail_jsonl.scripts import _load_config
 
