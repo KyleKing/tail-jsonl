@@ -7,8 +7,11 @@ version = "1.2.5"
 version_files = ["pyproject.toml:^version", "tail_jsonl/__init__.py:^__version"]
 
 [tool.mypy]
+check_untyped_defs = true
 disallow_any_generics = true
 enable_error_code = ["ignore-without-code", "possibly-undefined", "redundant-expr", "truthy-bool"]
+extra_checks = true
+files = ["tail_jsonl", "tests"]
 no_implicit_reexport = true
 plugins = [
   "pydantic.mypy", # Most settings are from: https://pydantic-docs.helpmanual.io/mypy_plugin
@@ -20,6 +23,7 @@ strict_equality = true
 warn_no_return = true
 warn_redundant_casts = true
 warn_unreachable = true
+warn_unused_configs = true
 warn_unused_ignores = true
 
 [tool.poetry]
@@ -68,7 +72,7 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 [tool.pyright]
-include = ["tail_jsonl"]
+include = ["tail_jsonl", "tests"]
 pythonVersion = "3.9"
 
 [tool.ruff]
@@ -107,7 +111,7 @@ unfixable = [
 inline-quotes = 'single'
 
 [tool.ruff.lint.flake8-tidy-imports.banned-api]
-'invoke.collection.Collection'.msg = 'Use calcipy.cli.Collection instead.'
+'invoke.collection.Collection'.msg = 'Use calcipy.collection.Collection instead.'
 'invoke.tasks.task'.msg = 'Use calcipy.cli.task instead.'
 'typing.Callable'.msg = 'Use beartype.typing.* instead.'
 'typing.Dict'.msg = 'Use beartype.typing.* instead.'

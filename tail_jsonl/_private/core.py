@@ -4,7 +4,7 @@ import json
 import logging
 from copy import copy
 
-import dotted
+import dotted  # type: ignore[import-untyped]
 from beartype import beartype
 from beartype.typing import Any, Dict, List, Optional
 from corallium.loggers.rich_printer import rich_printer
@@ -85,7 +85,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
     }
     keys = set(printer_kwargs)
     rich_printer(
-        **printer_kwargs,
+        **printer_kwargs,  # type: ignore[arg-type]
         # Ensure that there is no repeat keyword arguments
         **{f'_{key}' if key in keys else key: value for key, value in record.data.items()},
     )
