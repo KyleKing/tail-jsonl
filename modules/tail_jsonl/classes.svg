@@ -53,9 +53,9 @@
 <polyline fill="none" stroke="black" points="192.5,-23.5 529.5,-23.5 "/>
 <text text-anchor="start" x="200.5" y="-8.3" font-family="Times,serif" font-size="14.00">from_line(data: Dict, config: Config): &#39;Record&#39;</text>
 </g>
-<!-- tail_jsonl._RuntimeTypeCheckingModes -->
+<!-- tail_jsonl._runtime_type_check_setup._RuntimeTypeCheckingModes -->
 <g id="node4" class="node">
-<title>tail_jsonl._RuntimeTypeCheckingModes</title>
+<title>tail_jsonl._runtime_type_check_setup._RuntimeTypeCheckingModes</title>
 <polygon fill="none" stroke="black" points="548,-23 548,-92 780,-92 780,-23 548,-23"/>
 <text text-anchor="start" x="556" y="-76.8" font-family="Times,serif" font-size="14.00">_RuntimeTypeCheckingModes</text>
 <polyline fill="none" stroke="black" points="548,-69 780,-69 "/>
