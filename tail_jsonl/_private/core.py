@@ -12,7 +12,7 @@ from corallium.loggers.styles import get_level
 from pydantic import BaseModel
 from rich.console import Console
 
-from ..config import Config
+from tail_jsonl.config import Config
 
 
 @beartype
