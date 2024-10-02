@@ -10,7 +10,7 @@ class Keys(BaseModel):
     """Special Keys."""
 
     timestamp: List[str] = Field(default_factory=lambda: ['timestamp', 'time', 'record.time.repr'])
-    level: List[str] = Field(default_factory=lambda: ['level', 'record.level.name'])
+    level: List[str] = Field(default_factory=lambda: ['level', 'levelname', 'record.level.name'])
     message: List[str] = Field(default_factory=lambda: ['event', 'message', 'record.message'])
 
     on_own_line: List[str] = Field(default_factory=lambda: ['text', 'exception'])
