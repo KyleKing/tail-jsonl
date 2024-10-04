@@ -12,10 +12,6 @@ name: CI Pipeline
       - poetry.lock
       - pyproject.toml
 
-env:
-  COLUMNS: 120
-  PYTEST_ADDOPTS: "--snapshot-warn-unused"
-
 jobs:
   lint:
     runs-on: ${{ matrix.os }}
