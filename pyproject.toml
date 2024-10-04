@@ -50,13 +50,13 @@ version = "1.2.5"
 
 [tool.poetry.dependencies]
 python = "^3.9.13"
-corallium = ">=2.0.0"
+corallium = ">=2.0.1"
 dotted-notation = ">=0.11.0"
 
 [tool.poetry.group.dev.dependencies]
-calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=3.0.2"}
+calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=4.0.0"}
 pytest-pretty = ">=1.2.0"
-syrupy = ">=4.6.1"
+syrupy = ">=4.7.1"
 tomli-w = ">=1.0.0"
 
 [tool.poetry.scripts]

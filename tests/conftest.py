@@ -9,7 +9,7 @@ from rich.console import Console
 from .configuration import TEST_TMP_CACHE, clear_test_cache
 
 
-@pytest.fixture()
+@pytest.fixture
 @beartype
 def fix_test_cache() -> Path:
     """Fixture to clear and return the test cache directory for use.
@@ -23,7 +23,7 @@ def fix_test_cache() -> Path:
     return TEST_TMP_CACHE
 
 
-@pytest.fixture()
+@pytest.fixture
 def console():
     console = Console(log_path=False, log_time=False, color_system=None)
     console.begin_capture()

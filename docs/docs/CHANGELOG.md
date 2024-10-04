@@ -2,6 +2,8 @@
 
 ### Fix
 
+- and support 'levelname'
+- support 'time'
 - drop support for Python 3.8
 - update dependencies
 
