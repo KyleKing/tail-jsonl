@@ -17,7 +17,7 @@ from .config import Config
 
 @beartype
 def _load_config(config_path: Optional[str]) -> Config:
-    """Load specified configuration file."""
+    """Return loaded specified configuration file."""
     user_config: Dict = {}  # type: ignore[type-arg]
     if config_path:
         user_config = tomllib.loads(Path(config_path).read_text(encoding='utf-8'))
@@ -40,5 +40,6 @@ def start() -> None:  # pragma: no cover
 
     config = _load_config(options.config_path)
     console = Console()
-    for line in fileinput.input():
-        print_record(line, console, config)
+    with fileinput.input() as _f:
+        for line in _f:
+            print_record(line, console, config)

@@ -26,18 +26,17 @@ def _dot_pop(data: Dict, key: str) -> Optional[str]:  # type: ignore[type-arg]
 
 @beartype
 def _pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore[type-arg]
-    """Recursively pop each key while searching for a match."""
+    """Return result of recursively popping each key while searching for a match."""
     try:
         key = keys.pop(0)
     except IndexError:
         return fallback
-    else:
-        return _dot_pop(data, key) or _pop_key(data, keys, fallback)
+    return _dot_pop(data, key) or _pop_key(data, keys, fallback)
 
 
 @beartype
 def pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore[type-arg]
-    """Safely find the first key in the data or default to the fallback."""
+    """Return the first key in the data or default to the fallback."""
     return _pop_key(data, copy(keys), fallback)
 
 
@@ -52,7 +51,7 @@ class Record(BaseModel):
     @classmethod
     @beartype
     def from_line(cls, data: Dict, config: Config) -> 'Record':  # type: ignore[type-arg]
-        """Extract Record from jsonl."""
+        """Return Record from jsonl."""
         return cls(
             timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
             level=pop_key(data, config.keys.level, ''),

@@ -9,6 +9,7 @@
 
 ### Refactor
 
+- update dependencies
 - finish pydantic v2 migration
 
 ## 1.2.5 (2023-07-23)
