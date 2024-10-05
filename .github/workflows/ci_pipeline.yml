@@ -13,7 +13,7 @@ name: CI Pipeline
       - pyproject.toml
 
 env:
-  COLUMNS: 120
+  # On Windows, snapshots are skipped because of subtle differences in whitespace
   PYTEST_ADDOPTS: "--snapshot-warn-unused"
 
 jobs:

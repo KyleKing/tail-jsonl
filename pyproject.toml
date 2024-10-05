@@ -39,7 +39,6 @@ classifiers = [
 ] # https://pypi.org/classifiers/
 description = "Pretty Print Tailed JSONL Logs"
 documentation = "https://tail-jsonl.kyleking.me"
-include = ["LICENSE"]
 keywords = ["calcipy_template"]
 license = "MIT"
 maintainers = []
@@ -50,13 +49,13 @@ version = "1.2.5"
 
 [tool.poetry.dependencies]
 python = "^3.9.13"
-corallium = ">=2.0.0"
+corallium = ">=2.0.1"
 dotted-notation = ">=0.11.0"
 
 [tool.poetry.group.dev.dependencies]
-calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=3.0.2"}
+calcipy = {extras = ["doc", "lint", "nox", "stale", "tags", "test", "types"], version = ">=4.0.0"}
 pytest-pretty = ">=1.2.0"
-syrupy = ">=4.6.1"
+syrupy = ">=4.7.1"
 tomli-w = ">=1.0.0"
 
 [tool.poetry.scripts]
@@ -140,12 +139,16 @@ known-first-party = ['tail_jsonl']
   'ANN001', # Missing type annotation for function argument
   'ANN201', # Missing return type annotation for public function
   'ANN202', # Missing return type annotation for private function `test_make_diffable`
+  'ARG001', # Unused function argument: `line`
   'D100', # Missing docstring in public module
   'D103', # Missing docstring in public function
   'PLC2701', # Private name import `_<>` from external module
   'PT004', # flake8-pytest-style: fixture does not return
   'S101', # Use of `assert` detected
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.tomlsort]
 all = true

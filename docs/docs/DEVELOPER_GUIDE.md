@@ -45,14 +45,15 @@ poetry config pypi-token.pypi ...
 ## Current Status
 
 <!-- {cts} COVERAGE -->
-| File                              |   Statements |   Missing |   Excluded | Coverage   |
-|-----------------------------------|--------------|-----------|------------|------------|
-| `tail_jsonl/__init__.py`          |           17 |         0 |         17 | 100.0%     |
-| `tail_jsonl/_private/__init__.py` |            0 |         0 |          0 | 100.0%     |
-| `tail_jsonl/_private/core.py`     |           49 |         1 |          0 | 92.8%      |
-| `tail_jsonl/config.py`            |           11 |         0 |          0 | 100.0%     |
-| `tail_jsonl/scripts.py`           |           18 |         0 |         11 | 90.9%      |
-| **Totals**                        |           95 |         1 |         28 | 94.5%      |
+| File                                      | Statements | Missing | Excluded | Coverage |
+|-------------------------------------------|------------|---------|----------|----------|
+| `tail_jsonl/__init__.py`                  | 4          | 0       | 0        | 100.0%   |
+| `tail_jsonl/_private/__init__.py`         | 0          | 0       | 0        | 100.0%   |
+| `tail_jsonl/_private/core.py`             | 49         | 1       | 0        | 94.0%    |
+| `tail_jsonl/_runtime_type_check_setup.py` | 13         | 0       | 33       | 100.0%   |
+| `tail_jsonl/config.py`                    | 11         | 0       | 0        | 100.0%   |
+| `tail_jsonl/scripts.py`                   | 17         | 0       | 19       | 94.7%    |
+| **Totals**                                | 94         | 1       | 52       | 95.9%    |
 
-Generated on: 2024-04-18
+Generated on: 2024-10-04
 <!-- {cte} -->

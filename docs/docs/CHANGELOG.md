@@ -2,11 +2,14 @@
 
 ### Fix
 
+- and support 'levelname'
+- support 'time'
 - drop support for Python 3.8
 - update dependencies
 
 ### Refactor
 
+- update dependencies
 - finish pydantic v2 migration
 
 ## 1.2.5 (2023-07-23)
