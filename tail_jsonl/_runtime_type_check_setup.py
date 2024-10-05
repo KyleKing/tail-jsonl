@@ -1,5 +1,7 @@
 """Configure runtime typechecking conditionally."""
 
+from __future__ import annotations
+
 from datetime import datetime, timezone
 from enum import Enum
 from os import getenv

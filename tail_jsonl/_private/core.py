@@ -9,13 +9,11 @@ from dataclasses import dataclass
 from typing import Any
 
 import dotted  # type: ignore[import-untyped]
-from beartype import beartype
 from corallium.loggers.rich_printer import rich_printer
 from corallium.loggers.styles import get_level
 from rich.console import Console
 
 from tail_jsonl.config import Config
-
 
 
 def _dot_pop(data: dict, key: str) -> str | None:  # type: ignore[type-arg]
@@ -26,7 +24,6 @@ def _dot_pop(data: dict, key: str) -> str | None:  # type: ignore[type-arg]
     return None
 
 
-
 def _pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[type-arg]
     """Return result of recursively popping each key while searching for a match."""
     try:
@@ -34,7 +31,6 @@ def _pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore
     except IndexError:
         return fallback
     return _dot_pop(data, key) or _pop_key(data, keys, fallback)
-
 
 
 def pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[type-arg]
@@ -52,7 +48,6 @@ class Record:
     data: dict  # type: ignore[type-arg]
 
     @classmethod
-    
     def from_line(cls, data: dict, config: Config) -> Record:  # type: ignore[type-arg]
         """Return Record from jsonl."""
         return cls(
@@ -61,7 +56,6 @@ class Record:
             message=pop_key(data, config.keys.message, '<no message>'),
             data=data,
         )
-
 
 
 def print_record(line: str, console: Console, config: Config) -> None:

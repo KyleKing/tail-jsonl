@@ -1,12 +1,12 @@
 """Start the command line program."""
 
+from __future__ import annotations
+
 import argparse
 import fileinput
 import sys
 from pathlib import Path
 
-from beartype import beartype
-from beartype.typing import Dict, Optional
 from corallium.tomllib import tomllib
 from rich.console import Console
 
@@ -15,17 +15,15 @@ from ._private.core import print_record
 from .config import Config
 
 
-@beartype
-def _load_config(config_path: Optional[str]) -> Config:
+def _load_config(config_path: str | None) -> Config:
     """Return loaded specified configuration file."""
-    user_config: Dict = {}  # type: ignore[type-arg]
+    user_config: dict = {}  # type: ignore[type-arg]
     if config_path:
         pth = Path(config_path).expanduser()
         user_config = tomllib.loads(pth.read_text(encoding='utf-8'))
     return Config.from_dict(user_config)
 
 
-@beartype
 def start() -> None:  # pragma: no cover
     """CLI Entrypoint."""
     # PLANNED: Add a flag (--debug & store_true) to print debugging information

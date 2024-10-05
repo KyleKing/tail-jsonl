@@ -26,8 +26,6 @@ import json
 import platform
 
 import pytest
-from beartype import beartype
-from beartype.typing import List
 from rich.console import Console
 
 from tail_jsonl._private.core import print_record
@@ -35,8 +33,7 @@ from tail_jsonl.config import Config
 from tests.configuration import TEST_DATA_DIR
 
 
-@beartype
-def read_logs() -> List[str]:
+def read_logs() -> list[str]:
     return (TEST_DATA_DIR / 'logs.jsonl').read_text(encoding='utf-8').strip().split('\n')
 
 

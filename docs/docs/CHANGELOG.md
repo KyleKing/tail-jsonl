@@ -2,6 +2,8 @@
 
 ### Fix
 
+- remove unnecessary dependency on Pydantic
+- expand ~/
 - and support 'levelname'
 - support 'time'
 - drop support for Python 3.8

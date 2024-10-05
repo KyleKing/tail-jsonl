@@ -6,7 +6,7 @@ from tail_jsonl.scripts import _load_config
 from .configuration import TEST_DATA_DIR
 
 
-def test_core_escapping_dot_notation(console: Console):
+def test_core_escapping_dot_notation(console: Console) -> None:
     config = _load_config(str(TEST_DATA_DIR / 'test-dot-notation.toml'))
     print_record('{"this.message": "this-dot-message", "this.key": "key"}', console, config)
 
