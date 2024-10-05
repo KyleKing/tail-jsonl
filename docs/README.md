@@ -42,7 +42,7 @@ docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RST
 
 ## Configuration
 
-Optionally, specify a path to a custom configuration file. See an example configuration file at: [tests/config_default.toml](https://github.com/KyleKing/tail-jsonl/blob/main/tests/config_default.toml)
+Optionally, specify a path to a custom configuration file. For an example configuration file see: [./tests/config_default.toml](https://github.com/KyleKing/tail-jsonl/blob/main/tests/config_default.toml)
 
 ```sh
 echo '...' | tail-jsonl --config-path=~/.tail-jsonl.toml
