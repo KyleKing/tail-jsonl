@@ -1,23 +1,47 @@
 """Configuration."""
 
+from __future__ import annotations
 
-from beartype.typing import List
-from corallium.loggers.styles import Styles
-from pydantic import BaseModel, Field
+from dataclasses import dataclass, field
+
+from corallium.loggers.styles import Colors, Styles
 
 
-class Keys(BaseModel):
+# PLANNED: temporary backward compatibility until part of Corallium
+def styles_from_dict(data: dict) -> Styles:
+    """Return Self instance."""
+    if colors := (data.pop('colors', None) or None):
+        colors = Colors(**colors)
+    return Styles(**data, colors=colors)
+
+
+@dataclass
+class Keys:
     """Special Keys."""
 
-    timestamp: List[str] = Field(default_factory=lambda: ['timestamp', 'time', 'record.time.repr'])
-    level: List[str] = Field(default_factory=lambda: ['level', 'levelname', 'record.level.name'])
-    message: List[str] = Field(default_factory=lambda: ['event', 'message', 'record.message'])
+    timestamp: list[str] = field(default_factory=lambda: ['timestamp', 'time', 'record.time.repr'])
+    level: list[str] = field(default_factory=lambda: ['level', 'levelname', 'record.level.name'])
+    message: list[str] = field(default_factory=lambda: ['event', 'message', 'record.message'])
 
-    on_own_line: List[str] = Field(default_factory=lambda: ['text', 'exception'])
+    on_own_line: list[str] = field(default_factory=lambda: ['text', 'exception'])
+
+    @classmethod
+    def from_dict(cls, data: dict) -> Keys:
+        """Return Self instance."""
+        return cls(**data)
 
 
-class Config(BaseModel):
+@dataclass
+class Config:
     """`tail-jsonl` config."""
 
-    styles: Styles = Field(default_factory=Styles)
-    keys: Keys = Field(default_factory=Keys)
+    styles: Styles = field(default_factory=Styles)
+    keys: Keys = field(default_factory=Keys)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> Config:
+        """Return Self instance."""
+        return cls(
+            styles=styles_from_dict(data.get('styles', {})),
+            keys=Keys.from_dict(data.get('keys', {})),
+        )

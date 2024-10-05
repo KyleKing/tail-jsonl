@@ -13,9 +13,6 @@ enable_error_code = ["ignore-without-code", "possibly-undefined", "redundant-exp
 extra_checks = true
 files = ["tail_jsonl", "tests"]
 no_implicit_reexport = true
-plugins = [
-  "pydantic.mypy", # Most settings are from: https://pydantic-docs.helpmanual.io/mypy_plugin
-]
 python_version = "3.9"
 show_column_numbers = true
 show_error_codes = true
@@ -64,11 +61,6 @@ tail-jsonl = "tail_jsonl.scripts:start"
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/kyleking/tail-jsonl/issues"
 "Changelog" = "https://github.com/kyleking/tail-jsonl/blob/main/docs/docs/CHANGELOG.md"
-
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = true
 
 [tool.pyright]
 include = ["tail_jsonl", "tests"]

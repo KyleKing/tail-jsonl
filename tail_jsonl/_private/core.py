@@ -1,22 +1,24 @@
 """Core print logic."""
 
+from __future__ import annotations
+
 import json
 import logging
 from copy import copy
+from dataclasses import dataclass
+from typing import Any
 
 import dotted  # type: ignore[import-untyped]
 from beartype import beartype
-from beartype.typing import Any, Dict, List, Optional
 from corallium.loggers.rich_printer import rich_printer
 from corallium.loggers.styles import get_level
-from pydantic import BaseModel
 from rich.console import Console
 
 from tail_jsonl.config import Config
 
 
-@beartype
-def _dot_pop(data: Dict, key: str) -> Optional[str]:  # type: ignore[type-arg]
+
+def _dot_pop(data: dict, key: str) -> str | None:  # type: ignore[type-arg]
     value = dotted.get(data, key)
     if isinstance(value, str):
         dotted.remove(data, key)
@@ -24,8 +26,8 @@ def _dot_pop(data: Dict, key: str) -> Optional[str]:  # type: ignore[type-arg]
     return None
 
 
-@beartype
-def _pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore[type-arg]
+
+def _pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[type-arg]
     """Return result of recursively popping each key while searching for a match."""
     try:
         key = keys.pop(0)
@@ -34,23 +36,24 @@ def _pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore
     return _dot_pop(data, key) or _pop_key(data, keys, fallback)
 
 
-@beartype
-def pop_key(data: Dict, keys: List[str], fallback: str) -> Any:  # type: ignore[type-arg]
+
+def pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[type-arg]
     """Return the first key in the data or default to the fallback."""
     return _pop_key(data, copy(keys), fallback)
 
 
-class Record(BaseModel):
+@dataclass
+class Record:
     """Record Model."""
 
     timestamp: str
     level: str
     message: str
-    data: Dict  # type: ignore[type-arg]
+    data: dict  # type: ignore[type-arg]
 
     @classmethod
-    @beartype
-    def from_line(cls, data: Dict, config: Config) -> 'Record':  # type: ignore[type-arg]
+    
+    def from_line(cls, data: dict, config: Config) -> Record:  # type: ignore[type-arg]
         """Return Record from jsonl."""
         return cls(
             timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
@@ -60,7 +63,7 @@ class Record(BaseModel):
         )
 
 
-@beartype
+
 def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record."""
     try:

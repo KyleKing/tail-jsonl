@@ -22,7 +22,7 @@ def _load_config(config_path: Optional[str]) -> Config:
     if config_path:
         pth = Path(config_path).expanduser()
         user_config = tomllib.loads(pth.read_text(encoding='utf-8'))
-    return Config(**user_config)
+    return Config.from_dict(user_config)
 
 
 @beartype

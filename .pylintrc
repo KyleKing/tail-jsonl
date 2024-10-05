@@ -56,8 +56,6 @@ enable =
     file-ignored,
     use-symbolic-message-instead,
     useless-suppression
-# Fixes 'no-name-in-module'
-extension-pkg-whitelist=pydantic
 # Defer to other tools and reduce false positives
 disable=
     broad-except,

@@ -1,3 +1,4 @@
+from dataclasses import asdict
 from pathlib import Path
 
 from corallium.tomllib import tomllib
@@ -11,4 +12,4 @@ def test_create_default_config():
 
     config = _load_config(config_path=str(example_config))
 
-    assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config.model_dump()
+    assert tomllib.loads(example_config.read_text(encoding='utf-8')) == asdict(config)
