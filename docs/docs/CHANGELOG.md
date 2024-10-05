@@ -2,6 +2,7 @@
 
 ### Fix
 
+- remove beartype decorators
 - remove unnecessary dependency on Pydantic
 - expand ~/
 - and support 'levelname'
