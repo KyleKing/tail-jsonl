@@ -1,17 +1,17 @@
 # tail-jsonl
 
-Tail JSONL Logs
+Tail JSONL/NDJSON Logs
+
+![.github/assets/demo.gif](https://raw.githubusercontent.com/KyleKing/tail-jsonl/main/.github/assets/demo.gif)
 
 ## Background
 
 I wanted to find a tool that could:
 
-1. Convert a stream of JSONL logs into a readable `logfmt`-like output with minimal configuration
-1. Show exceptions on their own line
+1. Convert a stream of arbitrary JSONL logs into an easy to skim format
+1. Clearly unwrap and display exceptions
 
-I investigated a lot of alternatives such as: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), [jq](https://github.com/stedolan/jq), [textualog](https://github.com/rhuygen/textualog), [logss](https://github.com/todoesverso/logss), etc. but nothing would both cleanly format the JSONL data and show the exception.
-
-![.github/assets/demo.gif](https://raw.githubusercontent.com/KyleKing/tail-jsonl/main/.github/assets/demo.gif)
+If you are looking for more functionality, there are many good alternatives: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), adapting [jq](https://github.com/stedolan/jq), [textualog](https://github.com/rhuygen/textualog), [logss](https://github.com/todoesverso/logss), [tailspin](https://github.com/bensadeh/tailspin), [toolong](https://github.com/Textualize/toolong), and [loggo](https://github.com/aurc/loggo), etc.
 
 ## Installation
 
