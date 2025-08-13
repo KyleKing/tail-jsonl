@@ -21,7 +21,7 @@ class Keys:
 
     timestamp: list[str] = field(default_factory=lambda: ['timestamp', 'time', 'record.time.repr'])
     level: list[str] = field(default_factory=lambda: ['level', 'levelname', 'record.level.name'])
-    message: list[str] = field(default_factory=lambda: ['event', 'message', 'record.message'])
+    message: list[str] = field(default_factory=lambda: ['event', 'message', 'msg', 'record.message'])
 
     on_own_line: list[str] = field(default_factory=lambda: ['text', 'exception'])
 
