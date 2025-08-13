@@ -1,8 +1,6 @@
 ---
 name: Feature request
 about: Please share your ideas for tail_jsonl!
-title: ''
-labels: 'Type: Feature'
 assignees: kyleking
 ---
 

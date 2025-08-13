@@ -1,5 +1,11 @@
 ## Unreleased
 
+### Feat
+
+- include 'msg' in defaults
+
+## 1.2.6 (2024-10-05)
+
 ### Fix
 
 - remove beartype decorators

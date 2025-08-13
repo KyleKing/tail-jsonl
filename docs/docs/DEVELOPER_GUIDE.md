@@ -46,14 +46,14 @@ poetry config pypi-token.pypi ...
 
 <!-- {cts} COVERAGE -->
 | File                                      | Statements | Missing | Excluded | Coverage |
-|-------------------------------------------|------------|---------|----------|----------|
+|-------------------------------------------|-----------:|--------:|---------:|---------:|
 | `tail_jsonl/__init__.py`                  | 4          | 0       | 0        | 100.0%   |
 | `tail_jsonl/_private/__init__.py`         | 0          | 0       | 0        | 100.0%   |
-| `tail_jsonl/_private/core.py`             | 45         | 1       | 0        | 92.5%    |
-| `tail_jsonl/_runtime_type_check_setup.py` | 14         | 0       | 33       | 100.0%   |
-| `tail_jsonl/config.py`                    | 23         | 0       | 0        | 90.2%    |
+| `tail_jsonl/_private/core.py`             | 45         | 1       | 0        | 95.9%    |
+| `tail_jsonl/_runtime_type_check_setup.py` | 13         | 0       | 37       | 100.0%   |
+| `tail_jsonl/config.py`                    | 23         | 0       | 0        | 100.0%   |
 | `tail_jsonl/scripts.py`                   | 16         | 0       | 18       | 94.4%    |
-| **Totals**                                | 102        | 1       | 51       | 93.1%    |
+| **Totals**                                | 101        | 1       | 55       | 97.2%    |
 
-Generated on: 2024-10-05
+Generated on: 2025-08-12
 <!-- {cte} -->
