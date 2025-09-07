@@ -2,6 +2,12 @@
 
 ### Feat
 
+- add defaults for LogTape
+
+## 1.3.0 (2025-08-12)
+
+### Feat
+
 - include 'msg' in defaults
 
 ## 1.2.6 (2024-10-05)
