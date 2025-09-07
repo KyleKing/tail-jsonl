@@ -21,6 +21,9 @@ def _dot_pop(data: dict, key: str) -> str | None:  # type: ignore[type-arg]
     if isinstance(value, str):
         dotted.remove(data, key)
         return value or None
+    if isinstance(value, list):
+        dotted.remove(data, key)
+        return str(value)
     return None
 
 
