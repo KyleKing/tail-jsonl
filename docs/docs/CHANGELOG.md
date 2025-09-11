@@ -1,3 +1,9 @@
+## 1.4.2 (2025-09-10)
+
+### Fix
+
+- patch dotted key access for single line
+
 ## 1.4.1 (2025-09-06)
 
 ### Fix
