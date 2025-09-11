@@ -49,11 +49,11 @@ poetry config pypi-token.pypi ...
 |-------------------------------------------|-----------:|--------:|---------:|---------:|
 | `tail_jsonl/__init__.py`                  | 4          | 0       | 0        | 100.0%   |
 | `tail_jsonl/_private/__init__.py`         | 0          | 0       | 0        | 100.0%   |
-| `tail_jsonl/_private/core.py`             | 45         | 1       | 0        | 95.9%    |
+| `tail_jsonl/_private/core.py`             | 54         | 1       | 0        | 97.0%    |
 | `tail_jsonl/_runtime_type_check_setup.py` | 13         | 0       | 37       | 100.0%   |
 | `tail_jsonl/config.py`                    | 23         | 0       | 0        | 100.0%   |
 | `tail_jsonl/scripts.py`                   | 16         | 0       | 18       | 94.4%    |
-| **Totals**                                | 101        | 1       | 55       | 97.2%    |
+| **Totals**                                | 110        | 1       | 55       | 97.6%    |
 
-Generated on: 2025-09-06
+Generated on: 2025-09-10
 <!-- {cte} -->

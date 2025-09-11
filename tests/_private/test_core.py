@@ -85,3 +85,21 @@ def test_core_wrap(console: Console):
     if platform.system() != 'Windows':
         expected = '<no timestamp>               [NOTSET ] <no message> 0=--- 1=--- 2=---'
         assert result.strip() == expected
+
+
+def test_core_error_stack_on_own_line(console: Console):
+    line = (
+        '{"timestamp":"2025-09-10T15:31:37.651Z","level":"error","category":["app"],'
+        '"message":["Failed to load comments"],"host":"localhost:8080","method":"GET","path":"/partials/comments",'
+        '"referer":"http://localhost:8080/comments","requestId":"4c58cd34-f521-4af1-8c6d-e61914216710",'
+        '"url":"http://localhost:8080/partials/comments","error":{"name":"SourceError","message":"Invalid for loop",'
+        '"stack":"SourceError: Invalid for loop\\n    at forTag (https://deno.land/x/vento@v2.0.1/plugins/for.ts:74:11)"},'
+        '"request":{"method":"GET","path":"/partials/comments"}}'
+    )
+    print_record(line, console, Config())
+    result = console.end_capture()
+    # Should have promoted error.stack out of the error mapping
+    assert 'error.stack:' in result or 'error.stack=' in result
+    assert 'SourceError: Invalid for loop' in result
+    # Original nested stack should not appear inside error={...}
+    assert 'stack":' not in result.split('error={')[1] if 'error={' in result else True

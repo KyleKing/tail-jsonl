@@ -140,3 +140,25 @@
   
   '''
 # ---
+# name: test_core[5]
+  '''
+  2025-09-10T15:31:37.651Z     [ERROR  ] ['Failed to load comments'] category=['app'] host=localhost:8080 method=GET 
+  path=/partials/comments referer=http://localhost:8080/comments requestId=4c58cd34-f521-4af1-8c6d-e61914216710 
+  url=http://localhost:8080/partials/comments error={'name': 'SourceError', 'message': 'Invalid for loop'} 
+  request={'method': 'GET', 'path': '/partials/comments'}
+   ∟ error.stack: SourceError: Invalid for loop
+      at forTag (https://deno.land/x/vento@v2.0.1/plugins/for.ts:74:11)
+      at Environment.compileTokens (https://deno.land/x/vento@v2.0.1/core/environment.ts:291:31)
+      at Environment.compile (https://deno.land/x/vento@v2.0.1/core/environment.ts:136:19)
+      at https://deno.land/x/vento@v2.0.1/core/environment.ts:250:21
+      at eventLoopTick (ext:core/01_core.js:179:7)
+      at async Environment.load (https://deno.land/x/vento@v2.0.1/core/environment.ts:255:12)
+      at async renderTemplate (file:///Users/kyleking/Developer/kyleking/app-template/src/templates/engine.ts:8:20)
+      at async file:///Users/kyleking/Developer/kyleking/app-template/src/partials/commentsRouter.ts:12:18
+      at async dispatch 
+  (file:///Users/kyleking/Developer/kyleking/app-template/node_modules/.deno/hono@4.9.6/node_modules/hono/dist/compose.js:
+  22:17)
+      at async file:///Users/kyleking/Developer/kyleking/app-template/src/app.ts:55:7
+  
+  '''
+# ---

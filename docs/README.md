@@ -15,29 +15,34 @@ If you are looking for more functionality, there are many good alternatives: [hu
 
 ## Installation
 
-[Install with `pipx`](https://pypi.org/project/pipx/)
+Install with [`pipx`](https://pypi.org/project/pipx), [`uv tool`](https://docs.astral.sh/uv/guides/tools), [`mise`](https://mise.jdx.dev/getting-started.html), or your other tool of choice for Python packages
 
 ```sh
+# Choose one:
 pipx install tail-jsonl
+uv tool install tail-jsonl # or: uvx tail-jsonl
+mise use -g pipx:tail-jsonl
 ```
 
 ## Usage
 
 Pipe JSONL output from any file, kubernetes (such as [stern](https://github.com/stern/stern)), Docker, etc.
 
+Tip: use `|&` to ensure that stderr and stdout are formatted (if using latest versions of zsh/bash), but all of these examples only require `|`
+
 ```sh
 # Example piping input in shell
-echo '{"message": "message", "timestamp": "2023-01-01T01:01:01.0123456Z", "level": "debug", "data": true, "more-data": [null, true, -123.123]}' | tail-jsonl
-cat tests/data/logs.jsonl | tail-jsonl
+echo '{"message": "message", "timestamp": "2023-01-01T01:01:01.0123456Z", "level": "debug", "data": true, "more-data": [null, true, -123.123]}' |& tail-jsonl
+cat tests/data/logs.jsonl |& tail-jsonl
 
 # Optionally, pre-filter or format with jq, grep, awk, or other tools
-cat tests/data/logs.jsonl | jq '.record' --compact-output | tail-jsonl
+cat tests/data/logs.jsonl | jq '.record' --compact-output |& tail-jsonl
 
 # An example stern command (also consider -o=extjson)
-stern envvars --context staging --container gateway --since="60m" --output raw | tail-jsonl
+stern envvars --context staging --container gateway --since="60m" --output raw |& tail-jsonl
 
 # Or with Docker Compose (note that awk, cut, and grep all buffer. For awk, add '; system("")')
-docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RSTART+3, RLENGTH); system("") }' | tail-jsonl
+docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RSTART+3, RLENGTH); system("") }' |& tail-jsonl
 ```
 
 ## Configuration
@@ -45,7 +50,7 @@ docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RST
 Optionally, specify a path to a custom configuration file. For an example configuration file see: [./tests/config_default.toml](https://github.com/KyleKing/tail-jsonl/blob/main/tests/config_default.toml)
 
 ```sh
-echo '...' | tail-jsonl --config-path=~/.tail-jsonl.toml
+echo '...' |& tail-jsonl --config-path=~/.tail-jsonl.toml
 ```
 
 ## Project Status

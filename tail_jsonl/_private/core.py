@@ -72,6 +72,14 @@ def print_record(line: str, console: Console, config: Config) -> None:
     if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
         record.data['_level_name'] = record.level
 
+    # PLANNED: Consider moving to Corallium
+    for dotted_key in config.keys.on_own_line:
+        if '.' not in dotted_key:
+            continue
+        if value := dotted.get(record.data, dotted_key):
+            record.data[dotted_key] = value if isinstance(value, str) else str(value)
+            dotted.remove(record.data, dotted_key)
+
     printer_kwargs = {
         'message': record.message,
         'is_header': False,
@@ -85,6 +93,6 @@ def print_record(line: str, console: Console, config: Config) -> None:
     keys = set(printer_kwargs)
     rich_printer(
         **printer_kwargs,  # type: ignore[arg-type]
-        # Ensure that there is no repeat keyword arguments
-        **{f'_{key}' if key in keys else key: value for key, value in record.data.items()},
+        # Try to print all values and avoid name collision
+        **{f' {key}' if key in keys else key: value for key, value in record.data.items()},
     )

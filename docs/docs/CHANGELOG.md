@@ -1,4 +1,10 @@
-## Unreleased
+## 1.4.1 (2025-09-06)
+
+### Fix
+
+- handle lists in matched fields for LogTape
+
+## 1.4.0 (2025-09-06)
 
 ### Feat
 
