@@ -19,6 +19,7 @@ def styles_from_dict(data: dict) -> Styles:  # type: ignore[type-arg]
 class Keys:
     """Special Keys."""
 
+    # TODO: Are these dotted keys properly parsed?
     timestamp: list[str] = field(default_factory=lambda: ['timestamp', 'time', 'record.time.repr'])
     level: list[str] = field(default_factory=lambda: ['level', 'levelname', 'record.level.name'])
     message: list[str] = field(default_factory=lambda: ['event', 'message', 'msg', 'record.message'])
