@@ -11,7 +11,7 @@ I wanted to find a tool that could:
 1. Convert a stream of arbitrary JSONL logs into an easy to skim format
 1. Clearly unwrap and display exceptions
 
-If you are looking for more functionality, there are many good alternatives: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), adapting [jq](https://github.com/stedolan/jq), [textualog](https://github.com/rhuygen/textualog), [logss](https://github.com/todoesverso/logss), [tailspin](https://github.com/bensadeh/tailspin), [toolong](https://github.com/Textualize/toolong), and [loggo](https://github.com/aurc/loggo), etc.
+If you are looking for more functionality, there are many good alternatives: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), adapting [jq](https://github.com/stedolan/jq), [logss](https://github.com/todoesverso/logss), [tailspin](https://github.com/bensadeh/tailspin), [toolong](https://github.com/Textualize/toolong), [Nerdlog](https://github.com/dimonomid/nerdlog), [loggo](https://github.com/aurc/loggo), etc.
 
 ## Installation
 
