@@ -1,7 +1,6 @@
 """Conditionally configure runtime typechecking."""
 
 from contextlib import suppress
-from datetime import datetime, timezone
 from enum import Enum
 from os import getenv
 from warnings import filterwarnings
@@ -56,12 +55,13 @@ def configure_runtime_type_checking_mode() -> None:  # pragma: no cover
             )
 
 
-_PEP585_DATE = 2025
-if datetime.now(tz=timezone.utc).year <= _PEP585_DATE:  # pragma: no cover
-    with suppress(ImportError, ModuleNotFoundError):
-        from beartype.roar import BeartypeDecorHintPep585DeprecationWarning
+# Suppress PEP 585 deprecation warnings from beartype for backwards compatibility
+# PEP 585 (Python 3.9+) allows using list[], dict[] instead of typing.List[], typing.Dict[]
+# This warning suppression can be removed once the codebase fully migrates to PEP 585 style
+with suppress(ImportError, ModuleNotFoundError, AttributeError):  # pragma: no cover
+    from beartype.roar import BeartypeDecorHintPep585DeprecationWarning
 
-        filterwarnings(
-            'ignore',
-            category=BeartypeDecorHintPep585DeprecationWarning,
-        )
+    filterwarnings(
+        'ignore',
+        category=BeartypeDecorHintPep585DeprecationWarning,
+    )
