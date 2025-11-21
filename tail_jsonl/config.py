@@ -38,6 +38,7 @@ class Config:
 
     styles: Styles = field(default_factory=Styles)
     keys: Keys = field(default_factory=Keys)
+    debug: bool = False
 
     @classmethod
     def from_dict(cls, data: dict) -> Config:  # type: ignore[type-arg]
@@ -45,4 +46,5 @@ class Config:
         return cls(
             styles=styles_from_dict(data.get('styles', {})),
             keys=Keys.from_dict(data.get('keys', {})),
+            debug=data.get('debug', False),
         )
