@@ -70,3 +70,22 @@ jobs:
       - name: Add Poetry Python to Path
         run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
       - uses: jakebailey/pyright-action@v2
+
+  security:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.9"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+        with:
+          os: ${{ matrix.os }}
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run bandit security scanner
+        run: poetry run bandit -r tail_jsonl
+
+      - name: Run pip-audit dependency scanner
+        run: poetry run pip-audit
