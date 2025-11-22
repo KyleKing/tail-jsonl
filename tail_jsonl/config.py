@@ -61,6 +61,10 @@ class Config:
     field_selectors: list[tuple[str, str]] | None = None  # [(key, value_pattern), ...]
     case_insensitive: bool = False  # For regex matching
 
+    # Timestamp formatting options (Phase 6)
+    timestamp_format: str | None = None  # Format type: 'iso', 'relative', or custom format string
+    timestamp_timezone: str | None = None  # Timezone for timestamp display
+
     # Compiled regex patterns (cached)
     _include_re: re.Pattern[str] | None = field(default=None, init=False, repr=False)
     _exclude_re: re.Pattern[str] | None = field(default=None, init=False, repr=False)
@@ -84,4 +88,6 @@ class Config:
             exclude_pattern=data.get('exclude_pattern'),
             field_selectors=data.get('field_selectors'),
             case_insensitive=data.get('case_insensitive', False),
+            timestamp_format=data.get('timestamp_format'),
+            timestamp_timezone=data.get('timestamp_timezone'),
         )

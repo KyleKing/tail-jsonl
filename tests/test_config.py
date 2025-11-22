@@ -26,6 +26,9 @@ def test_create_default_config():
     config_dict.pop('exclude_pattern', None)
     config_dict.pop('field_selectors', None)
     config_dict.pop('case_insensitive', None)
+    # Phase 6 timestamp fields (not in default config file)
+    config_dict.pop('timestamp_format', None)
+    config_dict.pop('timestamp_timezone', None)
 
     assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config_dict
 
