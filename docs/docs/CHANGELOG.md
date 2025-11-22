@@ -1,3 +1,9 @@
+## Unreleased
+
+### Feat
+
+- implement --debug flag for troubleshooting
+
 ## 1.4.2 (2025-09-10)
 
 ### Fix

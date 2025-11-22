@@ -66,8 +66,10 @@ def print_record(line: str, console: Console, config: Config) -> None:
         record = Record.from_line(data, config=config)
         if config.debug:
             console.print(
-                f'[dim]DEBUG: Parsed keys - timestamp={record.timestamp!r}, '
-                f'level={record.level!r}, message={record.message!r}[/dim]',
+                (
+                    f'[dim]DEBUG: Parsed keys - timestamp={record.timestamp!r},'
+                    f' level={record.level!r}, message={record.message!r}[/dim]'
+                ),
                 markup=True,
                 highlight=False,
             )
@@ -91,7 +93,9 @@ def print_record(line: str, console: Console, config: Config) -> None:
         if value := dotted.get(record.data, dotted_key):
             if config.debug:
                 console.print(
-                    f'[dim]DEBUG: Promoting dotted key {dotted_key!r} to own line[/dim]', markup=True, highlight=False,
+                    f'[dim]DEBUG: Promoting dotted key {dotted_key!r} to own line[/dim]',
+                    markup=True,
+                    highlight=False,
                 )
             record.data[dotted_key] = value if isinstance(value, str) else str(value)
             dotted.remove(record.data, dotted_key)
