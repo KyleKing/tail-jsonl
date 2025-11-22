@@ -51,7 +51,7 @@ repos:
           - "mdformat-mkdocs[recommended]>=3.0.0"
           - "mdformat-gfm-alerts>=1.0.1"
         args: [--wrap=no]
-        exclude: _.+\.md|CHANGELOG\.md|CODE_TAG_SUMMARY\.md
+        exclude: _.+\.md|CHANGELOG\.md|CODE_TAG_SUMMARY\.md|phases/.*\.md
         stages: ["pre-commit"]
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.10.0.1
