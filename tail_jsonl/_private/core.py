@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import logging
-from copy import copy
 from dataclasses import dataclass
 from typing import Any
 
@@ -27,18 +26,17 @@ def _dot_pop(data: dict, key: str) -> str | None:  # type: ignore[type-arg]
     return None
 
 
-def _pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[type-arg]
-    """Return result of recursively popping each key while searching for a match."""
-    try:
-        key = keys.pop(0)
-    except IndexError:
+def _pop_key(data: dict, keys: list[str], index: int, fallback: str) -> Any:  # type: ignore[type-arg]
+    """Return result of recursively searching for a matching key."""
+    if index >= len(keys):
         return fallback
-    return _dot_pop(data, key) or _pop_key(data, keys, fallback)
+    key = keys[index]
+    return _dot_pop(data, key) or _pop_key(data, keys, index + 1, fallback)
 
 
 def pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[type-arg]
     """Return the first key in the data or default to the fallback."""
-    return _pop_key(data, copy(keys), fallback)
+    return _pop_key(data, keys, 0, fallback)
 
 
 @dataclass
@@ -67,13 +65,19 @@ def print_record(line: str, console: Console, config: Config) -> None:
         data = json.loads(line)
         record = Record.from_line(data, config=config)
         if config.debug:
-            console.print(f'[dim]DEBUG: Parsed keys - timestamp={record.timestamp!r}, '
-                         f'level={record.level!r}, message={record.message!r}[/dim]',
-                         markup=True, highlight=False)
-    except Exception as exc:
+            console.print(
+                f'[dim]DEBUG: Parsed keys - timestamp={record.timestamp!r}, '
+                f'level={record.level!r}, message={record.message!r}[/dim]',
+                markup=True,
+                highlight=False,
+            )
+    except (json.JSONDecodeError, ValueError, KeyError, TypeError, AttributeError) as exc:
         if config.debug:
-            console.print(f'[dim red]DEBUG: Failed to parse line as JSON: {exc.__class__.__name__}: {exc}[/dim red]',
-                         markup=True, highlight=False)
+            console.print(
+                f'[dim red]DEBUG: Failed to parse line as JSON: {exc.__class__.__name__}: {exc}[/dim red]',
+                markup=True,
+                highlight=False,
+            )
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
         return
 
@@ -86,8 +90,9 @@ def print_record(line: str, console: Console, config: Config) -> None:
             continue
         if value := dotted.get(record.data, dotted_key):
             if config.debug:
-                console.print(f'[dim]DEBUG: Promoting dotted key {dotted_key!r} to own line[/dim]',
-                             markup=True, highlight=False)
+                console.print(
+                    f'[dim]DEBUG: Promoting dotted key {dotted_key!r} to own line[/dim]', markup=True, highlight=False,
+                )
             record.data[dotted_key] = value if isinstance(value, str) else str(value)
             dotted.remove(record.data, dotted_key)
 
