@@ -1,13 +1,11 @@
-# Phase 6: Timestamp Formatting ⚠️ REVIEW REQUIRED
+# Phase 6: Timestamp Formatting ✅ REVIEWED
 
 **Priority:** LOW-MEDIUM
-**External Dependencies:** Optional `arrow` or `python-dateutil` for parsing, optional `humanize` for relative times
+**External Dependencies:** `arrow` for parsing and formatting
 **Estimated Complexity:** Medium
-**Status:** 🔍 **NEEDS REVIEW BEFORE IMPLEMENTATION**
+**Status:** 🔍 **REVIEWED**
 
-## ⚠️ Review Questions
-
-Before implementing this phase, please review and decide:
+## ⚠️ Review Decisions
 
 1. **Dependency choice for timestamp parsing:**
    - **Option A:** Use stdlib `datetime.fromisoformat()` (Python 3.7+)
@@ -20,10 +18,10 @@ Before implementing this phase, please review and decide:
      - ✅ Good timezone support
      - ❌ Adds dependency
 
-   - **Option C:** Use `arrow` for parsing and formatting
+   - [x] **Option C:** Use `arrow` for parsing and formatting
      - ✅ Modern API, good format support
      - ✅ Built-in humanize for relative times
-     - ❌ Adds dependency
+     - ❌ Adds dependency (acceptable for this feature)
 
 2. **Relative time formatting:**
    - **Option A:** Implement basic relative time in stdlib
@@ -34,30 +32,31 @@ Before implementing this phase, please review and decide:
      - ✅ Rich formatting ("2 hours ago", "just now")
      - ❌ Adds dependency
 
-   - **Option C:** Use `arrow.humanize()`
+   - [x] **Option C:** Use `arrow.humanize()`
      - ✅ Good formatting
-     - ❌ Requires arrow dependency
+     - ✅ Single dependency covers both parsing and humanizing
 
 3. **Timestamp field detection:**
    - Hardcode common field names (timestamp, @timestamp, time, ts)?
-   - Allow user to configure field name?
+   - [x] Allow user to configure field name (extend the existing logic to provide different variations of dot syntax to look for)
    - Auto-detect by looking for ISO 8601 format?
 
 4. **Timezone handling:**
    - Always display in UTC?
    - Convert to local timezone?
-   - Allow user to specify timezone?
+   - [x] Allow user to specify timezone (provide a CLI argument that will convert to the specified timezone where no value means to use computer TZ. Default to unmodified or UTC)
 
 5. **Performance:**
    - Is timestamp parsing overhead acceptable?
    - Should we cache parsed timestamps?
-   - Make timestamp formatting optional (opt-in)?
+   - [x] Make timestamp formatting optional (opt-in) (CLI argument to select one of a subset of formats supported by arrow)
 
-**Recommended Approach (Subject to Review):**
-- Start with stdlib only (no dependencies)
-- Support ISO 8601 format only (most common in JSON logs)
-- Add basic relative time without humanize
-- Make it easy to add dependencies later if needed
+**Approved Approach:**
+- Use `arrow` library for all timestamp operations
+- Support multiple timestamp formats via arrow's parser
+- Provide CLI argument for timezone conversion
+- Make timestamp formatting opt-in via CLI flag
+- Extend existing timestamp field detection logic
 
 ## Objectives
 
