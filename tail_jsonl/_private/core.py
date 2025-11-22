@@ -127,5 +127,16 @@ def print_record(line: str, console: Console, config: Config) -> None:
     if not should_include_record(record, formatted_output.strip(), config):
         return
 
-    # Print the record if it passes all filters (preserve original formatting)
-    console.print(formatted_output.rstrip('\n'), markup=False, highlight=False)
+    # Apply highlighting (Phase 4)
+    from tail_jsonl._private.highlighter import apply_highlighting
+
+    highlighted = apply_highlighting(formatted_output.rstrip('\n'), config)
+
+    # Print the record if it passes all filters
+    # If highlighted is a Rich Text object, print with Rich formatting
+    # Otherwise, print as plain text
+    if isinstance(highlighted, str):
+        console.print(highlighted, markup=False, highlight=False)
+    else:
+        # highlighted is a Rich Text object with highlighting
+        console.print(highlighted)

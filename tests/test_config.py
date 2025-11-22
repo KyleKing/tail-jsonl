@@ -21,11 +21,15 @@ def test_create_default_config():
         config_dict['keys'].pop('_dotted_keys', None)
     config_dict.pop('_include_re', None)
     config_dict.pop('_exclude_re', None)
+    config_dict.pop('_highlight_res', None)
     # Phase 3 filter fields (not in default config file)
     config_dict.pop('include_pattern', None)
     config_dict.pop('exclude_pattern', None)
     config_dict.pop('field_selectors', None)
     config_dict.pop('case_insensitive', None)
+    # Phase 4 highlight fields (not in default config file)
+    config_dict.pop('highlight_patterns', None)
+    config_dict.pop('highlight_case_sensitive', None)
 
     assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config_dict
 

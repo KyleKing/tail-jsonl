@@ -61,17 +61,31 @@ class Config:
     field_selectors: list[tuple[str, str]] | None = None  # [(key, value_pattern), ...]
     case_insensitive: bool = False  # For regex matching
 
+    # Highlighting options (Phase 4)
+    highlight_patterns: list[str] | None = None  # List of regex patterns to highlight
+    highlight_case_sensitive: bool = False  # Case sensitivity for highlighting
+
     # Compiled regex patterns (cached)
     _include_re: re.Pattern[str] | None = field(default=None, init=False, repr=False)
     _exclude_re: re.Pattern[str] | None = field(default=None, init=False, repr=False)
+    _highlight_res: list[re.Pattern[str]] | None = field(default=None, init=False, repr=False)
 
     def __post_init__(self) -> None:
         """Compile regex patterns for performance."""
+        # Compile filter patterns (Phase 3)
         flags = re.IGNORECASE if self.case_insensitive else 0
         if self.include_pattern:
             self._include_re = re.compile(self.include_pattern, flags)
         if self.exclude_pattern:
             self._exclude_re = re.compile(self.exclude_pattern, flags)
+
+        # Compile highlight patterns (Phase 4)
+        if self.highlight_patterns:
+            highlight_flags = 0 if self.highlight_case_sensitive else re.IGNORECASE
+            self._highlight_res = [
+                re.compile(pattern, highlight_flags)
+                for pattern in self.highlight_patterns
+            ]
 
     @classmethod
     def from_dict(cls, data: dict) -> Config:  # type: ignore[type-arg]
@@ -84,4 +98,6 @@ class Config:
             exclude_pattern=data.get('exclude_pattern'),
             field_selectors=data.get('field_selectors'),
             case_insensitive=data.get('case_insensitive', False),
+            highlight_patterns=data.get('highlight_patterns'),
+            highlight_case_sensitive=data.get('highlight_case_sensitive', False),
         )

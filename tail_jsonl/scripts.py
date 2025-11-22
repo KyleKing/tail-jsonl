@@ -23,6 +23,8 @@ def _load_config(
     exclude_pattern: str | None = None,
     field_selectors: list[tuple[str, str]] | None = None,
     case_insensitive: bool = False,
+    highlight_patterns: list[str] | None = None,
+    highlight_case_sensitive: bool = False,
 ) -> Config:
     """Return loaded specified configuration file with CLI overrides."""
     user_config: dict = {}  # type: ignore[type-arg]
@@ -45,6 +47,14 @@ def _load_config(
     if case_insensitive:
         config.case_insensitive = case_insensitive
         config.__post_init__()  # Recompile regex with new flags
+
+    # CLI flags for highlighting (Phase 4)
+    if highlight_patterns is not None:
+        config.highlight_patterns = highlight_patterns
+        config.__post_init__()  # Recompile highlight patterns
+    if highlight_case_sensitive:
+        config.highlight_case_sensitive = highlight_case_sensitive
+        config.__post_init__()  # Recompile with new flags
 
     return config
 
@@ -89,6 +99,24 @@ def start() -> None:  # pragma: no cover
         help='Case-insensitive regex matching for include/exclude patterns',
     )
 
+    # Phase 4: Highlighting flags (stern-aligned)
+    parser.add_argument(
+        '-H', '--highlight',
+        action='append',
+        dest='highlight_patterns',
+        metavar='PATTERN',
+        help=(
+            'Highlight regex pattern in output (like stern -H). '
+            'Can be repeated for multiple patterns with different colors. '
+            'Example: -H error -H warning'
+        ),
+    )
+    parser.add_argument(
+        '--highlight-case-sensitive',
+        action='store_true',
+        help='Case-sensitive highlighting (default: case-insensitive)',
+    )
+
     options = parser.parse_args(sys.argv[1:])
     sys.argv = sys.argv[:1]  # Remove CLI before calling fileinput
 
@@ -109,6 +137,8 @@ def start() -> None:  # pragma: no cover
         exclude_pattern=options.exclude_pattern,
         field_selectors=field_selectors,
         case_insensitive=options.case_insensitive,
+        highlight_patterns=options.highlight_patterns,
+        highlight_case_sensitive=options.highlight_case_sensitive,
     )
     console = Console()
     with fileinput.input() as _f:
