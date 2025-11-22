@@ -19,11 +19,11 @@ Implement filtering capabilities aligned with stern's behavior to reduce noise i
 **Proposed Flags:**
 
 ```bash
-# Include: Show only lines matching regex (whitelist)
+# Include: Show only lines matching regex (allowlist)
 tail-jsonl --include='error|warning'
 tail-jsonl -i 'transaction'
 
-# Exclude: Hide lines matching regex (blacklist)
+# Exclude: Hide lines matching regex (blocklist)
 tail-jsonl --exclude='DEBUG|TRACE'
 tail-jsonl -e 'health_check'
 
@@ -44,8 +44,8 @@ tail-jsonl -i 'payment' -e 'test' --field-selector='level=error'
 - Apply filters to formatted output (what user sees) for simplicity
 
 **Scope for Phase 3:**
-- ✅ `--include` / `-i`: Regex whitelist filtering
-- ✅ `--exclude` / `-e`: Regex blacklist filtering
+- ✅ `--include` / `-i`: Regex allowlist filtering
+- ✅ `--exclude` / `-e`: Regex blocklist filtering
 - ✅ `--field-selector`: Filter by extracted field key=value with glob support
 - ✅ Multiple field selectors (AND logic)
 - ✅ Case-insensitive regex option
@@ -58,8 +58,8 @@ tail-jsonl -i 'payment' -e 'test' --field-selector='level=error'
    @dataclass
    class Config:
        # ... existing fields ...
-       include_pattern: str | None = None      # Regex whitelist
-       exclude_pattern: str | None = None      # Regex blacklist
+       include_pattern: str | None = None      # Regex allowlist
+       exclude_pattern: str | None = None      # Regex blocklist
        field_selectors: list[tuple[str, str]] | None = None  # [(key, value_pattern), ...]
        case_insensitive: bool = False          # For regex matching
 
@@ -155,12 +155,12 @@ tail-jsonl -i 'payment' -e 'test' --field-selector='level=error'
                if not fnmatch(str(value).lower(), pattern.lower()):
                    return False
 
-       # Include pattern (whitelist - applied to formatted output)
+       # Include pattern (allowlist - applied to formatted output)
        if config._include_re:
            if not config._include_re.search(formatted_output):
                return False
 
-       # Exclude pattern (blacklist - applied to formatted output)
+       # Exclude pattern (blocklist - applied to formatted output)
        if config._exclude_re:
            if config._exclude_re.search(formatted_output):
                return False
@@ -341,8 +341,8 @@ tail-jsonl --validate-config ~/.tail-jsonl.toml
 
 ## Deliverables
 
-- [ ] `--include` / `-i` regex whitelist implementation
-- [ ] `--exclude` / `-e` regex blacklist implementation
+- [ ] `--include` / `-i` regex allowlist implementation
+- [ ] `--exclude` / `-e` regex blocklist implementation
 - [ ] `--field-selector` with glob support
 - [ ] Dotted key support in field selectors
 - [ ] Case-insensitive option
@@ -355,8 +355,8 @@ tail-jsonl --validate-config ~/.tail-jsonl.toml
 ## Stern Compatibility Notes
 
 **Similarities:**
-- `-i` / `--include` for whitelist filtering
-- `-e` / `--exclude` for blacklist filtering
+- `-i` / `--include` for allowlist filtering
+- `-e` / `--exclude` for blocklist filtering
 - `--field-selector` for field-based filtering
 - Regex support for include/exclude
 
