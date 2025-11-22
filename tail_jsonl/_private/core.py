@@ -62,9 +62,24 @@ class Record:
 def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record."""
     try:
-        record = Record.from_line(json.loads(line), config=config)
-    except (json.JSONDecodeError, ValueError, KeyError, TypeError, AttributeError):
-        # Handle JSON parsing errors, missing keys, type errors, and attribute access issues
+        data = json.loads(line)
+        record = Record.from_line(data, config=config)
+        if config.debug:
+            console.print(
+                (
+                    f'[dim]DEBUG: Parsed keys - timestamp={record.timestamp!r},'
+                    f' level={record.level!r}, message={record.message!r}[/dim]'
+                ),
+                markup=True,
+                highlight=False,
+            )
+    except (json.JSONDecodeError, ValueError, KeyError, TypeError, AttributeError) as exc:
+        if config.debug:
+            console.print(
+                f'[dim red]DEBUG: Failed to parse line as JSON: {exc.__class__.__name__}: {exc}[/dim red]',
+                markup=True,
+                highlight=False,
+            )
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
         return
 
@@ -76,6 +91,12 @@ def print_record(line: str, console: Console, config: Config) -> None:
         if '.' not in dotted_key:
             continue
         if value := dotted.get(record.data, dotted_key):
+            if config.debug:
+                console.print(
+                    f'[dim]DEBUG: Promoting dotted key {dotted_key!r} to own line[/dim]',
+                    markup=True,
+                    highlight=False,
+                )
             record.data[dotted_key] = value if isinstance(value, str) else str(value)
             dotted.remove(record.data, dotted_key)
 

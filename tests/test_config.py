@@ -12,4 +12,7 @@ def test_create_default_config():
 
     config = _load_config(config_path=str(example_config))
 
-    assert tomllib.loads(example_config.read_text(encoding='utf-8')) == asdict(config)
+    # Exclude 'debug' field as it's a runtime flag, not part of config file
+    config_dict = asdict(config)
+    config_dict.pop('debug', None)
+    assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config_dict
