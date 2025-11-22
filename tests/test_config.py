@@ -26,6 +26,9 @@ def test_create_default_config():
     config_dict.pop('exclude_pattern', None)
     config_dict.pop('field_selectors', None)
     config_dict.pop('case_insensitive', None)
+    # Phase 7 context fields
+    config_dict.pop('context_before', None)
+    config_dict.pop('context_after', None)
 
     assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config_dict
 

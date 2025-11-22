@@ -23,6 +23,8 @@ def _load_config(
     exclude_pattern: str | None = None,
     field_selectors: list[tuple[str, str]] | None = None,
     case_insensitive: bool = False,
+    context_before: int = 0,
+    context_after: int = 0,
 ) -> Config:
     """Return loaded specified configuration file with CLI overrides."""
     user_config: dict = {}  # type: ignore[type-arg]
@@ -45,6 +47,12 @@ def _load_config(
     if case_insensitive:
         config.case_insensitive = case_insensitive
         config.__post_init__()  # Recompile regex with new flags
+
+    # CLI flags for context lines (Phase 7)
+    if context_before > 0:
+        config.context_before = context_before
+    if context_after > 0:
+        config.context_after = context_after
 
     return config
 
@@ -89,6 +97,28 @@ def start() -> None:  # pragma: no cover
         help='Case-insensitive regex matching for include/exclude patterns',
     )
 
+    # Phase 7: Context lines flags
+    parser.add_argument(
+        '-B', '--before-context',
+        type=int,
+        default=0,
+        metavar='N',
+        help='Print N lines of leading context before matches',
+    )
+    parser.add_argument(
+        '-A', '--after-context',
+        type=int,
+        default=0,
+        metavar='N',
+        help='Print N lines of trailing context after matches',
+    )
+    parser.add_argument(
+        '-C', '--context',
+        type=int,
+        metavar='N',
+        help='Print N lines of context before and after matches (overrides -A and -B)',
+    )
+
     options = parser.parse_args(sys.argv[1:])
     sys.argv = sys.argv[:1]  # Remove CLI before calling fileinput
 
@@ -102,6 +132,13 @@ def start() -> None:  # pragma: no cover
             key, value = selector.split('=', 1)
             field_selectors.append((key, value))
 
+    # Handle context option (-C overrides -A and -B)
+    context_before = options.before_context
+    context_after = options.after_context
+    if options.context is not None:
+        context_before = options.context
+        context_after = options.context
+
     config = _load_config(
         options.config_path,
         debug=options.debug,
@@ -109,6 +146,8 @@ def start() -> None:  # pragma: no cover
         exclude_pattern=options.exclude_pattern,
         field_selectors=field_selectors,
         case_insensitive=options.case_insensitive,
+        context_before=context_before,
+        context_after=context_after,
     )
     console = Console()
     with fileinput.input() as _f:
