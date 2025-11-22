@@ -3,7 +3,7 @@
 **Priority:** LOW-MEDIUM
 **External Dependencies:** Optional `arrow` or `python-dateutil` for parsing, optional `humanize` for relative times
 **Estimated Complexity:** Medium
-**Status:** 🔍 **NEEDS REVIEW BEFORE IMPLEMENTATION**
+**Status:** 🔍 **REVIEWED**
 
 ## ⚠️ Review Questions
 
@@ -20,7 +20,7 @@ Before implementing this phase, please review and decide:
      - ✅ Good timezone support
      - ❌ Adds dependency
 
-   - **Option C:** Use `arrow` for parsing and formatting
+   - [x] **Option C:** Use `arrow` for parsing and formatting
      - ✅ Modern API, good format support
      - ✅ Built-in humanize for relative times
      - ❌ Adds dependency
@@ -34,24 +34,24 @@ Before implementing this phase, please review and decide:
      - ✅ Rich formatting ("2 hours ago", "just now")
      - ❌ Adds dependency
 
-   - **Option C:** Use `arrow.humanize()`
+   - [x] **Option C:** Use `arrow.humanize()`
      - ✅ Good formatting
      - ❌ Requires arrow dependency
 
 3. **Timestamp field detection:**
    - Hardcode common field names (timestamp, @timestamp, time, ts)?
-   - Allow user to configure field name?
+   - [x] Allow user to configure field name? (extend the existing logic to provide different variations of dot syntax to look for)
    - Auto-detect by looking for ISO 8601 format?
 
 4. **Timezone handling:**
    - Always display in UTC?
    - Convert to local timezone?
-   - Allow user to specify timezone?
+   - [x] Allow user to specify timezone? (provide a CLI argument that will convert to the specified timezone where no value means to use computer TZ. Default to unmodified or UTC)
 
 5. **Performance:**
    - Is timestamp parsing overhead acceptable?
    - Should we cache parsed timestamps?
-   - Make timestamp formatting optional (opt-in)?
+   - [x] Make timestamp formatting optional (opt-in)? (CLI argument to select one of a subset of formats supported by arrow)
 
 **Recommended Approach (Subject to Review):**
 - Start with stdlib only (no dependencies)

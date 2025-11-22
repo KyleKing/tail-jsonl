@@ -3,7 +3,7 @@
 **Priority:** LOW
 **External Dependencies:** Depends on approach chosen for shell completions
 **Estimated Complexity:** Medium
-**Status:** 🔍 **NEEDS REVIEW BEFORE IMPLEMENTATION**
+**Status:** 🔍 **REVIEWED**
 
 ## ⚠️ Review Questions
 
@@ -17,7 +17,7 @@ Before implementing this phase, please review and decide:
      - ✅ Type-safe
      - ❌ Requires code changes to add themes
 
-   - **Option B:** TOML files in package
+   - [x] **Option B:** TOML files in package (extend the existing pattern for configuration)
      - ✅ Easy to add new themes
      - ✅ Users can create custom themes
      - ❌ File I/O overhead
@@ -28,33 +28,34 @@ Before implementing this phase, please review and decide:
      - ❌ More complex
 
 2. **Which themes to include initially?**
-   - Dark (current default)
+   - [x] Dark (current default)
    - Light
-   - Solarized Dark/Light
-   - Catppuccin (popular)
+   - [x] Solarized Dark/Light
+   - [x] Catppuccin Dark/Light (popular)
    - Dracula
    - Nord
    - Minimal (reduced colors)
-   - None (no colors)
+   - [x] None (no colors)
 
 3. **Theme components:**
-   - What should be themeable?
+   - What should be themeable? (
      - Level colors (ERROR=red, INFO=blue, etc.)
      - Key colors
      - Value colors
      - Timestamp color
      - Border/separator colors
+   - [x] Don't go crazy and only marginally extend the functionality offered today unless critical to the feature to extend
 
 ### Shell Completion Questions
 
 1. **Completion library choice:**
-   - **Option A:** Use invoke's built-in completions
+   - [x] **Option A:** Use invoke's built-in completions
      - ✅ No extra dependency
      - ✅ Simple integration
      - ❌ Limited documentation
-     - ❌ May not support all shells
+     - ❌ May not support all shells (only bash and zsh support is required)
 
-   - **Option B:** Use `usage` (GitHub: jdx/usage)
+   - **Option B:** Use `usage` (GitHub: jdx/usage) (fall back to `usage` if blocked on invoke)
      - ✅ Modern, well-maintained
      - ✅ Good shell support
      - ✅ Easy configuration
@@ -78,15 +79,16 @@ Before implementing this phase, please review and decide:
      - ❌ Hard to keep in sync with CLI changes
 
 2. **Supported shells:**
-   - bash (most common)
-   - zsh (macOS default, popular)
-   - fish (growing popularity)
-   - PowerShell (Windows)
+   - [x] bash (most common)
+   - [x] zsh (macOS default, popular)
+   - fish (growing popularity) (optional)
+   - PowerShell (Windows) (optional)
 
 3. **Installation approach:**
    - Generate completion script to stdout?
    - Auto-install to shell rc files?
    - Provide installer command?
+   - Do what makes sense. Typically I have seen a CLI argument `--completions` like for stern (https://github.com/stern/stern#cli-flags)
 
 **Recommended Approach (Subject to Review):**
 - **Themes:** Option C (built-in + custom path)

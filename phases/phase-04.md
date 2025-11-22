@@ -3,38 +3,38 @@
 **Priority:** MEDIUM
 **External Dependencies:** None (uses Rich's built-in highlighting)
 **Estimated Complexity:** Medium
-**Status:** 🔍 **NEEDS REVIEW BEFORE IMPLEMENTATION**
+**Status:** 🔍 **REVIEWED**
 
 ## ⚠️ Review Questions
 
 Before implementing this phase, please review and decide:
 
 1. **Search scope:** Should search apply to:
-   - Only formatted output (what user sees)?
+   - [x] Only formatted output (what user sees)?
    - Raw JSON values?
    - Both?
 
 2. **Highlighting behavior:**
-   - Highlight all occurrences in output?
+   - [x] Highlight all occurrences in output?
    - Only highlight in specific fields (e.g., message)?
    - Different colors for different match types?
 
 3. **Filter vs Highlight:**
    - `--search` shows only matching lines (like grep)?
-   - `--highlight` highlights matches but shows all lines?
+   - [x] `--highlight` highlights matches but shows all lines?
    - Or combined flag with behavior option?
 
 4. **Regex complexity:**
    - Basic string search only?
    - Full regex support?
-   - Limit regex features for safety/performance?
+   - [x] Limit regex features for safety/performance?
 
 5. **Case sensitivity:**
    - Default case-insensitive or case-sensitive?
-   - Flag to toggle (e.g., `-i` like grep)?
+   - [x] Flag to toggle (e.g., `-i` like grep)?
 
 6. **Performance concerns:**
-   - Acceptable overhead for regex matching?
+   - [x] Acceptable overhead for regex matching?
    - Should we cache compiled patterns?
    - Limit to certain log volume?
 
