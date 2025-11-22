@@ -59,8 +59,76 @@ class Record:
         )
 
 
-def print_record(line: str, console: Console, config: Config) -> None:
-    """Format and print the record."""
+def check_if_match(line: str, console: Console, config: Config) -> bool:
+    """Check if line matches filters without printing.
+
+    Args:
+        line: Raw input line to check
+        console: Rich console for output capture
+        config: Configuration settings
+
+    Returns:
+        True if line would pass filters, False otherwise
+    """
+    # If no filters are configured, everything matches
+    if not (config._include_re or config._exclude_re or config.field_selectors):
+        return True
+
+    try:
+        data = json.loads(line)
+        record = Record.from_line(data, config=config)
+    except (json.JSONDecodeError, ValueError, KeyError, TypeError, AttributeError):
+        # Non-JSON lines don't match filters (but are printed as-is)
+        return False
+
+    if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
+        record.data['_level_name'] = record.level
+
+    # Use cached dotted keys for performance optimization
+    for dotted_key in config.keys.get_dotted_keys():
+        if value := dotted.get(record.data, dotted_key):
+            record.data[dotted_key] = value if isinstance(value, str) else str(value)
+            dotted.remove(record.data, dotted_key)
+
+    # Format the record for filter checking
+    printer_kwargs = {
+        'message': record.message,
+        'is_header': False,
+        '_this_level': _this_level,
+        '_is_text': False,
+        '_console': console,
+        '_styles': config.styles,
+        '_keys_on_own_line': config.keys.on_own_line,
+        'timestamp': record.timestamp,
+    }
+    keys = set(printer_kwargs)
+
+    # Capture formatted output for filtering
+    with console.capture() as capture:
+        rich_printer(
+            **printer_kwargs,  # type: ignore[arg-type]
+            **{f' {key}' if key in keys else key: value for key, value in record.data.items()},
+        )
+    formatted_output = capture.get()
+
+    # Check filters
+    from tail_jsonl._private.filters import should_include_record
+
+    return should_include_record(record, formatted_output.strip(), config)
+
+
+def print_record(line: str, console: Console, config: Config, *, skip_filter: bool = False) -> bool:
+    """Format and print the record.
+
+    Args:
+        line: Raw input line to process
+        console: Rich console for output
+        config: Configuration settings
+        skip_filter: If True, print without applying filters (for context lines)
+
+    Returns:
+        True if line was printed (matched filters or skip_filter=True), False otherwise
+    """
     try:
         data = json.loads(line)
         record = Record.from_line(data, config=config)
@@ -81,7 +149,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
                 highlight=False,
             )
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
-        return
+        return True  # Non-JSON lines are always printed
 
     if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
         record.data['_level_name'] = record.level
@@ -121,11 +189,13 @@ def print_record(line: str, console: Console, config: Config) -> None:
         )
     formatted_output = capture.get()
 
-    # Apply filters (Phase 3) - import locally to avoid circular import
-    from tail_jsonl._private.filters import should_include_record
+    # Apply filters (Phase 3) - unless skip_filter is True (for context lines)
+    if not skip_filter:
+        from tail_jsonl._private.filters import should_include_record
 
-    if not should_include_record(record, formatted_output.strip(), config):
-        return
+        if not should_include_record(record, formatted_output.strip(), config):
+            return False
 
     # Print the record if it passes all filters (preserve original formatting)
     console.print(formatted_output.rstrip('\n'), markup=False, highlight=False)
+    return True

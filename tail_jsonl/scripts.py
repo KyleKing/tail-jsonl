@@ -150,6 +150,31 @@ def start() -> None:  # pragma: no cover
         context_after=context_after,
     )
     console = Console()
-    with fileinput.input() as _f:
-        for line in _f:
-            print_record(line, console, config)
+
+    # Initialize context buffer if needed (Phase 7)
+    if config.context_before > 0 or config.context_after > 0:
+        from ._private.context import ContextBuffer
+        from ._private.core import check_if_match
+
+        context_buffer = ContextBuffer(config.context_before, config.context_after)
+
+        with fileinput.input() as _f:
+            for line in _f:
+                # Check if this line matches filters
+                is_match = check_if_match(line, console, config)
+
+                # Get context lines to print and whether to print current line
+                before_lines, should_print = context_buffer.process_line(line, is_match)
+
+                # Print before-context lines (skip filters since they're context)
+                for ctx_line in before_lines:
+                    print_record(ctx_line, console, config, skip_filter=True)
+
+                # Print current line if it should be printed
+                if should_print:
+                    print_record(line, console, config, skip_filter=True)
+    else:
+        # No context needed, use simple loop
+        with fileinput.input() as _f:
+            for line in _f:
+                print_record(line, console, config)
