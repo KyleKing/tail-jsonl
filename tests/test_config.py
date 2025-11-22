@@ -30,6 +30,10 @@ def test_create_default_config():
     # Phase 4 highlight fields (not in default config file)
     config_dict.pop('highlight_patterns', None)
     config_dict.pop('highlight_case_sensitive', None)
+    # Phase 5 stats fields (not in default config file)
+    config_dict.pop('show_stats', None)
+    config_dict.pop('stats_only', None)
+    config_dict.pop('stats_json', None)
 
     assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config_dict
 
