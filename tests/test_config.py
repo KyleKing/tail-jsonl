@@ -12,12 +12,21 @@ def test_create_default_config():
 
     config = _load_config(config_path=str(example_config))
 
-    # Exclude 'debug' field as it's a runtime flag, not part of config file
-    # Exclude '_dotted_keys' as it's a cached field, not part of config file
+    # Exclude runtime and cached fields from config dict
     config_dict = asdict(config)
+    # Runtime flags
     config_dict.pop('debug', None)
+    # Cached fields
     if 'keys' in config_dict:
         config_dict['keys'].pop('_dotted_keys', None)
+    config_dict.pop('_include_re', None)
+    config_dict.pop('_exclude_re', None)
+    # Phase 3 filter fields (not in default config file)
+    config_dict.pop('include_pattern', None)
+    config_dict.pop('exclude_pattern', None)
+    config_dict.pop('field_selectors', None)
+    config_dict.pop('case_insensitive', None)
+
     assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config_dict
 
 

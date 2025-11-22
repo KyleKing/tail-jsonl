@@ -99,6 +99,7 @@ def print_record(line: str, console: Console, config: Config) -> None:
             record.data[dotted_key] = value if isinstance(value, str) else str(value)
             dotted.remove(record.data, dotted_key)
 
+    # Format the record (capture output for filtering)
     printer_kwargs = {
         'message': record.message,
         'is_header': False,
@@ -110,8 +111,21 @@ def print_record(line: str, console: Console, config: Config) -> None:
         'timestamp': record.timestamp,
     }
     keys = set(printer_kwargs)
-    rich_printer(
-        **printer_kwargs,  # type: ignore[arg-type]
-        # Try to print all values and avoid name collision
-        **{f' {key}' if key in keys else key: value for key, value in record.data.items()},
-    )
+
+    # Capture formatted output for filtering (Phase 3)
+    with console.capture() as capture:
+        rich_printer(
+            **printer_kwargs,  # type: ignore[arg-type]
+            # Try to print all values and avoid name collision
+            **{f' {key}' if key in keys else key: value for key, value in record.data.items()},
+        )
+    formatted_output = capture.get()
+
+    # Apply filters (Phase 3) - import locally to avoid circular import
+    from tail_jsonl._private.filters import should_include_record
+
+    if not should_include_record(record, formatted_output.strip(), config):
+        return
+
+    # Print the record if it passes all filters (preserve original formatting)
+    console.print(formatted_output.rstrip('\n'), markup=False, highlight=False)
