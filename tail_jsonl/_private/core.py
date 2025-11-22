@@ -51,8 +51,19 @@ class Record:
     @classmethod
     def from_line(cls, data: dict, config: Config) -> Record:  # type: ignore[type-arg]
         """Return Record from jsonl."""
+        timestamp = pop_key(data, config.keys.timestamp, '<no timestamp>')
+
+        # Apply timestamp formatting if configured (Phase 6)
+        if config.timestamp_format and timestamp != '<no timestamp>':
+            from tail_jsonl._private.timestamps import format_timestamp
+            timestamp = format_timestamp(
+                timestamp,
+                format_type=config.timestamp_format,
+                timezone=config.timestamp_timezone,
+            )
+
         return cls(
-            timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
+            timestamp=timestamp,
             level=pop_key(data, config.keys.level, ''),
             message=pop_key(data, config.keys.message, '<no message>'),
             data=data,
