@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import logging
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 import dotted  # type: ignore[import-untyped]
 from corallium.loggers.rich_printer import rich_printer
@@ -13,6 +13,9 @@ from corallium.loggers.styles import get_level
 from rich.console import Console
 
 from tail_jsonl.config import Config
+
+if TYPE_CHECKING:
+    from tail_jsonl._private.stats import Statistics
 
 
 def _dot_pop(data: dict, key: str) -> str | None:  # type: ignore[type-arg]
@@ -59,7 +62,7 @@ class Record:
         )
 
 
-def print_record(line: str, console: Console, config: Config) -> None:
+def print_record(line: str, console: Console, config: Config, stats: Statistics | None = None) -> None:
     """Format and print the record."""
     try:
         data = json.loads(line)
@@ -81,6 +84,8 @@ def print_record(line: str, console: Console, config: Config) -> None:
                 highlight=False,
             )
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
+        if stats:
+            stats.record_line(None)
         return
 
     if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
@@ -125,6 +130,16 @@ def print_record(line: str, console: Console, config: Config) -> None:
     from tail_jsonl._private.filters import should_include_record
 
     if not should_include_record(record, formatted_output.strip(), config):
+        if stats:
+            stats.record_line(record, filtered=True)
+        return
+
+    # Record successful line
+    if stats:
+        stats.record_line(record, filtered=False)
+
+    # Skip printing if stats_only mode
+    if config.stats_only:
         return
 
     # Apply highlighting (Phase 4)

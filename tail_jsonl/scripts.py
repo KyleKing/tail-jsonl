@@ -25,6 +25,9 @@ def _load_config(
     case_insensitive: bool = False,
     highlight_patterns: list[str] | None = None,
     highlight_case_sensitive: bool = False,
+    show_stats: bool = False,
+    stats_only: bool = False,
+    stats_json: bool = False,
 ) -> Config:
     """Return loaded specified configuration file with CLI overrides."""
     user_config: dict = {}  # type: ignore[type-arg]
@@ -55,6 +58,15 @@ def _load_config(
     if highlight_case_sensitive:
         config.highlight_case_sensitive = highlight_case_sensitive
         config.__post_init__()  # Recompile with new flags
+
+    # CLI flags for statistics (Phase 5)
+    if show_stats:
+        config.show_stats = show_stats
+    if stats_only:
+        config.stats_only = stats_only
+        config.show_stats = True  # stats_only implies show_stats
+    if stats_json:
+        config.stats_json = stats_json
 
     return config
 
@@ -117,6 +129,24 @@ def start() -> None:  # pragma: no cover
         help='Case-sensitive highlighting (default: case-insensitive)',
     )
 
+    # Phase 5: Statistics flags
+    parser.add_argument(
+        '--stats',
+        action='store_true',
+        dest='show_stats',
+        help='Show statistics summary at end of processing',
+    )
+    parser.add_argument(
+        '--stats-only',
+        action='store_true',
+        help='Only show statistics, suppress log output',
+    )
+    parser.add_argument(
+        '--stats-json',
+        action='store_true',
+        help='Output statistics as JSON',
+    )
+
     options = parser.parse_args(sys.argv[1:])
     sys.argv = sys.argv[:1]  # Remove CLI before calling fileinput
 
@@ -139,8 +169,25 @@ def start() -> None:  # pragma: no cover
         case_insensitive=options.case_insensitive,
         highlight_patterns=options.highlight_patterns,
         highlight_case_sensitive=options.highlight_case_sensitive,
+        show_stats=options.show_stats,
+        stats_only=options.stats_only,
+        stats_json=options.stats_json,
     )
     console = Console()
+
+    # Initialize statistics if needed (Phase 5)
+    stats = None
+    if config.show_stats or config.stats_only or config.stats_json:
+        from tail_jsonl._private.stats import Statistics
+        stats = Statistics()
+
     with fileinput.input() as _f:
         for line in _f:
-            print_record(line, console, config)
+            print_record(line, console, config, stats)
+
+    # Print statistics at end if requested
+    if stats:
+        if config.stats_json:
+            console.print(stats.to_json())
+        else:
+            stats.print_summary(console)
