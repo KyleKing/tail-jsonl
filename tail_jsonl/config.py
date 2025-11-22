@@ -65,6 +65,11 @@ class Config:
     highlight_patterns: list[str] | None = None  # List of regex patterns to highlight
     highlight_case_sensitive: bool = False  # Case sensitivity for highlighting
 
+    # Statistics options (Phase 5)
+    show_stats: bool = False  # Show statistics summary at end
+    stats_only: bool = False  # Only show stats, suppress log output
+    stats_json: bool = False  # Output stats as JSON
+
     # Compiled regex patterns (cached)
     _include_re: re.Pattern[str] | None = field(default=None, init=False, repr=False)
     _exclude_re: re.Pattern[str] | None = field(default=None, init=False, repr=False)
@@ -100,4 +105,7 @@ class Config:
             case_insensitive=data.get('case_insensitive', False),
             highlight_patterns=data.get('highlight_patterns'),
             highlight_case_sensitive=data.get('highlight_case_sensitive', False),
+            show_stats=data.get('show_stats', False),
+            stats_only=data.get('stats_only', False),
+            stats_json=data.get('stats_json', False),
         )
