@@ -87,9 +87,8 @@ def print_record(line: str, console: Console, config: Config) -> None:
         record.data['_level_name'] = record.level
 
     # PLANNED: Consider moving to Corallium
-    for dotted_key in config.keys.on_own_line:
-        if '.' not in dotted_key:
-            continue
+    # Use cached dotted keys for performance optimization
+    for dotted_key in config.keys.get_dotted_keys():
         if value := dotted.get(record.data, dotted_key):
             if config.debug:
                 console.print(
