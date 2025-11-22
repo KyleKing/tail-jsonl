@@ -1,0 +1,30 @@
+# Example custom theme for tail-jsonl
+# Copy and modify this file to create your own themes
+# Usage: tail-jsonl --theme-path path/to/custom-theme.toml
+
+[theme]
+name = "custom"
+description = "Example custom theme"
+
+# Level colors (log levels)
+level_error = "bold red"
+level_warning = "yellow"
+level_info = "cyan"
+level_debug = "dim white"
+level_notset = "white"
+
+# Component colors
+timestamp = "dim magenta"
+key = "green"
+value = "white"
+
+# Separators and borders
+separator = "dim white"
+border = "dim white"
+
+# Color format can be:
+# - Named colors: "red", "green", "blue", "yellow", "magenta", "cyan", "white", "black"
+# - Hex colors: "#ff0000", "#00ff00", "#0000ff"
+# - RGB: "rgb(255,0,0)"
+# - Modifiers: "bold", "dim", "italic", "underline"
+# - Combined: "bold red", "dim #00ff00", "italic blue"
