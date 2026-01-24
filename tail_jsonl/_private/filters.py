@@ -6,7 +6,7 @@ from fnmatch import fnmatch
 
 import dotted  # type: ignore[import-untyped]
 
-from tail_jsonl._private.core import Record
+from tail_jsonl._private.types import Record
 from tail_jsonl.config import Config
 
 

@@ -7,7 +7,7 @@ import re
 import pytest
 from rich.console import Console
 
-from tail_jsonl._private.core import Record
+from tail_jsonl._private.types import Record
 from tail_jsonl._private.filters import _get_field_value, should_include_record
 from tail_jsonl.config import Config
 

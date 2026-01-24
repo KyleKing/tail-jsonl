@@ -67,11 +67,17 @@ class Config:
 
     def __post_init__(self) -> None:
         """Compile regex patterns for performance."""
+        self._compile_patterns()
+
+    def _compile_patterns(self) -> None:
+        """Compile regex patterns from current settings."""
         flags = re.IGNORECASE if self.case_insensitive else 0
-        if self.include_pattern:
-            self._include_re = re.compile(self.include_pattern, flags)
-        if self.exclude_pattern:
-            self._exclude_re = re.compile(self.exclude_pattern, flags)
+        self._include_re = re.compile(self.include_pattern, flags) if self.include_pattern else None
+        self._exclude_re = re.compile(self.exclude_pattern, flags) if self.exclude_pattern else None
+
+    def has_filters(self) -> bool:
+        """Return True if any filters are configured."""
+        return bool(self._include_re or self._exclude_re or self.field_selectors)
 
     @classmethod
     def from_dict(cls, data: dict) -> Config:  # type: ignore[type-arg]

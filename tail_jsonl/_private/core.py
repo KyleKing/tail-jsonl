@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import logging
-from dataclasses import dataclass
 from typing import Any
 
 import dotted  # type: ignore[import-untyped]
@@ -12,6 +11,8 @@ from corallium.loggers.rich_printer import rich_printer
 from corallium.loggers.styles import get_level
 from rich.console import Console
 
+from tail_jsonl._private.filters import should_include_record
+from tail_jsonl._private.types import Record
 from tail_jsonl.config import Config
 
 
@@ -39,31 +40,21 @@ def pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[
     return _pop_key(data, keys, 0, fallback)
 
 
-@dataclass
-class Record:
-    """Record Model."""
-
-    timestamp: str
-    level: str
-    message: str
-    data: dict  # type: ignore[type-arg]
-
-    @classmethod
-    def from_line(cls, data: dict, config: Config) -> Record:  # type: ignore[type-arg]
-        """Return Record from jsonl."""
-        return cls(
-            timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
-            level=pop_key(data, config.keys.level, ''),
-            message=pop_key(data, config.keys.message, '<no message>'),
-            data=data,
-        )
+def record_from_line(data: dict, config: Config) -> Record:  # type: ignore[type-arg]
+    """Return Record from jsonl."""
+    return Record(
+        timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
+        level=pop_key(data, config.keys.level, ''),
+        message=pop_key(data, config.keys.message, '<no message>'),
+        data=data,
+    )
 
 
 def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record."""
     try:
         data = json.loads(line)
-        record = Record.from_line(data, config=config)
+        record = record_from_line(data, config=config)
         if config.debug:
             console.print(
                 (
@@ -112,20 +103,23 @@ def print_record(line: str, console: Console, config: Config) -> None:
     }
     keys = set(printer_kwargs)
 
+    # Short-circuit: if no filters configured, print directly without capture overhead
+    if not config.has_filters():
+        rich_printer(
+            **printer_kwargs,  # type: ignore[arg-type]
+            **{f' {key}' if key in keys else key: value for key, value in record.data.items()},
+        )
+        return
+
     # Capture formatted output for filtering (Phase 3)
     with console.capture() as capture:
         rich_printer(
             **printer_kwargs,  # type: ignore[arg-type]
-            # Try to print all values and avoid name collision
             **{f' {key}' if key in keys else key: value for key, value in record.data.items()},
         )
     formatted_output = capture.get()
 
-    # Apply filters (Phase 3) - import locally to avoid circular import
-    from tail_jsonl._private.filters import should_include_record
-
     if not should_include_record(record, formatted_output.strip(), config):
         return
 
-    # Print the record if it passes all filters (preserve original formatting)
     console.print(formatted_output.rstrip('\n'), markup=False, highlight=False)

@@ -32,19 +32,24 @@ def _load_config(
     config = Config.from_dict(user_config)
 
     # CLI flags override config file (Phase 3)
+    needs_recompile = False
     if debug:
         config.debug = True
     if include_pattern is not None:
         config.include_pattern = include_pattern
-        config.__post_init__()  # Recompile regex
+        needs_recompile = True
     if exclude_pattern is not None:
         config.exclude_pattern = exclude_pattern
-        config.__post_init__()  # Recompile regex
+        needs_recompile = True
     if field_selectors is not None:
         config.field_selectors = field_selectors
     if case_insensitive:
         config.case_insensitive = case_insensitive
-        config.__post_init__()  # Recompile regex with new flags
+        needs_recompile = True
+
+    # Recompile patterns once after all CLI overrides applied
+    if needs_recompile:
+        config._compile_patterns()
 
     return config
 
