@@ -77,8 +77,8 @@ def print_record(line: str, console: Console, config: Config) -> None:
     if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
         record.data['_level_name'] = record.level
 
-    # PLANNED: Consider moving to Corallium
-    # Use cached dotted keys for performance optimization
+    # Promote nested keys to top-level for display on their own line
+    # (Kept in tail-jsonl: requires `dotted` library and is specific to log formatting)
     for dotted_key in config.keys.get_dotted_keys():
         if value := dotted.get(record.data, dotted_key):
             if config.debug:

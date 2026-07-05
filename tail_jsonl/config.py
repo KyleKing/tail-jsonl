@@ -5,15 +5,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from corallium.loggers.styles import Colors, Styles
-
-
-# PLANNED: temporary backward compatibility until part of Corallium
-def styles_from_dict(data: dict) -> Styles:  # type: ignore[type-arg]
-    """Return Self instance."""
-    if colors := (data.pop('colors', None) or None):
-        colors = Colors(**colors)
-    return Styles(**data, colors=colors)
+from corallium.loggers.styles import Styles
 
 
 @dataclass
@@ -83,7 +75,7 @@ class Config:
     def from_dict(cls, data: dict) -> Config:  # type: ignore[type-arg]
         """Return Self instance."""
         return cls(
-            styles=styles_from_dict(data.get('styles', {})),
+            styles=Styles.from_dict(data.get('styles', {})),
             keys=Keys.from_dict(data.get('keys', {})),
             debug=data.get('debug', False),
             include_pattern=data.get('include_pattern'),
