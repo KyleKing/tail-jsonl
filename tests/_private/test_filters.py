@@ -3,16 +3,16 @@
 from __future__ import annotations
 
 import re
+from typing import Any
 
 import pytest
-from rich.console import Console
 
 from tail_jsonl._private.types import Record
 from tail_jsonl._private.filters import _get_field_value, should_include_record
 from tail_jsonl.config import Config
 
-
 # Test fixtures and helpers
+
 
 def make_record(
     timestamp: str = '2024-01-01T00:00:00',
@@ -20,7 +20,11 @@ def make_record(
     message: str = 'test message',
     **data: str | int | dict,  # type: ignore[type-arg]
 ) -> Record:
-    """Create a test Record."""
+    """Create a test Record.
+
+    Returns:
+        A Record instance with the provided data.
+    """
     return Record(
         timestamp=timestamp,
         level=level,
@@ -54,7 +58,7 @@ def make_record(
         ('ERROR', 'error', 'error', False),  # Both match, exclude wins
     ],
 )
-def test_include_exclude_filter(formatted_output: str, include: str | None, exclude: str | None, expected: bool):
+def test_include_exclude_filter(formatted_output: str, include: str | None, exclude: str | None, *, expected: bool):
     """Test include/exclude regex filtering on formatted output."""
     record = make_record()
     config = Config(
@@ -79,7 +83,7 @@ def test_include_exclude_filter(formatted_output: str, include: str | None, excl
         ('Error', 'error', True, False),  # Case sensitive, no match
     ],
 )
-def test_case_sensitivity(formatted_output: str, pattern: str, case_sensitive: bool, expected: bool):
+def test_case_sensitivity(formatted_output: str, pattern: str, *, case_sensitive: bool, expected: bool):
     """Test case-sensitive vs case-insensitive regex matching."""
     record = make_record()
     config = Config(
@@ -113,7 +117,7 @@ def test_case_sensitivity(formatted_output: str, pattern: str, case_sensitive: b
         ({'status': 'failure'}, ('status', 'success'), False),
     ],
 )
-def test_field_selector_simple(record_data: dict[str, str], selector: tuple[str, str], expected: bool):  # type: ignore[type-arg]
+def test_field_selector_simple(record_data: dict[str, str], selector: tuple[str, str], *, expected: bool):
     """Test simple field selector filtering."""
     record = make_record(**record_data)
     config = Config(field_selectors=[selector])
@@ -136,7 +140,7 @@ def test_field_selector_simple(record_data: dict[str, str], selector: tuple[str,
         ({'message': 'user login'}, ('message', 'payment*'), False),
     ],
 )
-def test_field_selector_standard_fields(record_kwargs: dict[str, str], selector: tuple[str, str], expected: bool):  # type: ignore[type-arg]
+def test_field_selector_standard_fields(record_kwargs: dict[str, str], selector: tuple[str, str], *, expected: bool):
     """Test field selectors on standard extracted fields (timestamp, level, message)."""
     record = make_record(**record_kwargs)
     config = Config(field_selectors=[selector])
@@ -169,7 +173,7 @@ def test_field_selector_standard_fields(record_kwargs: dict[str, str], selector:
         ),
     ],
 )
-def test_field_selector_dotted_keys(record_data: dict[str, str | dict], selector: tuple[str, str], expected: bool):  # type: ignore[type-arg]
+def test_field_selector_dotted_keys(record_data: dict[str, Any], selector: tuple[str, str], *, expected: bool):
     """Test field selectors with dotted keys for nested data."""
     record = make_record(**record_data)
     config = Config(field_selectors=[selector])

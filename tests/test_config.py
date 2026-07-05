@@ -3,6 +3,7 @@ from pathlib import Path
 
 from corallium.tomllib import tomllib
 
+from tail_jsonl.config import Keys
 from tail_jsonl.scripts import _load_config
 
 
@@ -32,8 +33,6 @@ def test_create_default_config():
 
 def test_keys_dotted_cache():
     """Test that dotted keys are properly cached in Keys.__post_init__."""
-    from tail_jsonl.config import Keys
-
     # Test with default keys
     keys = Keys()
     dotted = keys.get_dotted_keys()
@@ -58,5 +57,6 @@ def test_keys_dotted_cache():
     assert no_dotted_keys.get_dotted_keys() == []
 
     # Test with all dotted keys
+    expected_dotted_count = 3
     all_dotted_keys = Keys(on_own_line=['a.b', 'c.d', 'e.f.g'])
-    assert len(all_dotted_keys.get_dotted_keys()) == 3
+    assert len(all_dotted_keys.get_dotted_keys()) == expected_dotted_count
