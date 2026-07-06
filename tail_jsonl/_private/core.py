@@ -39,6 +39,33 @@ def pop_key(data: dict, keys: list[str], fallback: str) -> Any:  # type: ignore[
     return _pop_key(data, keys, 0, fallback)
 
 
+def _promote_dotted_keys(
+    *,
+    data: dict,  # type: ignore[type-arg]
+    dotted_keys: list[str],
+    console: Console,
+    debug: bool,
+) -> None:
+    """Promote dotted keys to top-level for proper formatting on own line.
+
+    Dotted key promotion is application-specific to tail-jsonl's formatting needs
+    and requires the external 'dotted' library, so it remains here rather than
+    being moved to the general-purpose Corallium library.
+    """
+    for dotted_key in dotted_keys:
+        if '.' not in dotted_key:
+            continue
+        if value := dotted.get(data, dotted_key):
+            if debug:
+                console.print(
+                    f'[dim]DEBUG: Promoting dotted key {dotted_key!r} to own line[/dim]',
+                    markup=True,
+                    highlight=False,
+                )
+            data[dotted_key] = value if isinstance(value, str) else str(value)
+            dotted.remove(data, dotted_key)
+
+
 @dataclass
 class Record:
     """Record Model."""
@@ -83,27 +110,20 @@ def print_record(line: str, console: Console, config: Config) -> None:
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
         return
 
-    if (_this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
+    if (this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
         record.data['_level_name'] = record.level
 
-    # PLANNED: Consider moving to Corallium
-    for dotted_key in config.keys.on_own_line:
-        if '.' not in dotted_key:
-            continue
-        if value := dotted.get(record.data, dotted_key):
-            if config.debug:
-                console.print(
-                    f'[dim]DEBUG: Promoting dotted key {dotted_key!r} to own line[/dim]',
-                    markup=True,
-                    highlight=False,
-                )
-            record.data[dotted_key] = value if isinstance(value, str) else str(value)
-            dotted.remove(record.data, dotted_key)
+    _promote_dotted_keys(
+        data=record.data,
+        dotted_keys=config.keys.on_own_line,
+        console=console,
+        debug=config.debug,
+    )
 
     printer_kwargs = {
         'message': record.message,
         'is_header': False,
-        '_this_level': _this_level,
+        '_this_level': this_level,
         '_is_text': False,
         '_console': console,
         '_styles': config.styles,
