@@ -6,4 +6,4 @@
 
 Found code tags for TODO (1)
 
-<!-- calcipy_skip_tags -->
+<!-- corallium_skip_tags -->
