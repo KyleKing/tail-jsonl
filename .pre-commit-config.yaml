@@ -1,14 +1,16 @@
 ---
 # Common commands:
-# pre-commit install
-# pre-commit autoupdate
-# pre-commit run --all-files mdformat
-# pre-commit run --all-files --hook-stage commit
-# pre-commit run --all-files --hook-stage push
-# poetry run calcipy lint.pre-commit --no-update
+# prek install -f
+# prek autoupdate
+# prek run --all-files mdformat
+# prek run --all-files --hook-stage pre-commit
+# prek run --all-files --hook-stage pre-push
+# prek run --last-commit
+# uv run calcipy lint.prek --no-update
 #
 # See https://pre-commit.com for more information
 #  and https://pre-commit.com/hooks.html for more hooks
+# And: https://prek.j178.dev/builtin
 
 # Only commit is installed by default: https://pre-commit.com/#pre-commit-install
 # Pending rename of pre-push from: https://github.com/pre-commit/pre-commit/issues/2732
@@ -16,7 +18,7 @@ default_install_hook_types: ["commit-msg", "pre-commit", "pre-push"]
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
       - id: check-executables-have-shebangs
@@ -40,24 +42,27 @@ repos:
       - id: trailing-whitespace
         exclude: __snapshots__/.*\.ambr
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.1.0
+    rev: v4.12.1
     hooks:
       - id: commitizen
   - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.19
+    rev: 1.0.0
     hooks:
       - id: mdformat
         additional_dependencies:
           - "mdformat-mkdocs[recommended]>=3.0.0"
           - "mdformat-gfm-alerts>=1.0.1"
         args: [--wrap=no]
-        exclude: _.+\.md|CHANGELOG\.md|CODE_TAG_SUMMARY\.md
+        # ROADMAP.md numbers items 1-9 continuously across headings and refers to
+        # them by number, which mdformat-mkdocs renumbers from 1 in each section
+        exclude: _.+\.md|CHANGELOG\.md|CODE_TAG_SUMMARY\.md|ROADMAP\.md
         stages: ["pre-commit"]
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.10.0.1
+    rev: v0.11.0.1
     hooks:
       - id: shellcheck
         args: [--severity=warning]
+        exclude: \.jinja$
         stages: ["pre-commit"]
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: "v4.0.0-alpha.8"
@@ -68,19 +73,38 @@ repos:
           - "prettier@4.0.0-alpha.8"
           - "prettier-plugin-sh"
         exclude: \.copier-answers\.yml|tests/.*/cassettes/.*\.yaml|__snapshots__/.*\.json
-        types_or: [html, javascript, json, shell, yaml]
+        types_or: [css, html, javascript, json, shell, yaml]
         stages: ["pre-commit"]
   - repo: https://github.com/pappasam/toml-sort
-    rev: v0.24.2
+    rev: v0.24.3
     hooks:
       - id: toml-sort-fix
-        exclude: poetry\.lock
+        # The example configs document key ordering in comments and feed snapshot
+        # tests, so sorting them destroys documentation and changes test fixtures
+        exclude: uv\.lock|tests/config_default\.toml|\.github/assets/demo_config\.toml
         stages: ["pre-commit"]
-  - repo: https://github.com/KyleKing/calcipy
-    rev: 5.0.0
+  - repo: local
     hooks:
       - id: copier-forbidden-files
+        entry: |
+          Found copier update rejection files; review them and remove them
+          (https://copier.readthedocs.io/en/stable/updating/)
+        files: \.rej$
+        language: fail
+        name: Copier Forbidden Files
       - id: lint-fix
+        description: "Run ruff and apply fixes"
+        entry: uv run calcipy-lint lint.fix
+        language: system
+        name: Lint-Fix
+        require_serial: true
         stages: ["pre-commit"]
+        types: [python]
       - id: tags
+        description: "Create a `CODE_TAG_SUMMARY.md` with a table for TODO- and FIXME-style code comments"
+        entry: uv run calcipy-tags tags
+        language: system
+        name: Tags
+        pass_filenames: false
+        require_serial: true
         stages: ["pre-push"]

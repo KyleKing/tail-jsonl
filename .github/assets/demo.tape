@@ -63,15 +63,15 @@ Show
 
 Type `cat debug-example.jsonl`  Sleep 500ms  Enter  Sleep 1s
 Type `` Enter
-Type `cat debug-example.jsonl | poetry run tail-jsonl`  Sleep 500ms  Enter  Sleep 3s
+Type `cat debug-example.jsonl | uv run tail-jsonl`  Sleep 500ms  Enter  Sleep 3s
 Type `` Enter
-Type `cat debug-example.jsonl | poetry run tail-jsonl --config-path .github/assets/demo_config.toml`  Sleep 500ms  Enter  Sleep 3s
+Type `cat debug-example.jsonl | uv run tail-jsonl --config-path .github/assets/demo_config.toml`  Sleep 500ms  Enter  Sleep 3s
 Type `` Enter
 Type `` Enter
 
 Type `cat exception-example.jsonl`  Sleep 500ms  Enter  Sleep 1s
 Type `` Enter
 Type `` Enter
-Type `cat exception-example.jsonl | poetry run tail-jsonl`  Sleep 500ms  Enter  Sleep 3s
+Type `cat exception-example.jsonl | uv run tail-jsonl`  Sleep 500ms  Enter  Sleep 3s
 
 Type `rm debug-example.jsonl && rm exception-example.jsonl`  Sleep 1ms  Enter

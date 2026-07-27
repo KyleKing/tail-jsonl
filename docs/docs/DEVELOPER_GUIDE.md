@@ -5,11 +5,10 @@
 ```sh
 git clone https://github.com/kyleking/tail-jsonl.git
 cd tail-jsonl
-poetry install --sync
-poetry run calcipy-pack pack.install-extras
+uv sync --all-extras
 
 # See the available tasks
-poetry run calcipy
+uv run calcipy
 # Or use a local 'run' file (so that 'calcipy' can be extended)
 ./run
 
@@ -20,26 +19,51 @@ poetry run calcipy
 ./run lint.fix test
 ```
 
-## Publishing
+### Maintenance
 
-For testing, create an account on [TestPyPi](https://test.pypi.org/legacy/). Replace `...` with the API token generated on TestPyPi or PyPi respectively
+Dependency upgrades can be accomplished with:
 
 ```sh
-poetry config repositories.testpypi https://test.pypi.org/legacy/
-poetry config pypi-token.testpypi ...
-
-./run main pack.publish --to-test-pypi
-# If you didn't configure a token, you will need to provide your username and password to publish
+uv lock --upgrade
+uv sync --all-extras
 ```
 
-To publish to the real PyPi
+## Publishing
+
+Publishing is automated via GitHub Actions using PyPI Trusted Publishing. Tag creation triggers automated publishing.
 
 ```sh
-poetry config pypi-token.pypi ...
-./run release
+./run release              # Bumps version, creates tag, pushes → triggers publish
+./run release --suffix=rc  # For pre-releases
+```
 
-# Or for a pre-release
-./run release --suffix=rc
+### Initial Setup
+
+One-time setup to enable PyPI Trusted Publishing:
+
+**Configure GitHub Environments**
+
+Repository Settings → Environments:
+- Create `testpypi` environment (no protection rules)
+- Create `pypi` environment with "Required reviewers" enabled
+
+**Register Trusted Publishers**
+
+PyPI: https://pypi.org/manage/project/tail_jsonl/settings/publishing/
+- Owner: `kyleking`
+- Repository: `tail-jsonl`
+- Workflow: `publish.yml`
+- Environment: `pypi`
+    - Or environment `testpypi` (for [TestPyPI](https://test.pypi.org/manage/account/publishing))
+
+### Manual Publishing
+
+For emergency manual publish:
+
+```sh
+export UV_PUBLISH_TOKEN=pypi-...
+uv build
+uv publish
 ```
 
 ## Current Status

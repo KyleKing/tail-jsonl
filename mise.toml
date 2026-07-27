@@ -1,0 +1,6 @@
+[env]
+DISABLE_MKDOCS_2_WARNING = "true"
+_.python.venv = {path = ".venv"}
+
+[tools]
+python = ["3.10.11", "3.13.11"]
