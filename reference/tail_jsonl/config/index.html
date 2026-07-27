@@ -716,34 +716,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tail_jsonl.config-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Functions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tail_jsonl.config.styles_from_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        styles_from_dict
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1021,34 +993,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tail_jsonl.config-functions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Functions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Functions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tail_jsonl.config.styles_from_dict" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        styles_from_dict
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1129,22 +1073,22 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>tail_jsonl/config.py</code></summary>
-                <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="35 "></span><span class="nd">@dataclass</span>
-<span class="linenos" data-linenos="36 "></span><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
-<span class="linenos" data-linenos="37 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;`tail-jsonl` config.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="38 "></span>
-<span class="linenos" data-linenos="39 "></span>    <span class="n">styles</span><span class="p">:</span> <span class="n">Styles</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">Styles</span><span class="p">)</span>
-<span class="linenos" data-linenos="40 "></span>    <span class="n">keys</span><span class="p">:</span> <span class="n">Keys</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">Keys</span><span class="p">)</span>
-<span class="linenos" data-linenos="41 "></span>    <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="linenos" data-linenos="42 "></span>
-<span class="linenos" data-linenos="43 "></span>    <span class="nd">@classmethod</span>
-<span class="linenos" data-linenos="44 "></span>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
-<span class="linenos" data-linenos="45 "></span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="46 "></span>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-<span class="linenos" data-linenos="47 "></span>            <span class="n">styles</span><span class="o">=</span><span class="n">styles_from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;styles&#39;</span><span class="p">,</span> <span class="p">{})),</span>
-<span class="linenos" data-linenos="48 "></span>            <span class="n">keys</span><span class="o">=</span><span class="n">Keys</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="p">{})),</span>
-<span class="linenos" data-linenos="49 "></span>            <span class="n">debug</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="linenos" data-linenos="50 "></span>        <span class="p">)</span>
+                <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="27 "></span><span class="nd">@dataclass</span>
+<span class="linenos" data-linenos="28 "></span><span class="k">class</span><span class="w"> </span><span class="nc">Config</span><span class="p">:</span>
+<span class="linenos" data-linenos="29 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;`tail-jsonl` config.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="30 "></span>
+<span class="linenos" data-linenos="31 "></span>    <span class="n">styles</span><span class="p">:</span> <span class="n">Styles</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">Styles</span><span class="p">)</span>
+<span class="linenos" data-linenos="32 "></span>    <span class="n">keys</span><span class="p">:</span> <span class="n">Keys</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">Keys</span><span class="p">)</span>
+<span class="linenos" data-linenos="33 "></span>    <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos" data-linenos="34 "></span>
+<span class="linenos" data-linenos="35 "></span>    <span class="nd">@classmethod</span>
+<span class="linenos" data-linenos="36 "></span>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="38 "></span>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+<span class="linenos" data-linenos="39 "></span>            <span class="n">styles</span><span class="o">=</span><span class="n">Styles</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;styles&#39;</span><span class="p">,</span> <span class="p">{})),</span>
+<span class="linenos" data-linenos="40 "></span>            <span class="n">keys</span><span class="o">=</span><span class="n">Keys</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="p">{})),</span>
+<span class="linenos" data-linenos="41 "></span>            <span class="n">debug</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="linenos" data-linenos="42 "></span>        <span class="p">)</span>
 </code></pre></div>
               </details>
 
@@ -1183,14 +1127,14 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>tail_jsonl/config.py</code></summary>
-              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="43 "></span><span class="nd">@classmethod</span>
-<span class="linenos" data-linenos="44 "></span><span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
-<span class="linenos" data-linenos="45 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="46 "></span>    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-<span class="linenos" data-linenos="47 "></span>        <span class="n">styles</span><span class="o">=</span><span class="n">styles_from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;styles&#39;</span><span class="p">,</span> <span class="p">{})),</span>
-<span class="linenos" data-linenos="48 "></span>        <span class="n">keys</span><span class="o">=</span><span class="n">Keys</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="p">{})),</span>
-<span class="linenos" data-linenos="49 "></span>        <span class="n">debug</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
-<span class="linenos" data-linenos="50 "></span>    <span class="p">)</span>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="35 "></span><span class="nd">@classmethod</span>
+<span class="linenos" data-linenos="36 "></span><span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
+<span class="linenos" data-linenos="37 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="38 "></span>    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+<span class="linenos" data-linenos="39 "></span>        <span class="n">styles</span><span class="o">=</span><span class="n">Styles</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;styles&#39;</span><span class="p">,</span> <span class="p">{})),</span>
+<span class="linenos" data-linenos="40 "></span>        <span class="n">keys</span><span class="o">=</span><span class="n">Keys</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;keys&#39;</span><span class="p">,</span> <span class="p">{})),</span>
+<span class="linenos" data-linenos="41 "></span>        <span class="n">debug</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;debug&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="linenos" data-linenos="42 "></span>    <span class="p">)</span>
 </code></pre></div>
             </details>
     </div>
@@ -1235,21 +1179,21 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>tail_jsonl/config.py</code></summary>
-                <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="18 "></span><span class="nd">@dataclass</span>
-<span class="linenos" data-linenos="19 "></span><span class="k">class</span><span class="w"> </span><span class="nc">Keys</span><span class="p">:</span>
-<span class="linenos" data-linenos="20 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Special Keys.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="21 "></span>
-<span class="linenos" data-linenos="22 "></span>    <span class="c1"># TODO: Are these dotted keys properly parsed?</span>
-<span class="linenos" data-linenos="23 "></span>    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;record.time.repr&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="24 "></span>    <span class="n">level</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="s1">&#39;levelname&#39;</span><span class="p">,</span> <span class="s1">&#39;record.level.name&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="25 "></span>    <span class="n">message</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">,</span> <span class="s1">&#39;record.message&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="26 "></span>
-<span class="linenos" data-linenos="27 "></span>    <span class="n">on_own_line</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;exception&#39;</span><span class="p">,</span> <span class="s1">&#39;error.stack&#39;</span><span class="p">])</span>
-<span class="linenos" data-linenos="28 "></span>
-<span class="linenos" data-linenos="29 "></span>    <span class="nd">@classmethod</span>
-<span class="linenos" data-linenos="30 "></span>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Keys</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
-<span class="linenos" data-linenos="31 "></span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="32 "></span>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+                <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="10 "></span><span class="nd">@dataclass</span>
+<span class="linenos" data-linenos="11 "></span><span class="k">class</span><span class="w"> </span><span class="nc">Keys</span><span class="p">:</span>
+<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Special Keys.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span>    <span class="c1"># TODO: Are these dotted keys properly parsed?</span>
+<span class="linenos" data-linenos="15 "></span>    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;record.time.repr&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="n">level</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="s1">&#39;levelname&#39;</span><span class="p">,</span> <span class="s1">&#39;record.level.name&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="17 "></span>    <span class="n">message</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;event&#39;</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="s1">&#39;msg&#39;</span><span class="p">,</span> <span class="s1">&#39;record.message&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="18 "></span>
+<span class="linenos" data-linenos="19 "></span>    <span class="n">on_own_line</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;exception&#39;</span><span class="p">,</span> <span class="s1">&#39;error.stack&#39;</span><span class="p">])</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span>    <span class="nd">@classmethod</span>
+<span class="linenos" data-linenos="22 "></span>    <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Keys</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">        </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="24 "></span>        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
               </details>
 
@@ -1288,10 +1232,10 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>tail_jsonl/config.py</code></summary>
-              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="29 "></span><span class="nd">@classmethod</span>
-<span class="linenos" data-linenos="30 "></span><span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Keys</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
-<span class="linenos" data-linenos="31 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="32 "></span>    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="21 "></span><span class="nd">@classmethod</span>
+<span class="linenos" data-linenos="22 "></span><span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Keys</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
+<span class="linenos" data-linenos="23 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="24 "></span>    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
             </details>
     </div>
@@ -1305,36 +1249,7 @@
     </div>
 
 </div>
-<h2 id="tail_jsonl.config-functions">Functions<a href="#tail_jsonl.config-functions" class="headerlink" title="Permanent link">⚓︎</a></h2>
 
-<div class="doc doc-object doc-function">
-
-
-<h3 id="tail_jsonl.config.styles_from_dict" class="doc doc-heading">
-            <span class="doc doc-object-name doc-function-name">styles_from_dict</span>
-
-
-<a href="#tail_jsonl.config.styles_from_dict" class="headerlink" title="Permanent link">⚓︎</a></h3>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">styles_from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</code></pre></div>
-
-    <div class="doc doc-contents ">
-
-        <p>Return Self instance.</p>
-
-
-            <details class="mkdocstrings-source">
-              <summary>Source code in <code>tail_jsonl/config.py</code></summary>
-              <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="11 "></span><span class="k">def</span><span class="w"> </span><span class="nf">styles_from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Styles</span><span class="p">:</span>  <span class="c1"># type: ignore[type-arg]</span>
-<span class="linenos" data-linenos="12 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Return Self instance.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="13 "></span>    <span class="k">if</span> <span class="n">colors</span> <span class="o">:=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">):</span>
-<span class="linenos" data-linenos="14 "></span>        <span class="n">colors</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">(</span><span class="o">**</span><span class="n">colors</span><span class="p">)</span>
-<span class="linenos" data-linenos="15 "></span>    <span class="k">return</span> <span class="n">Styles</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
-</code></pre></div>
-            </details>
-    </div>
-
-</div>
 
 
 
