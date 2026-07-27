@@ -45,6 +45,6 @@ def start() -> None:  # pragma: no cover
 
     config = _load_config(options.config_path, debug=options.debug)
     console = Console()
-    with fileinput.input() as _f:
-        for line in _f:
+    with fileinput.input() as f_:
+        for line in f_:
             print_record(line, console, config)
