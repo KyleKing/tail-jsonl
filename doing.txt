@@ -1,1 +1,7 @@
 Deciding on tool's identity. See Claude
+
+## 2026-07-27 (freshen 48c006c2)
+
+- Register the PyPI trusted publisher and create the `pypi`/`testpypi` GitHub environments before the next release; `publish.yml` is now the release path and `poetry publish` is gone
+- `ROADMAP.md` is excluded from mdformat because its ordered lists number 1-9 across headings; restructure the cross-references if you want the hook back
+- Stale PR #22 still has red CI from 2025-11 and predates the uv migration; close it or rebase
