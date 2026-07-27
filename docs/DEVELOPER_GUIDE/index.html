@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -452,6 +452,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -462,6 +479,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Publishing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -803,6 +848,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Local Development">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -813,6 +875,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Publishing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-publishing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual Publishing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -851,34 +941,47 @@
 <h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">⚓︎</a></h2>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kyleking/tail-jsonl.git
 <span class="linenos" data-linenos=" 2 "></span><span class="nb">cd</span><span class="w"> </span>tail-jsonl
-<span class="linenos" data-linenos=" 3 "></span>poetry<span class="w"> </span>install<span class="w"> </span>--sync
-<span class="linenos" data-linenos=" 4 "></span>poetry<span class="w"> </span>run<span class="w"> </span>calcipy-pack<span class="w"> </span>pack.install-extras
-<span class="linenos" data-linenos=" 5 "></span>
-<span class="linenos" data-linenos=" 6 "></span><span class="c1"># See the available tasks</span>
-<span class="linenos" data-linenos=" 7 "></span>poetry<span class="w"> </span>run<span class="w"> </span>calcipy
-<span class="linenos" data-linenos=" 8 "></span><span class="c1"># Or use a local &#39;run&#39; file (so that &#39;calcipy&#39; can be extended)</span>
-<span class="linenos" data-linenos=" 9 "></span>./run
-<span class="linenos" data-linenos="10 "></span>
-<span class="linenos" data-linenos="11 "></span><span class="c1"># Run the default task list (lint, auto-format, test coverage, etc.)</span>
-<span class="linenos" data-linenos="12 "></span>./run<span class="w"> </span>main
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="c1"># Make code changes and run specific tasks as needed:</span>
-<span class="linenos" data-linenos="15 "></span>./run<span class="w"> </span>lint.fix<span class="w"> </span><span class="nb">test</span>
+<span class="linenos" data-linenos=" 3 "></span>uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="c1"># See the available tasks</span>
+<span class="linenos" data-linenos=" 6 "></span>uv<span class="w"> </span>run<span class="w"> </span>calcipy
+<span class="linenos" data-linenos=" 7 "></span><span class="c1"># Or use a local &#39;run&#39; file (so that &#39;calcipy&#39; can be extended)</span>
+<span class="linenos" data-linenos=" 8 "></span>./run
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="c1"># Run the default task list (lint, auto-format, test coverage, etc.)</span>
+<span class="linenos" data-linenos="11 "></span>./run<span class="w"> </span>main
+<span class="linenos" data-linenos="12 "></span>
+<span class="linenos" data-linenos="13 "></span><span class="c1"># Make code changes and run specific tasks as needed:</span>
+<span class="linenos" data-linenos="14 "></span>./run<span class="w"> </span>lint.fix<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<h3 id="maintenance">Maintenance<a class="headerlink" href="#maintenance" title="Permanent link">⚓︎</a></h3>
+<p>Dependency upgrades can be accomplished with:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade
+<span class="linenos" data-linenos="2 "></span>uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
 </code></pre></div>
 <h2 id="publishing">Publishing<a class="headerlink" href="#publishing" title="Permanent link">⚓︎</a></h2>
-<p>For testing, create an account on <a href="https://test.pypi.org/legacy/">TestPyPi</a>. Replace <code>...</code> with the API token generated on TestPyPi or PyPi respectively</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>poetry<span class="w"> </span>config<span class="w"> </span>repositories.testpypi<span class="w"> </span>https://test.pypi.org/legacy/
-<span class="linenos" data-linenos="2 "></span>poetry<span class="w"> </span>config<span class="w"> </span>pypi-token.testpypi<span class="w"> </span>...
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span>./run<span class="w"> </span>main<span class="w"> </span>pack.publish<span class="w"> </span>--to-test-pypi
-<span class="linenos" data-linenos="5 "></span><span class="c1"># If you didn&#39;t configure a token, you will need to provide your username and password to publish</span>
+<p>Publishing is automated via GitHub Actions using PyPI Trusted Publishing. Tag creation triggers automated publishing.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>./run<span class="w"> </span>release<span class="w">              </span><span class="c1"># Bumps version, creates tag, pushes → triggers publish</span>
+<span class="linenos" data-linenos="2 "></span>./run<span class="w"> </span>release<span class="w"> </span>--suffix<span class="o">=</span>rc<span class="w">  </span><span class="c1"># For pre-releases</span>
 </code></pre></div>
-<p>To publish to the real PyPi</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>poetry<span class="w"> </span>config<span class="w"> </span>pypi-token.pypi<span class="w"> </span>...
-<span class="linenos" data-linenos="2 "></span>./run<span class="w"> </span>release
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="c1"># Or for a pre-release</span>
-<span class="linenos" data-linenos="5 "></span>./run<span class="w"> </span>release<span class="w"> </span>--suffix<span class="o">=</span>rc
+<h3 id="initial-setup">Initial Setup<a class="headerlink" href="#initial-setup" title="Permanent link">⚓︎</a></h3>
+<p>One-time setup to enable PyPI Trusted Publishing:</p>
+<p><strong>Configure GitHub Environments</strong></p>
+<p>Repository Settings → Environments:
+- Create <code>testpypi</code> environment (no protection rules)
+- Create <code>pypi</code> environment with &ldquo;Required reviewers&rdquo; enabled</p>
+<p><strong>Register Trusted Publishers</strong></p>
+<p>PyPI: https://pypi.org/manage/project/tail_jsonl/settings/publishing/
+- Owner: <code>kyleking</code>
+- Repository: <code>tail-jsonl</code>
+- Workflow: <code>publish.yml</code>
+- Environment: <code>pypi</code>
+    - Or environment <code>testpypi</code> (for <a href="https://test.pypi.org/manage/account/publishing">TestPyPI</a>)</p>
+<h3 id="manual-publishing">Manual Publishing<a class="headerlink" href="#manual-publishing" title="Permanent link">⚓︎</a></h3>
+<p>For emergency manual publish:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_TOKEN</span><span class="o">=</span>pypi-...
+<span class="linenos" data-linenos="2 "></span>uv<span class="w"> </span>build
+<span class="linenos" data-linenos="3 "></span>uv<span class="w"> </span>publish
 </code></pre></div>
 <h2 id="current-status">Current Status<a class="headerlink" href="#current-status" title="Permanent link">⚓︎</a></h2>
 <!-- {cts} COVERAGE -->
@@ -995,12 +1098,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.autohide"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.6.0/tablesort.min.js"></script>
       
         <script src="../../_javascript/tables.js"></script>
       
