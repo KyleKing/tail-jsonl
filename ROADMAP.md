@@ -3,7 +3,8 @@
 `tail-jsonl` is a lean stdin pipe filter: `<anything> | tail-jsonl` pretty-prints JSONL logs with
 Rich colors. It sits in the same pipe as `kubectl logs`, docker, and local dev servers emitting
 structlog/pino/LogTape output. The nearest peers are [klp](https://github.com/dloss/klp) (Python,
-ergonomics-focused) and [hl](https://github.com/pamburus/hl) (Rust, performance-focused). This
+ergonomics-focused, though its README now points at the Rust rewrite Kelora and calls klp
+unmaintained) and [hl](https://github.com/pamburus/hl) (Rust, performance-focused). This
 roadmap replaces the `phases/` plan from PR #22 and records what survives from the stale
 `claude/phase-0X-*` branches, what gets reimplemented differently, and what is cut.
 
@@ -11,14 +12,16 @@ roadmap replaces the `phases/` plan from PR #22 and records what survives from t
 
 - Stay a stdin filter. File following, multi-file time-merge, and indexing are `hl`/`lnav` territory
 - Optimize per-line streaming latency at human log rates, not batch throughput. Python+Rich cannot
-  win lines/sec against Rust and should not try
+  win lines/sec against Rust and should not try. The harness from item 3 puts numbers on this: a
+  simple record renders in roughly 190 us, a 20+ key nested one in roughly 800 us, and a mixed
+  corpus streams at roughly 2,800 lines/sec. Comfortable for a live pipe, slow for a large backlog
 - Filter before rendering. A discarded line should never pay Rich formatting cost
 - Prefer stdlib and existing dependencies. A new runtime dependency needs a benchmark or a feature
   that cannot be reasonably built without it
 - Fewer flags, better defaults. Zero-config recognition of common emitter key conventions
   (structlog, pino, zap, LogTape) is the tool's core UX
 
-## Now
+## Shipped
 
 1. Filtering, redesigned from the PR #22 / phase-03 code
    - Keep the CLI surface and tests: `-i/--include`, `-e/--exclude`, `--field-selector KEY=PATTERN`,
@@ -33,9 +36,6 @@ roadmap replaces the `phases/` plan from PR #22 and records what survives from t
 3. Benchmark harness, trimmed from phase-02: `pytest-benchmark` with two scenarios (simple record,
    20+ key nested record) plus a 10k-line throughput script. No CI regression gate until the
    numbers are stable. Use it to justify or reject any future perf work (orjson, buffering)
-
-## Next
-
 4. Timestamp localization and formatting. Phase-06 is an unusable stub (one-line module, unused
    `arrow` dependency), so reimplement: opt-in `--local-time` and a config-level format string,
    built on stdlib `datetime.fromisoformat` + `zoneinfo`. Adopt `arrow` only if parsing coverage
@@ -48,6 +48,27 @@ roadmap replaces the `phases/` plan from PR #22 and records what survives from t
 7. Docs refresh from phase-09, docs track only: alternatives table (hl, klp, fblog, tailspin,
    lnav), config recipes for kubectl/docker/structlog/pino, troubleshooting section. Skip the CI
    caching and line-buffering investigation unless benchmarks show a problem
+
+Three details landed differently than written above. `zoneinfo` is unused because
+`datetime.astimezone()` reaches the system zone without it, and a named target zone
+(`--timezone Europe/Berlin`) is the only thing that would need it. `--local-time` leaves a
+timestamp carrying no UTC offset alone, because `astimezone()` on a naive value assumes it was
+written locally and would display naive-UTC logs shifted. Completions are stdlib-only rather than
+`shtab`, which was evaluated and rejected because tagging actions for file completion means editing
+the parser anyway.
+
+## Now
+
+10. One level table, not two. `corallium`'s `get_level` knows only debug/info/warn/warning/error,
+    so `critical`, `fatal`, `trace`, and `notice` render as `[NOTSET]` with an added `_level_name`
+    field, while `-l/--min-level` resolves those same names through a separate map in `config.py`.
+    Filtering and rendering disagree about what a level is. The fix belongs upstream in corallium
+11. Numeric field values. `_dot_pop` accepts only `str` and `list`, so pino's numeric `level` and
+    integer epoch `time` are invisible to key detection and a pino stream needs config to render
+    at all. Zero-config recognition of pino is named in the guiding principles above, so this is
+    the gap between that claim and the code
+12. Pruning emptied parents. Dotted extraction and `--hide-key` both remove a leaf and leave the
+    container behind, rendering `server={}`. Affects `on_own_line` promotion too
 
 ## Later, if demand appears
 
@@ -73,15 +94,16 @@ roadmap replaces the `phases/` plan from PR #22 and records what survives from t
 
 ## Disposition of stale branches
 
-Delete after this roadmap merges. Reimplement fresh against main using the branch diffs as
-reference only (all of them import `Record` from `core`, which the refactor relocates, and
-phase-05/07 collide with the redesigned pipeline).
+All of these branches are deleted. Each tip is preserved as a pushed `archive/*` tag, so the diffs
+stay readable (`git show archive/phase-04-highlighting:tail_jsonl/_private/highlighter.py`). PR #22
+is closed. Treat the tags as reference only when reimplementing, because every branch imports
+`Record` from `core`, which now lives in `types.py`.
 
 | Branch (`claude/…`)          | Feature              | Verdict                                    |
 | ---------------------------- | -------------------- | ------------------------------------------ |
-| `phase-01-foundation` (PR22) | tests, filtering     | Rework: keep tests/CLI, replace filter hook |
+| `phase-01-foundation` (PR22) | tests, filtering     | Reworked and shipped (item 1)              |
 | `phase-04-highlighting`      | `-H` highlighting    | Later (item 8), reimplement                |
 | `phase-05-statistics`        | `--stats`            | Cut                                        |
-| `phase-06-timestamps`        | timestamp format     | Reimplement (item 4), branch is a stub     |
+| `phase-06-timestamps`        | timestamp format     | Reimplemented and shipped (item 4)         |
 | `phase-07-context`           | `-A/-B/-C` context   | Cut                                        |
-| `phase-08-themes-completions`| themes, completions  | Cut themes; completions via argparse (6)   |
+| `phase-08-themes-completions`| themes, completions  | Themes cut; completions shipped (item 6)   |
