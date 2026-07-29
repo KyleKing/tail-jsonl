@@ -28,6 +28,30 @@ uv lock --upgrade
 uv sync --all-extras
 ```
 
+## Benchmarks
+
+The `benchmarks/` directory is excluded from `testpaths`, so `uv run pytest` never runs it. Measure
+per-line rendering cost with:
+
+```sh
+uv run pytest benchmarks
+```
+
+Two scenarios render through a Rich `Console` bound to an in-memory buffer at a fixed width of 120,
+so the numbers reflect formatting cost rather than terminal I/O: a minimal record and a 20+ key
+nested record that promotes `error.stack` onto its own line.
+
+For end-to-end lines/sec over 10k generated lines (no fixture is committed, the corpus is built at
+runtime):
+
+```sh
+uv run python -m benchmarks.throughput
+uv run python -m benchmarks.throughput --lines 50000 --repeat 5
+```
+
+There is no CI regression gate. These are local measurements used to justify or reject perf work
+such as `orjson` or output buffering.
+
 ## Publishing
 
 Publishing is automated via GitHub Actions using PyPI Trusted Publishing. Tag creation triggers automated publishing.

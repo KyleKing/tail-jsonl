@@ -5,6 +5,7 @@ requires = ["uv_build>=0.9.26,<2.0"]
 [dependency-groups]
 dev = [
   "calcipy[recommended]>=6.0.1",
+  "pytest-benchmark>=5.2.3",
   "syrupy>=4.9.1",
   "tomli-w>=1.2.0",
 ]
@@ -72,6 +73,9 @@ warn_unused_ignores = true
 include = ["tail_jsonl", "tests"]
 pythonVersion = "3.10"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"] # `benchmarks` are opt-in: `uv run pytest benchmarks`
+
 [tool.ruff]
 # Docs: https://github.com/charliermarsh/ruff
 # Tip: uv run ruff rule unused-noqa
@@ -135,6 +139,12 @@ known-first-party = ['tail_jsonl']
 ]
 '__init__.py' = [
   'undocumented-public-package', # Missing docstring in public package
+]
+'benchmarks/*.py' = [
+  'import-private-name', # Private name import `_private` from external module; benchmarks time internals directly
+]
+'benchmarks/throughput.py' = [
+  'print', # `print` found; the throughput script reports its result on stdout
 ]
 'scripts/*.py' = [
   'implicit-namespace-package', # File `scripts/*.py` is part of an implicit namespace package. Add an `__init__.py`.
