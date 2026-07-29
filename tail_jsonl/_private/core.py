@@ -12,6 +12,8 @@ from corallium.loggers.styles import get_level
 from rich.console import Console
 
 from tail_jsonl._private.filters import line_passes, record_passes
+from tail_jsonl._private.keys import hide_keys
+from tail_jsonl._private.timestamps import format_timestamp
 from tail_jsonl._private.types import Record
 from tail_jsonl.config import Config
 
@@ -110,6 +112,16 @@ def print_record(line: str, console: Console, config: Config) -> None:
 
     if filters.filters_record and not record_passes(record, filters):
         return
+
+    render = config.render
+    if render.formats_timestamp:
+        record.timestamp = format_timestamp(
+            record.timestamp,
+            local_time=render.local_time,
+            timestamp_format=render.timestamp_format,
+        )
+    if render.hides_keys:
+        hide_keys(record.data, render.hidden_patterns)
 
     if (this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
         record.data['_level_name'] = record.level

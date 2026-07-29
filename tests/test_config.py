@@ -18,6 +18,7 @@ def test_create_default_config():
     config_dict = asdict(config)
     config_dict.pop('debug', None)
     config_dict.pop('filters', None)
+    config_dict.pop('render', None)
     assert tomllib.loads(example_config.read_text(encoding='utf-8')) == config_dict
 
 
@@ -76,3 +77,50 @@ def test_cli_filters_without_config_file():
 
     assert config.filters.exclude == ['noise']
     assert config.filters.exclude_patterns[0].search('NOISE') is not None
+
+
+def test_default_config_has_no_render_options():
+    config = _load_config(config_path=None)
+
+    assert config.render.formats_timestamp is False
+    assert config.render.hides_keys is False
+
+
+@pytest.fixture
+def render_config(tmp_path: Path) -> str:
+    pth = tmp_path / 'render.toml'
+    pth.write_text(
+        dedent("""
+            [render]
+            local_time = true
+            timestamp_format = "%H:%M:%S"
+            hidden_keys = ["host", "server.region"]
+        """),
+        encoding='utf-8',
+    )
+    return str(pth)
+
+
+def test_render_from_config_file(render_config: str):
+    config = _load_config(render_config)
+
+    assert config.render.local_time is True
+    assert config.render.timestamp_format == '%H:%M:%S'
+    assert config.render.hidden_keys == ['host', 'server.region']
+    assert config.render.formats_timestamp is True
+    assert config.render.hides_keys is True
+
+
+def test_cli_overrides_render_config_file(render_config: str):
+    config = _load_config(render_config, timestamp_format='%H:%M', hidden_keys=['request_id'])
+
+    assert config.render.timestamp_format == '%H:%M'
+    assert config.render.hidden_keys == ['request_id']
+    assert config.render.local_time is True
+
+
+def test_cli_render_without_config_file():
+    config = _load_config(None, local_time=True, hidden_keys=['host'])
+
+    assert config.render.local_time is True
+    assert config.render.hides_keys is True

@@ -5,8 +5,11 @@ from __future__ import annotations
 import logging
 import re
 from dataclasses import dataclass, field
+from typing import Any
 
+import dotted  # type: ignore[import-untyped]
 from corallium.loggers.styles import Styles
+from dotted.api import ParseError  # type: ignore[import-untyped]
 
 LEVEL_NAMES = ('critical', 'debug', 'error', 'info', 'warning')
 """Level names accepted by `min_level`."""
@@ -28,6 +31,14 @@ def _parse_min_level(name: str) -> int:
     except KeyError as err:
         expected = ', '.join(LEVEL_NAMES)
         msg = f'Unrecognized level {name!r}. Expected one of: {expected}'
+        raise ValueError(msg) from err
+
+
+def _parse_dotted_key(key: str) -> Any:
+    try:
+        return dotted.parse(key)
+    except ParseError as err:
+        msg = f'Unparseable dotted key {key!r}: {err}'
         raise ValueError(msg) from err
 
 
@@ -96,12 +107,40 @@ class Filters:
 
 
 @dataclass
+class Render:
+    """Timestamp and key rendering options.
+
+    Hidden keys are parsed on creation, so replace the instance rather than mutating an attribute.
+    """
+
+    local_time: bool = False
+    timestamp_format: str | None = None
+    hidden_keys: list[str] = field(default_factory=list)
+
+    hidden_patterns: list[Any] = field(init=False, repr=False, default_factory=list)
+    formats_timestamp: bool = field(init=False, repr=False, default=False)
+    hides_keys: bool = field(init=False, repr=False, default=False)
+
+    def __post_init__(self) -> None:
+        """Parse the dotted keys and precompute whether any rendering option is active."""
+        self.hidden_patterns = [_parse_dotted_key(_) for _ in self.hidden_keys]
+        self.formats_timestamp = bool(self.local_time or self.timestamp_format)
+        self.hides_keys = bool(self.hidden_patterns)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> Render:  # type: ignore[type-arg]
+        """Return Self instance."""
+        return cls(**data)
+
+
+@dataclass
 class Config:
     """`tail-jsonl` config."""
 
     styles: Styles = field(default_factory=Styles)
     keys: Keys = field(default_factory=Keys)
     filters: Filters = field(default_factory=Filters)
+    render: Render = field(default_factory=Render)
     debug: bool = False
 
     @classmethod
@@ -111,5 +150,6 @@ class Config:
             styles=Styles.from_dict(data.get('styles', {})),
             keys=Keys.from_dict(data.get('keys', {})),
             filters=Filters.from_dict(data.get('filters', {})),
+            render=Render.from_dict(data.get('render', {})),
             debug=data.get('debug', False),
         )
