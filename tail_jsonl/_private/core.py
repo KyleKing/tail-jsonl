@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import logging
-from dataclasses import dataclass
 from typing import Any
 
 import dotted  # type: ignore[import-untyped]
@@ -12,6 +11,7 @@ from corallium.loggers.rich_printer import rich_printer
 from corallium.loggers.styles import get_level
 from rich.console import Console
 
+from tail_jsonl._private.types import Record
 from tail_jsonl.config import Config
 
 
@@ -66,31 +66,21 @@ def _promote_dotted_keys(
             dotted.remove(data, dotted_key)
 
 
-@dataclass
-class Record:
-    """Record Model."""
-
-    timestamp: str
-    level: str
-    message: str
-    data: dict  # type: ignore[type-arg]
-
-    @classmethod
-    def from_line(cls, data: dict, config: Config) -> Record:  # type: ignore[type-arg]
-        """Return Record from jsonl."""
-        return cls(
-            timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
-            level=pop_key(data, config.keys.level, ''),
-            message=pop_key(data, config.keys.message, '<no message>'),
-            data=data,
-        )
+def record_from_line(data: dict, config: Config) -> Record:  # type: ignore[type-arg]
+    """Return Record from jsonl."""
+    return Record(
+        timestamp=pop_key(data, config.keys.timestamp, '<no timestamp>'),
+        level=pop_key(data, config.keys.level, ''),
+        message=pop_key(data, config.keys.message, '<no message>'),
+        data=data,
+    )
 
 
 def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record."""
     try:
         data = json.loads(line)
-        record = Record.from_line(data, config=config)
+        record = record_from_line(data, config=config)
         if config.debug:
             console.print(
                 (
