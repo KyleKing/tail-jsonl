@@ -12,6 +12,7 @@ from corallium.tomllib import tomllib
 from rich.console import Console
 
 from . import __version__
+from ._private.completions import SHELLS, generate
 from ._private.core import print_record
 from .config import LEVEL_NAMES, Config, Filters, Render
 
@@ -54,7 +55,7 @@ def _load_config(
 
 
 def _parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description='Pipe JSONL Logs for pretty printing')
+    parser = argparse.ArgumentParser(prog='tail-jsonl', description='Pipe JSONL Logs for pretty printing')
     parser.add_argument(
         '-v', '--version', action='version',
         version=f'%(prog)s {__version__}', help="Show program's version number and exit.",
@@ -103,6 +104,11 @@ def _parser() -> argparse.ArgumentParser:
              ' key that is absent does nothing, and the timestamp, level, and message keys cannot'
              ' be hidden because they are rendered as their own fields',
     )
+    parser.add_argument(
+        '--completions', choices=SHELLS, metavar='SHELL',
+        help=f'Print a completion script for one of ({", ".join(SHELLS)}) to stdout and exit,'
+             ' such as eval "$(tail-jsonl --completions zsh)"',
+    )
     return parser
 
 
@@ -110,6 +116,9 @@ def start() -> None:  # pragma: no cover
     """CLI Entrypoint."""
     parser = _parser()
     options = parser.parse_args(sys.argv[1:])
+    if options.completions:
+        sys.stdout.write(generate(parser, options.completions))
+        return
     sys.argv = sys.argv[:1]  # Remove CLI before calling fileinput
 
     try:
