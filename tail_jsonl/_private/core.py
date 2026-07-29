@@ -11,6 +11,7 @@ from corallium.loggers.rich_printer import rich_printer
 from corallium.loggers.styles import get_level
 from rich.console import Console
 
+from tail_jsonl._private.filters import line_passes, record_passes
 from tail_jsonl._private.types import Record
 from tail_jsonl.config import Config
 
@@ -77,7 +78,14 @@ def record_from_line(data: dict, config: Config) -> Record:  # type: ignore[type
 
 
 def print_record(line: str, console: Console, config: Config) -> None:
-    """Format and print the record."""
+    """Format and print the record.
+
+    Lines that cannot be parsed as JSON are printed verbatim, so only the raw include and exclude
+    patterns can drop them.
+    """
+    filters = config.filters
+    if filters.filters_line and not line_passes(line, filters):
+        return
     try:
         data = json.loads(line)
         record = record_from_line(data, config=config)
@@ -98,6 +106,9 @@ def print_record(line: str, console: Console, config: Config) -> None:
                 highlight=False,
             )
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
+        return
+
+    if filters.filters_record and not record_passes(record, filters):
         return
 
     if (this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
