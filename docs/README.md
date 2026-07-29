@@ -11,7 +11,21 @@ I wanted to find a tool that could:
 1. Convert a stream of arbitrary JSONL logs into an easy to skim format
 1. Clearly unwrap and display exceptions
 
-If you are looking for more functionality, there are many good alternatives: [humanlog](https://github.com/humanlogio/humanlog), [lnav](https://docs.lnav.org/en/latest/formats.html#), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), adapting [jq](https://github.com/stedolan/jq), [logss](https://github.com/todoesverso/logss), [tailspin](https://github.com/bensadeh/tailspin), [toolong](https://github.com/Textualize/toolong), [Nerdlog](https://github.com/dimonomid/nerdlog), [loggo](https://github.com/aurc/loggo), etc.
+`tail-jsonl` stays a stdin filter. It reads one line, prints one line, and does nothing else. If you need more than that, the tools below do more.
+
+## Alternatives
+
+| Tool                                             | Language | Good at                                                                                                                                                       | Reach for it instead when                                                                                                                       |
+| ------------------------------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| [hl](https://github.com/pamburus/hl)             | Rust     | Large JSON and logfmt files. Query expression language, chronological merge across sources with an on-disk index, follow mode, transparent gzip/xz/zstd input | Your logs live in files, you need several sources merged by time, or the volume is large enough that throughput decides the answer              |
+| [klp](https://github.com/dloss/klp)              | Python   | Breadth of input formats (logfmt, JSONL, CSV, syslog, Log4j, CEF), `--where` Python expressions, grep-style context lines, pattern statistics                 | The input is not JSON, or you want `-B/-A/-C` context and ad-hoc analysis. Note the README now marks it unmaintained in favor of a Rust rewrite |
+| [fblog](https://github.com/brocode/fblog)        | Rust     | The same pipe shape as `tail-jsonl`, plus Lua filter expressions and handlebars output templates                                                              | You want this workflow with custom output templates or a faster runtime                                                                         |
+| [tailspin](https://github.com/bensadeh/tailspin) | Rust     | Regex highlighting of arbitrary log text (dates, URLs, UUIDs, IPs, numbers), follow mode backed by `less`                                                     | Your logs are unstructured. It colors a JSON line as text because it does not parse fields, so it cannot reformat, filter, or sort on them      |
+| [lnav](https://github.com/tstack/lnav)           | C++      | Interactive investigation: merges many files by time, indexes errors, SQL and PRQL queries, JSON log format definitions with `line-format` templates          | You are digging through logs after the fact rather than watching a live pipe                                                                    |
+
+`tail-jsonl` is Python and renders with [Rich](https://github.com/Textualize/rich), so it will lose a lines-per-second contest to any of the Rust tools. It is built for human log rates in a live pipe (a dev server, `kubectl logs -f`, `docker compose logs`), where per-line latency and zero-config key detection matter more than throughput. For a 2 GB file, use `hl`.
+
+Other tools worth knowing: [humanlog](https://github.com/humanlogio/humanlog), [goaccess](https://goaccess.io/get-started), [angle-grinder](https://github.com/rcoh/angle-grinder#rendering), adapting [jq](https://github.com/stedolan/jq), [logss](https://github.com/todoesverso/logss), [toolong](https://github.com/Textualize/toolong), [Nerdlog](https://github.com/dimonomid/nerdlog), and [loggo](https://github.com/aurc/loggo).
 
 ## Installation
 
@@ -45,6 +59,8 @@ stern envvars --context staging --container gateway --since="60m" --output raw |
 docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RSTART+3, RLENGTH); system("") }' |& tail-jsonl
 ```
 
+For copy-pasteable pipelines (`kubectl`, Docker Compose, structlog, and pino), see [RECIPES]. If the output looks wrong or nothing appears at all, see [TROUBLESHOOTING].
+
 ## Configuration
 
 Optionally, specify a path to a custom configuration file. For an example configuration file see: [./tests/config_default.toml](https://github.com/KyleKing/tail-jsonl/blob/main/tests/config_default.toml)
@@ -52,6 +68,8 @@ Optionally, specify a path to a custom configuration file. For an example config
 ```sh
 echo '...' |& tail-jsonl --config-path=~/.tail-jsonl.toml
 ```
+
+The `[keys]` table is where you map an emitter's field names onto the timestamp, level, and message that `tail-jsonl` renders. [RECIPES] covers the defaults and the emitters that need mapping.
 
 ## Project Status
 
@@ -85,4 +103,6 @@ If you have any security issue to report, please contact the project maintainers
 [contributor-covenant]: https://www.contributor-covenant.org
 [developer_guide]: https://tail-jsonl.kyleking.me/docs/DEVELOPER_GUIDE
 [license]: https://github.com/kyleking/tail-jsonl/blob/main/LICENSE
+[recipes]: https://tail-jsonl.kyleking.me/docs/RECIPES
 [style_guide]: https://tail-jsonl.kyleking.me/docs/STYLE_GUIDE
+[troubleshooting]: https://tail-jsonl.kyleking.me/docs/TROUBLESHOOTING
