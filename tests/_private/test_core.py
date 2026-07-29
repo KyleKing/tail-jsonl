@@ -69,6 +69,15 @@ def test_core_bad_json(console: Console):
     assert result.strip() == '{"bad json": None}'
 
 
+@pytest.mark.parametrize('line', ['[1, 2]', '"hello"', '42', 'true', 'null'])
+def test_core_non_object_json(line, console: Console):
+    print_record(line, console, Config())
+
+    result = console.end_capture()
+
+    assert result.strip() == line
+
+
 def test_core_logtape_messages(console: Console):
     print_record('{"message": ["LogTape Message"]}', console, Config())
 

@@ -79,27 +79,25 @@ def record_from_line(data: dict, config: Config) -> Record:  # type: ignore[type
     )
 
 
+def _parse_record(line: str, config: Config) -> Record:
+    data = json.loads(line)
+    if not isinstance(data, dict):
+        msg = f'Expected a JSON object, but received {type(data).__name__}'
+        raise TypeError(msg)
+    return record_from_line(data, config=config)
+
+
 def print_record(line: str, console: Console, config: Config) -> None:
     """Format and print the record.
 
-    Lines that cannot be parsed as JSON are printed verbatim, so only the raw include and exclude
+    Lines that are not a JSON object are printed verbatim, so only the raw include and exclude
     patterns can drop them.
     """
     filters = config.filters
     if filters.filters_line and not line_passes(line, filters):
         return
     try:
-        data = json.loads(line)
-        record = record_from_line(data, config=config)
-        if config.debug:
-            console.print(
-                (
-                    f'[dim]DEBUG: Parsed keys - timestamp={record.timestamp!r},'
-                    f' level={record.level!r}, message={record.message!r}[/dim]'
-                ),
-                markup=True,
-                highlight=False,
-            )
+        record = _parse_record(line, config)
     except (json.JSONDecodeError, ValueError, KeyError, TypeError, AttributeError) as exc:
         if config.debug:
             console.print(
@@ -109,6 +107,16 @@ def print_record(line: str, console: Console, config: Config) -> None:
             )
         console.print(line.rstrip(), markup=False, highlight=False)  # Print the unmodified line
         return
+
+    if config.debug:
+        console.print(
+            (
+                f'[dim]DEBUG: Parsed keys - timestamp={record.timestamp!r},'
+                f' level={record.level!r}, message={record.message!r}[/dim]'
+            ),
+            markup=True,
+            highlight=False,
+        )
 
     if filters.filters_record and not record_passes(record, filters):
         return
