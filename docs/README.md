@@ -61,6 +61,26 @@ docker compose logs --follow | awk 'match($0, / \| \{.+/) { print substr($0, RST
 
 For copy-pasteable pipelines (`kubectl`, Docker Compose, structlog, and pino), see [RECIPES]. If the output looks wrong or nothing appears at all, see [TROUBLESHOOTING].
 
+### Common flags
+
+```sh
+my-app | tail-jsonl -e healthz -e '/metrics'          # drop lines matching a regex
+my-app | tail-jsonl -i 'timeout|refused'              # keep only lines matching a regex
+my-app | tail-jsonl -l warning                        # drop records below a level
+my-app | tail-jsonl --field-selector 'service=^api$'  # keep records whose field matches
+my-app | tail-jsonl --timestamp-format '%H:%M:%S'     # shorten the timestamp
+my-app | tail-jsonl --hide-key pid --hide-key hostname
+my-app | tail-jsonl --debug                           # show what the parser found
+```
+
+Shell completions come from the parser itself, for `bash` and `zsh`:
+
+```sh
+eval "$(tail-jsonl --completions zsh)"
+```
+
+Every flag, its TOML equivalent, and the cases where one behaves differently than you would guess are in the [CLI] reference.
+
 ## Configuration
 
 Optionally, specify a path to a custom configuration file. For an example configuration file see: [./tests/config_default.toml](https://github.com/KyleKing/tail-jsonl/blob/main/tests/config_default.toml)
@@ -70,6 +90,8 @@ echo '...' |& tail-jsonl --config-path=~/.tail-jsonl.toml
 ```
 
 The `[keys]` table is where you map an emitter's field names onto the timestamp, level, and message that `tail-jsonl` renders. [RECIPES] covers the defaults and the emitters that need mapping.
+
+The `[filters]` and `[render]` tables hold the same settings as the filtering and rendering flags, so anything you type on every run can move into the file. A CLI flag overrides the file value for that key, and it cannot clear a value the file set. See [CLI] for the full example config and the precedence rules.
 
 ## Project Status
 
@@ -99,6 +121,7 @@ If you have any security issue to report, please contact the project maintainers
 [LICENSE]
 
 [changelog]: https://tail-jsonl.kyleking.me/docs/CHANGELOG
+[cli]: https://tail-jsonl.kyleking.me/docs/CLI
 [code_tag_summary]: https://tail-jsonl.kyleking.me/docs/CODE_TAG_SUMMARY
 [contributor-covenant]: https://www.contributor-covenant.org
 [developer_guide]: https://tail-jsonl.kyleking.me/docs/DEVELOPER_GUIDE

@@ -50,7 +50,7 @@ message = ["msg", "message", "event"]
 
 The second is a type mismatch, and no config can fix it. Only string values are used for the timestamp, level, and message, so pino's numeric `level` and epoch-millisecond `time`, or structlog's bare `TimeStamper()` float, are skipped and shown as ordinary data. Convert them upstream or with `jq` (see the pino recipe).
 
-A level name that is not `debug`, `info`, `warn`/`warning`, or `error` renders as `[NOTSET ]` with the original value kept in a `_level_name` field. That includes `critical`, `fatal`, `trace`, and `notice`. Note that `-l/--min-level` uses a wider table than the renderer does, so `-l critical` filters correctly even though a `critical` record still renders as `NOTSET`.
+A level name that is not `debug`, `info`, `warn`/`warning`, or `error` renders as `[NOTSET ]` with the original value kept in a `_level_name` field. That includes `critical`, `fatal`, `trace`, and `notice`. Note that `-l/--min-level` uses a wider table than the renderer does, so `-l critical` filters correctly even though a `critical` record still renders as `NOTSET`. [CLI] explains why, and why `-l critical` keeps `trace` and `notice` records too.
 
 ## Colors are missing or mangled
 
@@ -79,4 +79,5 @@ Piping also changes the width. Rich cannot measure a pipe, so it falls back to 8
 my-app | COLUMNS=200 FORCE_COLOR=1 tail-jsonl | less -R
 ```
 
+[cli]: https://tail-jsonl.kyleking.me/docs/CLI
 [recipes]: https://tail-jsonl.kyleking.me/docs/RECIPES

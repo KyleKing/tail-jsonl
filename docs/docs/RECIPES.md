@@ -13,7 +13,7 @@ Working invocations for the pipelines `tail-jsonl` is most often dropped into, p
 | message   | `event`, `message`, `msg`, `record.message` |
 | own line  | `text`, `exception`, `error.stack`          |
 
-Keys are parsed with dot notation, so `record.time.repr` reaches into a nested object. Override any of these lists in a TOML file and pass it with `--config-path`. A list you do not set keeps its default.
+Keys are parsed with dot notation, so `record.time.repr` reaches into a nested object. Override any of these lists in a TOML file and pass it with `--config-path`. A list you do not set keeps its default. The rest of the config file, and every CLI flag, is documented in [CLI].
 
 Two constraints are worth knowing before you write a config. Only string values are picked up for the timestamp, level, and message, so a numeric epoch timestamp or a numeric level is left in the trailing data instead. And the level styling recognizes `debug`, `info`, `warn`/`warning`, and `error` (case-insensitive), so other names render as `NOTSET` with the original name preserved in a `_level_name` field.
 
@@ -148,4 +148,5 @@ message = ["log.msg"]
 
 The extracted values are removed from the nested object, which is then rendered as whatever is left (an emptied wrapper shows up as `log={}`). Flatten upstream with `jq` if that bothers you.
 
+[cli]: https://tail-jsonl.kyleking.me/docs/CLI
 [troubleshooting]: https://tail-jsonl.kyleking.me/docs/TROUBLESHOOTING
