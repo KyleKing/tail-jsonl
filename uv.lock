@@ -319,7 +319,7 @@ wheels = [
 
 [[package]]
 name = "corallium"
-version = "2.3.0"
+version = "2.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beartype" },
@@ -327,9 +327,9 @@ dependencies = [
     { name = "tomli", marker = "python_full_version < '3.11'" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/5c/65/63d02eed2b4bf483d78266052ae28a351e6ab55b6198c35e55639ad234a0/corallium-2.3.0.tar.gz", hash = "sha256:831738b802de604a97ebd8e55d1803db5009878b05a5fb3759ef4a876dc68cc8", size = 29222, upload-time = "2026-03-25T03:19:58.932Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/38/2c/5fd63b1a119ccfcc6eba79673b61ea5b3e2e0772c1b32eaba44fa308be68/corallium-2.4.0.tar.gz", hash = "sha256:9d7df73b087b6e77675714c20b030b036b6c23fe419e48601e217d432a12a2d4", size = 30506, upload-time = "2026-07-30T03:21:21.818Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fe/50/9b6512743d59058bdcf4e8c3b8352df5806e62dcd29b8dc04eb3d317ae39/corallium-2.3.0-py3-none-any.whl", hash = "sha256:77db5e088ff4415327e4d67d605740883dbac0b055fd951726fa8b043906a18c", size = 35705, upload-time = "2026-03-25T03:19:57.498Z" },
+    { url = "https://files.pythonhosted.org/packages/8f/1e/a6d2b95584632e6afb27fcb26c041ce089893b1d7d7c27abaa6dec6acfa7/corallium-2.4.0-py3-none-any.whl", hash = "sha256:90d7255b7a2ce2202682aa1b437d8496a126ebbb23af52fce619d799dcc8c023", size = 36288, upload-time = "2026-07-30T03:21:20.651Z" },
 ]
 
 [[package]]
@@ -1591,6 +1591,7 @@ source = { editable = "." }
 dependencies = [
     { name = "corallium" },
     { name = "dotted-notation" },
+    { name = "tzdata", marker = "sys_platform == 'win32'" },
 ]
 
 [package.dev-dependencies]
@@ -1603,8 +1604,9 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "corallium", specifier = ">=2.2.0" },
+    { name = "corallium", specifier = ">=2.4.0" },
     { name = "dotted-notation", specifier = ">=0.11.0" },
+    { name = "tzdata", marker = "sys_platform == 'win32'", specifier = ">=2025.1" },
 ]
 
 [package.metadata.requires-dev]
