@@ -12,31 +12,29 @@
         <meta name="author" content="Kyle King">
       
       
-        <link rel="canonical" href="https://tail-jsonl.kyleking.me/docs/DEVELOPER_GUIDE/">
+        <link rel="canonical" href="https://tail-jsonl.kyleking.me/reference/tail_jsonl/_private/types/">
       
       
-        <link rel="prev" href="../CODE_TAG_SUMMARY/">
+        <link rel="prev" href="../timestamps/">
       
-      
-        <link rel="next" href="../RECIPES/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Developer Notes - tail_jsonl</title>
+        <title>Types - tail_jsonl</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,11 +53,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../_styles/mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../_styles/mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#developer-notes" class="md-skip">
+        <a href="#tail_jsonl._private.types" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +98,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="tail_jsonl" class="md-header__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
+    <a href="../../../.." title="tail_jsonl" class="md-header__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Developer Notes
+              Types
             
           </span>
         </div>
@@ -222,7 +220,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="tail_jsonl" class="md-nav__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
+    <a href="../../../.." title="tail_jsonl" class="md-nav__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -252,7 +250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   
@@ -276,20 +274,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -310,7 +306,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -328,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CHANGELOG/" class="md-nav__link">
+      <a href="../../../../docs/CHANGELOG/" class="md-nav__link">
         
   
   
@@ -356,7 +352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CLI/" class="md-nav__link">
+      <a href="../../../../docs/CLI/" class="md-nav__link">
         
   
   
@@ -384,7 +380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CODE_TAG_SUMMARY/" class="md-nav__link">
+      <a href="../../../../docs/CODE_TAG_SUMMARY/" class="md-nav__link">
         
   
   
@@ -409,37 +405,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Developer Notes
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../docs/DEVELOPER_GUIDE/" class="md-nav__link">
         
   
   
@@ -455,115 +424,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#local-development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Local Development
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Local Development">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#maintenance" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Maintenance
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#benchmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Benchmarks
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publishing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Publishing
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Publishing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#initial-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Initial Setup
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manual-publishing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Manual Publishing
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#current-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Current Status
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -576,7 +436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../RECIPES/" class="md-nav__link">
+      <a href="../../../../docs/RECIPES/" class="md-nav__link">
         
   
   
@@ -604,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../STYLE_GUIDE/" class="md-nav__link">
+      <a href="../../../../docs/STYLE_GUIDE/" class="md-nav__link">
         
   
   
@@ -632,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../TROUBLESHOOTING/" class="md-nav__link">
+      <a href="../../../../docs/TROUBLESHOOTING/" class="md-nav__link">
         
   
   
@@ -664,18 +524,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -696,7 +558,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -711,18 +573,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
@@ -743,7 +607,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -761,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/config/" class="md-nav__link">
+      <a href="../../config/" class="md-nav__link">
         
   
   
@@ -789,7 +653,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/scripts/" class="md-nav__link">
+      <a href="../../scripts/" class="md-nav__link">
         
   
   
@@ -814,18 +678,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
@@ -846,7 +712,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_1_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -864,7 +730,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/completions/" class="md-nav__link">
+      <a href="../completions/" class="md-nav__link">
         
   
   
@@ -892,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/core/" class="md-nav__link">
+      <a href="../core/" class="md-nav__link">
         
   
   
@@ -920,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/filters/" class="md-nav__link">
+      <a href="../filters/" class="md-nav__link">
         
   
   
@@ -948,7 +814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/keys/" class="md-nav__link">
+      <a href="../keys/" class="md-nav__link">
         
   
   
@@ -976,7 +842,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/timestamps/" class="md-nav__link">
+      <a href="../timestamps/" class="md-nav__link">
         
   
   
@@ -1001,10 +867,35 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/types/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1020,6 +911,63 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tail_jsonl._private.types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        types
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tail_jsonl._private.types-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tail_jsonl._private.types.Record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1065,8 +1013,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1075,22 +1021,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#local-development" class="md-nav__link">
+  <a href="#tail_jsonl._private.types" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Local Development
+        types
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Local Development">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tail_jsonl._private.types-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#maintenance" class="md-nav__link">
+  <a href="#tail_jsonl._private.types.Record" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Maintenance
+        Record
       
     </span>
   </a>
@@ -1099,67 +1056,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#benchmarks" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Benchmarks
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#publishing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Publishing
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Publishing">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#initial-setup" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Initial Setup
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#manual-publishing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Manual Publishing
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#current-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Current Status
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1183,133 +1079,106 @@
   
 
 
-<h1 id="developer-notes">Developer Notes<a class="headerlink" href="#developer-notes" title="Permanent link">⚓︎</a></h1>
-<h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">⚓︎</a></h2>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kyleking/tail-jsonl.git
-<span class="linenos" data-linenos=" 2 "></span><span class="nb">cd</span><span class="w"> </span>tail-jsonl
-<span class="linenos" data-linenos=" 3 "></span>uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="c1"># See the available tasks</span>
-<span class="linenos" data-linenos=" 6 "></span>uv<span class="w"> </span>run<span class="w"> </span>calcipy
-<span class="linenos" data-linenos=" 7 "></span><span class="c1"># Or use a local &#39;run&#39; file (so that &#39;calcipy&#39; can be extended)</span>
-<span class="linenos" data-linenos=" 8 "></span>./run
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="c1"># Run the default task list (lint, auto-format, test coverage, etc.)</span>
-<span class="linenos" data-linenos="11 "></span>./run<span class="w"> </span>main
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="c1"># Make code changes and run specific tasks as needed:</span>
-<span class="linenos" data-linenos="14 "></span>./run<span class="w"> </span>lint.fix<span class="w"> </span><span class="nb">test</span>
+  <h1>Types</h1>
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="tail_jsonl._private.types"></a>
+    <div class="doc doc-contents first">
+
+        <p>Type definitions for tail-jsonl.</p>
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<h2 id="tail_jsonl._private.types-classes">Classes<a href="#tail_jsonl._private.types-classes" class="headerlink" title="Permanent link">⚓︎</a></h2>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="tail_jsonl._private.types.Record" class="doc doc-heading">
+            <span class="doc doc-object-name doc-class-name">Record</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+<a href="#tail_jsonl._private.types.Record" class="headerlink" title="Permanent link">⚓︎</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Record Model.</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>tail_jsonl/_private/types.py</code></summary>
+                <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 8 "></span><span class="nd">@dataclass</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="k">class</span><span class="w"> </span><span class="nc">Record</span><span class="p">:</span>
+<span class="linenos" data-linenos="10 "></span><span class="w">    </span><span class="sd">&quot;&quot;&quot;Record Model.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span>    <span class="n">timestamp</span><span class="p">:</span> <span class="nb">str</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="n">level</span><span class="p">:</span> <span class="nb">str</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span>
+<span class="linenos" data-linenos="15 "></span>    <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span>  <span class="c1"># type: ignore[type-arg]</span>
 </code></pre></div>
-<h3 id="maintenance">Maintenance<a class="headerlink" href="#maintenance" title="Permanent link">⚓︎</a></h3>
-<p>Dependency upgrades can be accomplished with:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>uv<span class="w"> </span>lock<span class="w"> </span>--upgrade
-<span class="linenos" data-linenos="2 "></span>uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
-</code></pre></div>
-<h2 id="benchmarks">Benchmarks<a class="headerlink" href="#benchmarks" title="Permanent link">⚓︎</a></h2>
-<p>The <code>benchmarks/</code> directory is excluded from <code>testpaths</code>, so <code>uv run pytest</code> never runs it. Measure
-per-line rendering cost with:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>benchmarks
-</code></pre></div>
-<p>Two scenarios render through a Rich <code>Console</code> bound to an in-memory buffer at a fixed width of 120,
-so the numbers reflect formatting cost rather than terminal I/O: a minimal record and a 20+ key
-nested record that promotes <code>error.stack</code> onto its own line.</p>
-<p>For end-to-end lines/sec over 10k generated lines (no fixture is committed, the corpus is built at
-runtime):</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>benchmarks.throughput
-<span class="linenos" data-linenos="2 "></span>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>benchmarks.throughput<span class="w"> </span>--lines<span class="w"> </span><span class="m">50000</span><span class="w"> </span>--repeat<span class="w"> </span><span class="m">5</span>
-</code></pre></div>
-<p>There is no CI regression gate. These are local measurements used to justify or reject perf work
-such as <code>orjson</code> or output buffering.</p>
-<h2 id="publishing">Publishing<a class="headerlink" href="#publishing" title="Permanent link">⚓︎</a></h2>
-<p>Publishing is automated via GitHub Actions using PyPI Trusted Publishing. Tag creation triggers automated publishing.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>./run<span class="w"> </span>release<span class="w">              </span><span class="c1"># Bumps version, creates tag, pushes → triggers publish</span>
-<span class="linenos" data-linenos="2 "></span>./run<span class="w"> </span>release<span class="w"> </span>--suffix<span class="o">=</span>rc<span class="w">  </span><span class="c1"># For pre-releases</span>
-</code></pre></div>
-<h3 id="initial-setup">Initial Setup<a class="headerlink" href="#initial-setup" title="Permanent link">⚓︎</a></h3>
-<p>One-time setup to enable PyPI Trusted Publishing:</p>
-<p><strong>Configure GitHub Environments</strong></p>
-<p>Repository Settings → Environments:
-- Create <code>testpypi</code> environment (no protection rules)
-- Create <code>pypi</code> environment with &ldquo;Required reviewers&rdquo; enabled</p>
-<p><strong>Register Trusted Publishers</strong></p>
-<p>PyPI: https://pypi.org/manage/project/tail_jsonl/settings/publishing/
-- Owner: <code>kyleking</code>
-- Repository: <code>tail-jsonl</code>
-- Workflow: <code>publish.yml</code>
-- Environment: <code>pypi</code>
-    - Or environment <code>testpypi</code> (for <a href="https://test.pypi.org/manage/account/publishing">TestPyPI</a>)</p>
-<h3 id="manual-publishing">Manual Publishing<a class="headerlink" href="#manual-publishing" title="Permanent link">⚓︎</a></h3>
-<p>For emergency manual publish:</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">export</span><span class="w"> </span><span class="nv">UV_PUBLISH_TOKEN</span><span class="o">=</span>pypi-...
-<span class="linenos" data-linenos="2 "></span>uv<span class="w"> </span>build
-<span class="linenos" data-linenos="3 "></span>uv<span class="w"> </span>publish
-</code></pre></div>
-<h2 id="current-status">Current Status<a class="headerlink" href="#current-status" title="Permanent link">⚓︎</a></h2>
-<!-- {cts} COVERAGE -->
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th style="text-align: right;">Statements</th>
-<th style="text-align: right;">Missing</th>
-<th style="text-align: right;">Excluded</th>
-<th style="text-align: right;">Coverage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>tail_jsonl/__init__.py</code></td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">100.0%</td>
-</tr>
-<tr>
-<td><code>tail_jsonl/_private/__init__.py</code></td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">100.0%</td>
-</tr>
-<tr>
-<td><code>tail_jsonl/_private/core.py</code></td>
-<td style="text-align: right;">59</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">89.9%</td>
-</tr>
-<tr>
-<td><code>tail_jsonl/_runtime_type_check_setup.py</code></td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">37</td>
-<td style="text-align: right;">100.0%</td>
-</tr>
-<tr>
-<td><code>tail_jsonl/config.py</code></td>
-<td style="text-align: right;">24</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">100.0%</td>
-</tr>
-<tr>
-<td><code>tail_jsonl/scripts.py</code></td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">87.0%</td>
-</tr>
-<tr>
-<td><strong>Totals</strong></td>
-<td style="text-align: right;">119</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">57</td>
-<td style="text-align: right;">92.4%</td>
-</tr>
-</tbody>
-</table>
-<p>Generated on: 2025-11-21</p>
-<!-- {cte} -->
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
 
 
 
@@ -1359,14 +1228,14 @@ such as <code>orjson</code> or output buffering.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["toc.autohide"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.6.0/tablesort.min.js"></script>
       
-        <script src="../../_javascript/tables.js"></script>
+        <script src="../../../../_javascript/tables.js"></script>
       
     
   </body>

@@ -18,7 +18,7 @@
         <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../CODE_TAG_SUMMARY/">
+        <link rel="next" href="../CLI/">
       
       
         
@@ -913,6 +913,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../CLI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../CODE_TAG_SUMMARY/" class="md-nav__link">
         
   
@@ -969,6 +997,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../RECIPES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recipes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../STYLE_GUIDE/" class="md-nav__link">
         
   
@@ -977,6 +1033,34 @@
     
   
     Personal Style Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
   
 
     
@@ -1201,6 +1285,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/completions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Completions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/tail_jsonl/_private/core/" class="md-nav__link">
         
   
@@ -1209,6 +1321,118 @@
     
   
     Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/keys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timestamps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
   
 
     
@@ -1808,10 +2032,17 @@
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">⚓︎</a></h2>
 <h3 id="feat">Feat<a class="headerlink" href="#feat" title="Permanent link">⚓︎</a></h3>
 <ul>
+<li>share one level table and accept numeric field values</li>
+<li>replace the timestamp flags with &ndash;time-zone and &ndash;time-format</li>
+<li>generate bash and zsh completions from the argparse parser</li>
+<li>add &ndash;local-time, &ndash;timestamp-format, and &ndash;hide-key</li>
+<li>add include, exclude, field-selector, and min-level filters</li>
 <li>implement &ndash;debug flag for troubleshooting</li>
 </ul>
 <h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">⚓︎</a></h3>
 <ul>
+<li>remove containers left empty by key removal</li>
+<li>print non-object JSON verbatim instead of crashing</li>
 <li><strong>lint</strong>: rename the fileinput handle to satisfy RUF052</li>
 <li><strong>deps</strong>: bump virtualenv to 21.7.0</li>
 <li><strong>deps</strong>: bump requests to 2.34.2</li>
@@ -1824,6 +2055,7 @@
 </ul>
 <h3 id="refactor">Refactor<a class="headerlink" href="#refactor" title="Permanent link">⚓︎</a></h3>
 <ul>
+<li>move Record into types.py</li>
 <li>Implement minor cleanup</li>
 </ul>
 <h2 id="142-2025-09-10">1.4.2 (2025-09-10)<a class="headerlink" href="#142-2025-09-10" title="Permanent link">⚓︎</a></h2>

@@ -1,0 +1,1514 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="tail_jsonl project documentation">
+      
+      
+        <meta name="author" content="Kyle King">
+      
+      
+        <link rel="canonical" href="https://tail-jsonl.kyleking.me/docs/CLI/">
+      
+      
+        <link rel="prev" href="../CHANGELOG/">
+      
+      
+        <link rel="next" href="../CODE_TAG_SUMMARY/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>CLI Reference - tail_jsonl</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../_styles/mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cli-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="tail_jsonl" class="md-header__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tail_jsonl
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CLI Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="green"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/kyleking/tail-jsonl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kyleking/tail-jsonl
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="tail_jsonl" class="md-nav__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tail_jsonl
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/kyleking/tail-jsonl" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kyleking/tail-jsonl
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tail-jsonl
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CHANGELOG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sharp-edges-in-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sharp edges in filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rendering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-level-column" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The level column
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sharp-edges-in-rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sharp edges in rendering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-completions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell completions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration file
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flags-and-their-toml-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags and their TOML keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precedence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CODE_TAG_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collected Code Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEVELOPER_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Developer Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RECIPES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recipes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personal Style Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tail jsonl
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tail jsonl
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scripts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1_3" id="__nav_3_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     private
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+     private
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/completions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Completions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/keys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timestamps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/tail_jsonl/_private/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filtering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sharp-edges-in-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sharp edges in filtering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rendering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rendering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-level-column" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The level column
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sharp-edges-in-rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sharp edges in rendering
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-completions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shell completions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration file
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration file">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flags-and-their-toml-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags and their TOML keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#precedence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Precedence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cli-reference">CLI Reference<a class="headerlink" href="#cli-reference" title="Permanent link">⚓︎</a></h1>
+<p>Every flag <code>tail-jsonl</code> accepts, what it does, and where it will surprise you. The tool reads stdin, prints one line per input line, and exits when the stream closes.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>tail-jsonl<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-v<span class="o">]</span><span class="w"> </span><span class="o">[</span>--config-path<span class="w"> </span>PATH<span class="o">]</span><span class="w"> </span><span class="o">[</span>--debug<span class="o">]</span>
+<span class="linenos" data-linenos="2 "></span><span class="o">[</span>-i<span class="w"> </span>PATTERN<span class="o">]</span><span class="w"> </span><span class="o">[</span>-e<span class="w"> </span>PATTERN<span class="o">]</span><span class="w"> </span><span class="o">[</span>--field-selector<span class="w"> </span><span class="nv">KEY</span><span class="o">=</span>PATTERN<span class="o">]</span><span class="w"> </span><span class="o">[</span>--case-insensitive<span class="o">]</span>
+<span class="linenos" data-linenos="3 "></span><span class="o">[</span>-l<span class="w"> </span>LEVEL<span class="o">]</span><span class="w"> </span><span class="o">[</span>--time-zone<span class="w"> </span>ZONE<span class="o">]</span><span class="w"> </span><span class="o">[</span>--time-format<span class="w"> </span>FORMAT<span class="o">]</span><span class="w"> </span><span class="o">[</span>--hide-key<span class="w"> </span>KEY<span class="o">]</span>
+<span class="linenos" data-linenos="4 "></span><span class="o">[</span>--completions<span class="w"> </span>SHELL<span class="o">]</span>
+</code></pre></div>
+<p>Every flag except <code>--config-path</code>, <code>--completions</code>, <code>-h</code>, and <code>-v</code> has a TOML equivalent, so anything you type often can move into a config file. See <a href="#configuration-file">Configuration file</a> below.</p>
+<h2 id="general">General<a class="headerlink" href="#general" title="Permanent link">⚓︎</a></h2>
+<p><code>-h/--help</code> prints the usage above and exits. <code>-v/--version</code> prints the installed version and exits.</p>
+<p><code>--config-path PATH</code> points at a TOML file. <code>~</code> is expanded. There is no default location and no automatic discovery, so without this flag only the built-in defaults apply.</p>
+<p><code>--debug</code> prints the timestamp, level, and message that the parser extracted from each record, and the exception for any line it could not parse. Reach for it first whenever the output looks wrong. <a href="https://tail-jsonl.kyleking.me/docs/TROUBLESHOOTING">TROUBLESHOOTING</a> walks through what the debug lines mean.</p>
+<h2 id="filtering">Filtering<a class="headerlink" href="#filtering" title="Permanent link">⚓︎</a></h2>
+<p>Two filters work on the raw text of the line before any parsing, and two work on the parsed record. That split decides how each one treats input that is not a JSON object.</p>
+<p><code>-i/--include PATTERN</code> keeps only lines matching the regex. <code>-e/--exclude PATTERN</code> drops lines matching the regex and wins over <code>--include</code>. Both take the raw line, so a pattern can match a key name, punctuation, or anything else in the text. Repeat either flag to supply several patterns, and a line passes <code>--include</code> when it matches any one of them.</p>
+<p><code>--field-selector KEY=PATTERN</code> keeps only records whose dotted <code>KEY</code> matches the regex. Repeat it and every selector must match. A record missing the key is dropped. The pattern is searched against the value rendered as a string, so <code>--field-selector attempt=^3$</code> works on a number.</p>
+<p><code>-l/--min-level LEVEL</code> drops records below the level. Accepted values are <code>critical</code>, <code>debug</code>, <code>error</code>, <code>exception</code>, <code>fatal</code>, <code>info</code>, <code>notice</code>, <code>trace</code>, <code>warn</code>, and <code>warning</code>, matched case-insensitively. <code>exception</code> and <code>fatal</code> are synonyms for <code>critical</code>, <code>warn</code> for <code>warning</code>, and <code>trace</code> and <code>notice</code> sit below <code>debug</code> and above <code>info</code> respectively.</p>
+<p><code>--case-insensitive</code> applies <code>re.IGNORECASE</code> to every pattern above, including field selectors.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>my-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>-e<span class="w"> </span>healthz<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;/metrics&#39;</span>
+<span class="linenos" data-linenos="2 "></span>my-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>-l<span class="w"> </span>warning<span class="w"> </span>--field-selector<span class="w"> </span><span class="s1">&#39;service=^(api|worker)$&#39;</span>
+<span class="linenos" data-linenos="3 "></span>my-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--case-insensitive<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;timeout|refused&#39;</span>
+</code></pre></div>
+<h3 id="sharp-edges-in-filtering">Sharp edges in filtering<a class="headerlink" href="#sharp-edges-in-filtering" title="Permanent link">⚓︎</a></h3>
+<p><code>--min-level</code> keeps any record whose level it does not recognize, including records with no level key at all. That is the safe default for a stream of mixed sources, because nothing vanishes silently. It is not the same behavior as <code>hl -l</code>, which drops unknowns. Use <code>--field-selector level=...</code> when you need the strict version.</p>
+<p>Two kinds of level go unrecognized. A name outside the table above (<code>verbose</code>, <code>emerg</code>, anything an emitter invented) and a numeric level, which carries no severity because pino reads 30 as info while Python&rsquo;s <code>logging</code> reads it as warning. Both are kept by every <code>-l</code> value, so <code>-l critical</code> on a pino stream drops nothing.</p>
+<p>Filtering and rendering read one shared table, so a level either has a number everywhere or nowhere. <code>-l critical</code> keeps <code>critical</code>, <code>fatal</code>, and <code>exception</code> records because 50 is greater than or equal to 50, and drops <code>trace</code> and <code>notice</code> because 5 and 25 are not.</p>
+<p><code>--field-selector</code> matches the canonical field name, not the alias your emitter used. During parsing the first matching key from each <code>[keys]</code> list is removed from the data and moved into the timestamp, level, or message slot, so only <code>timestamp</code>, <code>level</code>, and <code>message</code> are selectable regardless of which alias appeared on the wire:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{&quot;time&quot;:&quot;2026-01-01T01:01:01Z&quot;,&quot;level&quot;:&quot;info&quot;,&quot;event&quot;:&quot;foo bar&quot;}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--field-selector<span class="w"> </span><span class="nv">message</span><span class="o">=</span>foo<span class="w">   </span><span class="c1"># matches</span>
+<span class="linenos" data-linenos="2 "></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{&quot;time&quot;:&quot;2026-01-01T01:01:01Z&quot;,&quot;level&quot;:&quot;info&quot;,&quot;event&quot;:&quot;foo bar&quot;}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--field-selector<span class="w"> </span><span class="nv">event</span><span class="o">=</span>foo<span class="w">     </span><span class="c1"># never matches</span>
+<span class="linenos" data-linenos="3 "></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{&quot;time&quot;:&quot;2026-01-01T01:01:01Z&quot;,&quot;level&quot;:&quot;info&quot;,&quot;event&quot;:&quot;foo bar&quot;}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--field-selector<span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">2026</span><span class="w">     </span><span class="c1"># never matches</span>
+</code></pre></div>
+<p>Lines that are not a JSON object print verbatim, and the record filters never drop them. That covers unparseable text and also valid JSON that is not an object, so <code>[1, 2]</code>, <code>"hello"</code>, and <code>42</code> all pass straight through <code>--field-selector</code> and <code>--min-level</code>. Only <code>--include</code> and <code>--exclude</code> can drop them, because those match the raw line.</p>
+<h2 id="rendering">Rendering<a class="headerlink" href="#rendering" title="Permanent link">⚓︎</a></h2>
+<p><code>--time-zone ZONE</code> converts parsed timestamps to <code>local</code>, <code>utc</code>, or an IANA zone such as <code>Europe/Berlin</code>. An unknown zone is rejected before the first line is read.</p>
+<p><code>--time-format FORMAT</code> renders parsed timestamps as one of three presets or as any <code>strftime</code> pattern. A timestamp that cannot be parsed is printed verbatim, with or without this flag.</p>
+<table>
+<thead>
+<tr>
+<th><code>FORMAT</code></th>
+<th>Renders <code>2026-01-01T01:01:01.123+00:00</code> as</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>iso</code></td>
+<td><code>2026-01-01T01:01:01.123000+00:00</code></td>
+</tr>
+<tr>
+<td><code>clock</code></td>
+<td><code>01:01:01.123</code></td>
+</tr>
+<tr>
+<td><code>short</code></td>
+<td><code>01-01 01:01:01</code></td>
+</tr>
+<tr>
+<td><code>%H:%M:%S</code></td>
+<td><code>01:01:01</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>--hide-key KEY</code> removes a dotted key from the trailing data. Repeat it for several keys. Hiding a key that is not present does nothing.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>my-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--time-zone<span class="w"> </span><span class="nb">local</span><span class="w"> </span>--time-format<span class="w"> </span>clock
+<span class="linenos" data-linenos="2 "></span>my-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--time-zone<span class="w"> </span>Europe/Berlin
+<span class="linenos" data-linenos="3 "></span>my-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--hide-key<span class="w"> </span>pid<span class="w"> </span>--hide-key<span class="w"> </span>hostname<span class="w"> </span>--hide-key<span class="w"> </span>request.headers
+</code></pre></div>
+<h3 id="the-level-column">The level column<a class="headerlink" href="#the-level-column" title="Permanent link">⚓︎</a></h3>
+<p>The bracketed column shows the level name the emitter wrote, upper-cased, so <code>fatal</code> prints as <code>[FATAL]</code> and <code>warn</code> as <code>[WARN]</code>. A name over seven characters is shortened by dropping the middle and keeping the last letter, which is why <code>exception</code> prints as <code>[EXCEPTN]</code> and <code>critical</code> as <code>[CRITICL]</code>. A record with no level key at all prints as <code>[NOTSET]</code>.</p>
+<p>Color comes from the level&rsquo;s number rather than its name, so <code>fatal</code>, <code>critical</code>, and <code>exception</code> share the error color, and <code>trace</code> and <code>notice</code> borrow the debug and info colors. A name the table does not know gets the fallback color and still prints as written.</p>
+<p>A numeric level prints as the number and gets the fallback color, because a bare <code>30</code> means info to pino and warning to Python&rsquo;s <code>logging</code>. Map it upstream when you want severity, as <a href="https://tail-jsonl.kyleking.me/docs/RECIPES">RECIPES</a> shows for pino.</p>
+<h3 id="sharp-edges-in-rendering">Sharp edges in rendering<a class="headerlink" href="#sharp-edges-in-rendering" title="Permanent link">⚓︎</a></h3>
+<p>An epoch number in the timestamp slot is always converted to ISO-8601, with or without either flag, because the digits alone are unreadable. The unit is read from the magnitude, covering seconds through nanoseconds, and a value under nine digits is left alone so a bare year is not mistaken for a timestamp. This is what lets a pino stream render without configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>{&quot;time&quot;: 1767229261123}  (no flags)  --&gt;  2026-01-01T01:01:01.123000+00:00
+</code></pre></div>
+<p><code>--time-zone</code> does nothing to a timestamp that carries no UTC offset, because the zone it was written in is unknown and guessing would move the value by hours. On a stream of naive timestamps the flag looks broken when it is refusing to invent information:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>{&quot;timestamp&quot;: &quot;2026-01-01T01:01:01&quot;}   --time-zone local --&gt;  2026-01-01T01:01:01          (unchanged)
+<span class="linenos" data-linenos="2 "></span>{&quot;timestamp&quot;: &quot;2026-01-01T01:01:01Z&quot;}  --time-zone local --&gt;  2025-12-31T19:01:01-06:00
+</code></pre></div>
+<p><code>--time-format</code> fills in a time portion that the source never had. A date-only value parses to midnight, so <code>2026-01-01</code> under <code>%Y-%m-%d %H:%M:%S</code> renders as <code>2026-01-01 00:00:00</code>.</p>
+<p><code>--hide-key</code> on a nested leaf also removes the parent it empties, so hiding the only child of <code>server</code> takes <code>server</code> with it. A mapping the emitter logged as <code>{}</code> is untouched, because pruning only walks the ancestors of the key you named:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{&quot;message&quot;:&quot;m&quot;,&quot;server&quot;:{&quot;host&quot;:&quot;h&quot;}}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--hide-key<span class="w"> </span>server.host<span class="w">  </span><span class="c1"># m</span>
+<span class="linenos" data-linenos="2 "></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;{&quot;message&quot;:&quot;m&quot;,&quot;server&quot;:{&quot;host&quot;:&quot;h&quot;},&quot;meta&quot;:{}}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail-jsonl<span class="w"> </span>--hide-key<span class="w"> </span>server.host<span class="w">  </span><span class="c1"># m meta={}</span>
+</code></pre></div>
+<p><code>--hide-key</code> cannot hide the timestamp, level, or message. Those values are pulled out of the data during parsing and rendered in their own slots, so by the time hiding runs there is nothing left under those names to remove. <code>--hide-key timestamp</code> on a record whose timestamp key is <code>timestamp</code> is a no-op, and on a record that has a leftover <code>timestamp</code> string in the data it would remove that instead.</p>
+<h2 id="shell-completions">Shell completions<a class="headerlink" href="#shell-completions" title="Permanent link">⚓︎</a></h2>
+<p><code>--completions SHELL</code> writes a completion script to stdout and exits. Only <code>bash</code> and <code>zsh</code> are supported, and the script is generated from the parser itself, so it always matches the installed version.</p>
+<p>The quickest setup is an <code>eval</code> in your shell rc file:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># ~/.zshrc</span>
+<span class="linenos" data-linenos="2 "></span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>tail-jsonl<span class="w"> </span>--completions<span class="w"> </span>zsh<span class="k">)</span><span class="s2">&quot;</span>
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1"># ~/.bashrc</span>
+<span class="linenos" data-linenos="5 "></span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>tail-jsonl<span class="w"> </span>--completions<span class="w"> </span>bash<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>That costs one subprocess per shell startup. To avoid it, write the script into a directory your shell already loads:</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="c1"># zsh, into any directory on $fpath</span>
+<span class="linenos" data-linenos="2 "></span>tail-jsonl<span class="w"> </span>--completions<span class="w"> </span>zsh<span class="w"> </span>&gt;<span class="w"> </span>~/.zfunc/_tail-jsonl
+<span class="linenos" data-linenos="3 "></span>
+<span class="linenos" data-linenos="4 "></span><span class="c1"># bash</span>
+<span class="linenos" data-linenos="5 "></span>tail-jsonl<span class="w"> </span>--completions<span class="w"> </span>bash<span class="w"> </span>&gt;<span class="w"> </span>/usr/local/etc/bash_completion.d/tail-jsonl
+</code></pre></div>
+<p>Regenerate the file after upgrading <code>tail-jsonl</code>, because a cached script does not know about flags added since it was written.</p>
+<h2 id="configuration-file">Configuration file<a class="headerlink" href="#configuration-file" title="Permanent link">⚓︎</a></h2>
+<p>A config file collects the flags you always pass, plus the <code>[keys]</code> and <code>[styles]</code> tables that have no CLI equivalent. Load it with <code>--config-path</code>. Every table and every key is optional, and anything you leave out keeps its default.</p>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="n">debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos" data-linenos=" 2 "></span>
+<span class="linenos" data-linenos=" 3 "></span><span class="k">[keys]</span>
+<span class="linenos" data-linenos=" 4 "></span><span class="n">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;time&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;record.time.repr&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 5 "></span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;level&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;levelname&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;record.level.name&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;event&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;message&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;msg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;record.message&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 7 "></span><span class="n">on_own_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;exception&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;error.stack&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="k">[filters]</span>
+<span class="linenos" data-linenos="10 "></span><span class="n">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+<span class="linenos" data-linenos="11 "></span><span class="n">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;healthz&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/metrics&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="12 "></span><span class="n">field_selectors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;service=^(api|worker)$&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="13 "></span><span class="n">case_insensitive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos" data-linenos="14 "></span><span class="n">min_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;info&quot;</span>
+<span class="linenos" data-linenos="15 "></span>
+<span class="linenos" data-linenos="16 "></span><span class="k">[render]</span>
+<span class="linenos" data-linenos="17 "></span><span class="n">time_zone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;local&quot;</span>
+<span class="linenos" data-linenos="18 "></span><span class="n">time_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;clock&quot;</span>
+<span class="linenos" data-linenos="19 "></span><span class="n">hidden_keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;pid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hostname&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;request.headers&quot;</span><span class="p">]</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span><span class="k">[styles]</span>
+<span class="linenos" data-linenos="22 "></span><span class="n">timestamp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#8DAAA1&quot;</span>
+<span class="linenos" data-linenos="23 "></span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;bold&quot;</span>
+<span class="linenos" data-linenos="24 "></span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#8DAAA1&quot;</span>
+<span class="linenos" data-linenos="25 "></span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#A28EAB&quot;</span>
+<span class="linenos" data-linenos="26 "></span><span class="n">value_own_line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#AAA18D&quot;</span>
+<span class="linenos" data-linenos="27 "></span>
+<span class="linenos" data-linenos="28 "></span><span class="k">[styles.colors]</span>
+<span class="linenos" data-linenos="29 "></span><span class="n">level_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#e77d8f&quot;</span>
+<span class="linenos" data-linenos="30 "></span><span class="n">level_warn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#d8b172&quot;</span>
+<span class="linenos" data-linenos="31 "></span><span class="n">level_info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#a8cd76&quot;</span>
+<span class="linenos" data-linenos="32 "></span><span class="n">level_debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#82a1f1&quot;</span>
+<span class="linenos" data-linenos="33 "></span><span class="n">level_fallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;#b69bf1&quot;</span>
+</code></pre></div>
+<p>The values shown for <code>[keys]</code> and <code>[styles]</code> are the defaults. <code>[filters]</code> and <code>[render]</code> default to empty lists, <code>false</code>, and unset.</p>
+<h3 id="flags-and-their-toml-keys">Flags and their TOML keys<a class="headerlink" href="#flags-and-their-toml-keys" title="Permanent link">⚓︎</a></h3>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>TOML key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--debug</code></td>
+<td><code>debug</code></td>
+</tr>
+<tr>
+<td><code>-i/--include</code></td>
+<td><code>filters.include</code></td>
+</tr>
+<tr>
+<td><code>-e/--exclude</code></td>
+<td><code>filters.exclude</code></td>
+</tr>
+<tr>
+<td><code>--field-selector</code></td>
+<td><code>filters.field_selectors</code></td>
+</tr>
+<tr>
+<td><code>--case-insensitive</code></td>
+<td><code>filters.case_insensitive</code></td>
+</tr>
+<tr>
+<td><code>-l/--min-level</code></td>
+<td><code>filters.min_level</code></td>
+</tr>
+<tr>
+<td><code>--time-zone</code></td>
+<td><code>render.time_zone</code></td>
+</tr>
+<tr>
+<td><code>--time-format</code></td>
+<td><code>render.time_format</code></td>
+</tr>
+<tr>
+<td><code>--hide-key</code></td>
+<td><code>render.hidden_keys</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>--config-path</code> and <code>--completions</code> have no TOML equivalent, and <code>[keys]</code> and <code>[styles]</code> have no CLI equivalent. <a href="https://tail-jsonl.kyleking.me/docs/RECIPES">RECIPES</a> covers <code>[keys]</code> in depth, because that table is what most emitters need.</p>
+<h3 id="precedence">Precedence<a class="headerlink" href="#precedence" title="Permanent link">⚓︎</a></h3>
+<p>A CLI flag overrides the config file value for that key only. The other keys keep whatever the file set. For the list flags the CLI value replaces the file&rsquo;s list rather than appending to it, so <code>-e HEALTHZ</code> on a config that sets <code>exclude = ["healthz", "/metrics"]</code> leaves you excluding only <code>HEALTHZ</code>.</p>
+<p>A CLI flag can never clear a value the file set. Every option falls back to the file value when the flag is absent, and the boolean flags only turn things on, so <code>case_insensitive = true</code> in the file cannot be switched off from the command line. If you need a run without a setting, drop <code>--config-path</code> or point it at a second file.</p>
+<p>Bad input is rejected at startup rather than per line. An unparseable regex, a selector missing its <code>=</code>, an unknown level, an unknown time zone, or an unparseable dotted key exits with a usage error before the first line is read.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.6.0/tablesort.min.js"></script>
+      
+        <script src="../../_javascript/tables.js"></script>
+      
+    
+  </body>
+</html>
