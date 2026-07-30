@@ -38,7 +38,7 @@ def _hidden(data: dict, keys: list[str]) -> dict:  # type: ignore[type-arg]
     [
         ([], {'host': 'prod-1', 'server': {'hostname': 'prod-1'}, 'empty': None}),
         (['host'], {'server': {'hostname': 'prod-1'}, 'empty': None}),
-        (['server.hostname'], {'host': 'prod-1', 'server': {}, 'empty': None}),
+        (['server.hostname'], {'host': 'prod-1', 'empty': None}),
         (['server'], {'host': 'prod-1', 'empty': None}),
         (['missing'], {'host': 'prod-1', 'server': {'hostname': 'prod-1'}, 'empty': None}),
         (['server.missing'], {'host': 'prod-1', 'server': {'hostname': 'prod-1'}, 'empty': None}),
@@ -51,6 +51,24 @@ def test_hide_keys(keys: list[str], expected: dict) -> None:  # type: ignore[typ
     data = {'host': 'prod-1', 'server': {'hostname': 'prod-1'}, 'empty': None}
 
     assert _hidden(data, keys) == expected
+
+
+def test_hide_keys_prunes_the_whole_emptied_chain() -> None:
+    data = {'request': {'server': {'host': 'prod-1'}}, 'id': 7}
+
+    assert _hidden(data, ['request.server.host']) == {'id': 7}
+
+
+def test_hide_keys_keeps_an_unrelated_empty_mapping() -> None:
+    data = {'server': {'host': 'prod-1'}, 'meta': {}}
+
+    assert _hidden(data, ['server.host']) == {'meta': {}}
+
+
+def test_hide_keys_keeps_a_parent_that_still_has_siblings() -> None:
+    data = {'server': {'host': 'prod-1', 'region': 'us-east'}}
+
+    assert _hidden(data, ['server.host']) == {'server': {'region': 'us-east'}}
 
 
 def test_hides_keys_flag() -> None:
