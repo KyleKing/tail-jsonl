@@ -8,7 +8,7 @@ import pytest
 from rich.console import Console
 
 from tail_jsonl._private.core import print_record
-from tail_jsonl._private.timestamps import format_timestamp
+from tail_jsonl._private.timestamps import format_timestamp, resolve_zone
 from tail_jsonl.config import Config, Render
 
 
@@ -46,17 +46,84 @@ def _mountain_time(monkeypatch: pytest.MonkeyPatch):
         '  2024-03-01T12:30:45Z  ',
     ],
 )
-def test_local_time_with_format(timestamp: str) -> None:
-    result = format_timestamp(timestamp, local_time=True, timestamp_format='%Y-%m-%d %H:%M:%S')
+def test_local_zone_with_format(timestamp: str) -> None:
+    result = format_timestamp(timestamp, time_zone='local', time_format='%Y-%m-%d %H:%M:%S')
 
     assert result == '2024-03-01 05:30:45'
 
 
 @pytest.mark.usefixtures('_mountain_time')
-def test_local_time_without_format() -> None:
-    result = format_timestamp('2024-03-01T12:30:45Z', local_time=True, timestamp_format=None)
+def test_local_zone_without_format() -> None:
+    result = format_timestamp('2024-03-01T12:30:45Z', time_zone='local', time_format=None)
 
     assert result == '2024-03-01T05:30:45-07:00'
+
+
+def test_utc_zone() -> None:
+    result = format_timestamp('2024-03-01T14:30:45+02:00', time_zone='utc', time_format=None)
+
+    assert result == '2024-03-01T12:30:45+00:00'
+
+
+def test_named_zone() -> None:
+    try:
+        resolve_zone('Europe/Berlin')
+    except ValueError:
+        pytest.skip('The IANA timezone database is unavailable')
+
+    result = format_timestamp('2024-03-01T12:30:45Z', time_zone='Europe/Berlin', time_format=None)
+
+    assert result == '2024-03-01T13:30:45+01:00'
+
+
+def test_unrecognized_zone() -> None:
+    with pytest.raises(ValueError, match='Unrecognized time zone'):
+        resolve_zone('Mars/Olympus_Mons')
+
+
+@pytest.mark.parametrize(
+    ('time_format', 'expected'),
+    [
+        ('iso', '2024-03-01T12:30:45.123000+00:00'),
+        ('clock', '12:30:45.123'),
+        ('short', '03-01 12:30:45'),
+        ('%H:%M', '12:30'),
+    ],
+)
+def test_time_formats(time_format: str, expected: str) -> None:
+    result = format_timestamp('2024-03-01T12:30:45.123Z', time_zone=None, time_format=time_format)
+
+    assert result == expected
+
+
+@pytest.mark.parametrize(
+    ('timestamp', 'expected'),
+    [
+        ('1709296245', '2024-03-01T12:30:45+00:00'),
+        ('1709296245123', '2024-03-01T12:30:45.123000+00:00'),
+        ('1709296245123456', '2024-03-01T12:30:45.123456+00:00'),
+        ('1709296245.123', '2024-03-01T12:30:45.123000+00:00'),
+    ],
+)
+def test_epoch_is_always_rendered_as_iso(timestamp: str, expected: str) -> None:
+    assert format_timestamp(timestamp, time_zone=None, time_format=None) == expected
+
+
+def test_epoch_nanoseconds() -> None:
+    result = format_timestamp('1709296245123456789', time_zone=None, time_format=None)
+
+    assert result.startswith('2024-03-01T12:30:45')
+
+
+def test_epoch_respects_the_zone_and_format() -> None:
+    result = format_timestamp('1709296245123', time_zone='utc', time_format='clock')
+
+    assert result == '12:30:45.123'
+
+
+@pytest.mark.parametrize('timestamp', ['12345678', '1', '0'])
+def test_short_numbers_are_not_treated_as_epochs(timestamp: str) -> None:
+    assert format_timestamp(timestamp, time_zone=None, time_format=None) == timestamp
 
 
 @pytest.mark.parametrize(
@@ -68,11 +135,11 @@ def test_local_time_without_format() -> None:
     ],
 )
 def test_naive_timestamps_are_never_converted(timestamp: str) -> None:
-    assert format_timestamp(timestamp, local_time=True, timestamp_format=None) == timestamp
+    assert format_timestamp(timestamp, time_zone='local', time_format=None) == timestamp
 
 
 def test_naive_timestamp_is_still_formatted() -> None:
-    result = format_timestamp('2024-03-01T12:30:45', local_time=True, timestamp_format='%H:%M')
+    result = format_timestamp('2024-03-01T12:30:45', time_zone='local', time_format='%H:%M')
 
     assert result == '12:30'
 
@@ -85,20 +152,19 @@ def test_naive_timestamp_is_still_formatted() -> None:
         'not a timestamp',
         '2024-13-45T99:99:99',
         'Mar 01 2024 12:30:45',
-        '1709296245',
         '2024-03-01T12:30:45+99:99',
         '[2024-03-01]',
     ],
 )
-@pytest.mark.parametrize('timestamp_format', [None, '%H:%M:%S'])
-def test_unparseable_timestamps_pass_through(timestamp: str, timestamp_format: str | None) -> None:
-    result = format_timestamp(timestamp, local_time=True, timestamp_format=timestamp_format)
+@pytest.mark.parametrize('time_format', [None, '%H:%M:%S'])
+def test_unparseable_timestamps_pass_through(timestamp: str, time_format: str | None) -> None:
+    result = format_timestamp(timestamp, time_zone='local', time_format=time_format)
 
     assert result == timestamp
 
 
-def test_format_without_local_time() -> None:
-    result = format_timestamp('2024-03-01T12:30:45Z', local_time=False, timestamp_format='%H:%M:%S')
+def test_format_without_a_zone() -> None:
+    result = format_timestamp('2024-03-01T12:30:45Z', time_zone=None, time_format='%H:%M:%S')
 
     assert result == '12:30:45'
 
@@ -106,46 +172,42 @@ def test_format_without_local_time() -> None:
 def test_no_options_leaves_the_timestamp_untouched() -> None:
     timestamp = '  2024-03-01T12:30:45Z '
 
-    assert format_timestamp(timestamp, local_time=False, timestamp_format=None) == timestamp
+    assert format_timestamp(timestamp, time_zone=None, time_format=None) == timestamp
 
 
 def test_render_flags_default_to_disabled() -> None:
     render_config = Render()
 
-    assert render_config.formats_timestamp is False
     assert render_config.hides_keys is False
 
 
-@pytest.mark.parametrize(
-    ('render_config', 'expected'),
-    [
-        (Render(local_time=True), True),
-        (Render(timestamp_format='%H:%M'), True),
-        (Render(hidden_keys=['host']), False),
-    ],
-)
-def test_formats_timestamp_flag(render_config: Render, *, expected: bool) -> None:
-    assert render_config.formats_timestamp is expected
+def test_render_rejects_an_unknown_zone() -> None:
+    with pytest.raises(ValueError, match='Unrecognized time zone'):
+        Render(time_zone='Mars/Olympus_Mons')
 
 
 @pytest.mark.usefixtures('_mountain_time')
-def test_print_record_local_time() -> None:
+def test_print_record_local_zone() -> None:
     line = json.dumps({'timestamp': '2024-03-01T12:30:45Z', 'level': 'info', 'message': 'hi'})
 
-    assert render(line, local_time=True, timestamp_format='%H:%M:%S').startswith('05:30:45')
+    assert render(line, time_zone='local', time_format='%H:%M:%S').startswith('05:30:45')
 
 
 def test_print_record_keeps_unparseable_timestamp() -> None:
     line = json.dumps({'timestamp': 'yesterday', 'level': 'info', 'message': 'hi'})
 
-    assert render(line, local_time=True, timestamp_format='%H:%M:%S').startswith('yesterday')
+    assert render(line, time_zone='local', time_format='%H:%M:%S').startswith('yesterday')
 
 
 def test_print_record_missing_timestamp_is_not_formatted() -> None:
-    assert render('{"message": "hi"}', local_time=True, timestamp_format='%H:%M:%S').startswith('<no timestamp>')
+    assert render('{"message": "hi"}', time_zone='local', time_format='%H:%M:%S').startswith('<no timestamp>')
 
 
 def test_print_record_default_matches_the_raw_timestamp() -> None:
     line = json.dumps({'timestamp': '2024-03-01T12:30:45Z', 'level': 'info', 'message': 'hi'})
 
     assert render(line).startswith('2024-03-01T12:30:45Z')
+
+
+def test_print_record_converts_a_pino_epoch_without_configuration() -> None:
+    assert render('{"time":1709296245123,"level":"info","msg":"hi"}').startswith('2024-03-01T12:30:45.123')

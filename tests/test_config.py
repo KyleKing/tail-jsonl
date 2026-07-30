@@ -82,7 +82,8 @@ def test_cli_filters_without_config_file():
 def test_default_config_has_no_render_options():
     config = _load_config(config_path=None)
 
-    assert config.render.formats_timestamp is False
+    assert config.render.time_zone is None
+    assert config.render.time_format is None
     assert config.render.hides_keys is False
 
 
@@ -92,8 +93,8 @@ def render_config(tmp_path: Path) -> str:
     pth.write_text(
         dedent("""
             [render]
-            local_time = true
-            timestamp_format = "%H:%M:%S"
+            time_zone = "local"
+            time_format = "%H:%M:%S"
             hidden_keys = ["host", "server.region"]
         """),
         encoding='utf-8',
@@ -104,23 +105,22 @@ def render_config(tmp_path: Path) -> str:
 def test_render_from_config_file(render_config: str):
     config = _load_config(render_config)
 
-    assert config.render.local_time is True
-    assert config.render.timestamp_format == '%H:%M:%S'
+    assert config.render.time_zone == 'local'
+    assert config.render.time_format == '%H:%M:%S'
     assert config.render.hidden_keys == ['host', 'server.region']
-    assert config.render.formats_timestamp is True
     assert config.render.hides_keys is True
 
 
 def test_cli_overrides_render_config_file(render_config: str):
-    config = _load_config(render_config, timestamp_format='%H:%M', hidden_keys=['request_id'])
+    config = _load_config(render_config, time_format='%H:%M', hidden_keys=['request_id'])
 
-    assert config.render.timestamp_format == '%H:%M'
+    assert config.render.time_format == '%H:%M'
     assert config.render.hidden_keys == ['request_id']
-    assert config.render.local_time is True
+    assert config.render.time_zone == 'local'
 
 
 def test_cli_render_without_config_file():
-    config = _load_config(None, local_time=True, hidden_keys=['host'])
+    config = _load_config(None, time_zone='utc', hidden_keys=['host'])
 
-    assert config.render.local_time is True
+    assert config.render.time_zone == 'utc'
     assert config.render.hides_keys is True

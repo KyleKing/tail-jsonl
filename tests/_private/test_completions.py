@@ -78,7 +78,9 @@ def test_completions_exit_without_reading_stdin(shell):
     try:
         proc = subprocess.Popen(  # noqa: S603
             [sys.executable, '-c', 'from tail_jsonl.scripts import start; start()', '--completions', shell],
-            stdin=read_fd, stdout=subprocess.PIPE, text=True,
+            stdin=read_fd,
+            stdout=subprocess.PIPE,
+            text=True,
         )
         os.close(read_fd)
         try:

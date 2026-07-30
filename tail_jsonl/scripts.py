@@ -14,6 +14,7 @@ from rich.console import Console
 from . import __version__
 from ._private.completions import SHELLS, generate
 from ._private.core import print_record
+from ._private.timestamps import LOCAL_ZONE, TIME_FORMATS, UTC_ZONE
 from .config import LEVEL_NAMES, Config, Filters, Render
 
 
@@ -26,8 +27,8 @@ def _load_config(
     field_selectors: list[str] | None = None,
     case_insensitive: bool = False,
     min_level: str | None = None,
-    local_time: bool = False,
-    timestamp_format: str | None = None,
+    time_zone: str | None = None,
+    time_format: str | None = None,
     hidden_keys: list[str] | None = None,
 ) -> Config:
     """Return loaded specified configuration file, where CLI arguments win over file values."""
@@ -47,8 +48,8 @@ def _load_config(
         min_level=min_level or config.filters.min_level,
     )
     config.render = Render(
-        local_time=local_time or config.render.local_time,
-        timestamp_format=timestamp_format or config.render.timestamp_format,
+        time_zone=time_zone or config.render.time_zone,
+        time_format=time_format or config.render.time_format,
         hidden_keys=hidden_keys or config.render.hidden_keys,
     )
     return config
@@ -57,57 +58,82 @@ def _load_config(
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog='tail-jsonl', description='Pipe JSONL Logs for pretty printing')
     parser.add_argument(
-        '-v', '--version', action='version',
-        version=f'%(prog)s {__version__}', help="Show program's version number and exit.",
+        '-v',
+        '--version',
+        action='version',
+        version=f'%(prog)s {__version__}',
+        help="Show program's version number and exit.",
     )
     parser.add_argument('--config-path', help='Path to a configuration file')
     parser.add_argument(
-        '--debug', action='store_true',
+        '--debug',
+        action='store_true',
         help='Enable debug mode to show parsing details and error information',
     )
     parser.add_argument(
-        '-i', '--include', action='append', metavar='PATTERN',
+        '-i',
+        '--include',
+        action='append',
+        metavar='PATTERN',
         help='Only show raw lines matching this regex. Repeat to match any of several patterns',
     )
     parser.add_argument(
-        '-e', '--exclude', action='append', metavar='PATTERN',
+        '-e',
+        '--exclude',
+        action='append',
+        metavar='PATTERN',
         help='Drop raw lines matching this regex. Repeat to drop any of several patterns.'
-             ' Takes precedence over --include',
+        ' Takes precedence over --include',
     )
     parser.add_argument(
-        '--field-selector', action='append', dest='field_selectors', metavar='KEY=PATTERN',
+        '--field-selector',
+        action='append',
+        dest='field_selectors',
+        metavar='KEY=PATTERN',
         help='Only show records whose dotted KEY matches this regex. Repeat to require every selector.'
-             ' Records missing KEY are dropped, but lines that are not valid JSON are always printed',
+        ' Records missing KEY are dropped, but lines that are not valid JSON are always printed',
     )
     parser.add_argument(
-        '--case-insensitive', action='store_true',
+        '--case-insensitive',
+        action='store_true',
         help='Match every pattern without regard to case',
     )
     parser.add_argument(
-        '-l', '--min-level', choices=LEVEL_NAMES, type=str.lower,
+        '-l',
+        '--min-level',
+        choices=LEVEL_NAMES,
+        type=str.lower,
         help='Drop records below this level. Records with an unrecognized or missing level are kept,'
-             ' as are lines that are not valid JSON',
+        ' as are lines that are not valid JSON',
     )
     parser.add_argument(
-        '--local-time', action='store_true',
-        help='Convert timestamps to the local timezone. Timestamps without a UTC offset are shown'
-             ' unchanged, because the timezone they were written in is unknown',
+        '--time-zone',
+        metavar='ZONE',
+        help=f'Convert timestamps to {LOCAL_ZONE}, {UTC_ZONE}, or an IANA zone such as'
+        ' Europe/Berlin. Timestamps without a UTC offset are shown unchanged, because the'
+        ' zone they were written in is unknown',
     )
     parser.add_argument(
-        '--timestamp-format', metavar='FORMAT',
-        help='Render parsed timestamps with this strftime pattern, such as %%H:%%M:%%S.'
-             ' Timestamps that cannot be parsed are always shown verbatim',
+        '--time-format',
+        metavar='FORMAT',
+        help=f'Render parsed timestamps as one of ({", ".join(TIME_FORMATS)}) or with any strftime'
+        ' pattern, such as %%H:%%M:%%S. Timestamps that cannot be parsed are shown verbatim',
     )
     parser.add_argument(
-        '--hide-key', action='append', dest='hidden_keys', metavar='KEY',
+        '--hide-key',
+        action='append',
+        dest='hidden_keys',
+        metavar='KEY',
         help='Remove this dotted key from the rendered data. Repeat to hide several keys. Hiding a'
-             ' key that is absent does nothing, and the timestamp, level, and message keys cannot'
-             ' be hidden because they are rendered as their own fields',
+        ' key that is absent does nothing, and the timestamp, level, and message keys cannot'
+        ' be hidden because they are rendered as their own fields',
     )
     parser.add_argument(
-        '--completions', choices=SHELLS, metavar='SHELL',
+        '--completions',
+        choices=SHELLS,
+        metavar='SHELL',
         help=f'Print a completion script for one of ({", ".join(SHELLS)}) to stdout and exit,'
-             ' such as eval "$(tail-jsonl --completions zsh)"',
+        ' such as eval "$(tail-jsonl --completions zsh)"',
     )
     return parser
 
@@ -130,8 +156,8 @@ def start() -> None:  # pragma: no cover
             field_selectors=options.field_selectors,
             case_insensitive=options.case_insensitive,
             min_level=options.min_level,
-            local_time=options.local_time,
-            timestamp_format=options.timestamp_format,
+            time_zone=options.time_zone,
+            time_format=options.time_format,
             hidden_keys=options.hidden_keys,
         )
     except (ValueError, re.error) as err:
