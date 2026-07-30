@@ -15,7 +15,7 @@ Working invocations for the pipelines `tail-jsonl` is most often dropped into, p
 
 Keys are parsed with dot notation, so `record.time.repr` reaches into a nested object. Override any of these lists in a TOML file and pass it with `--config-path`. A list you do not set keeps its default. The rest of the config file, and every CLI flag, is documented in [CLI].
 
-Two constraints are worth knowing before you write a config. Only string values are picked up for the timestamp, level, and message, so a numeric epoch timestamp or a numeric level is left in the trailing data instead. And the level styling recognizes `debug`, `info`, `warn`/`warning`, and `error` (case-insensitive), so other names render as `NOTSET` with the original name preserved in a `_level_name` field.
+One constraint is worth knowing before you write a config. Strings, numbers, booleans, and lists are all picked up for the timestamp, level, and message, but a nested object is not, because an object is not a value. An epoch number in the timestamp slot is converted to ISO-8601 automatically. A numeric level is shown as the number with no color, since 30 means info to pino and warning to Python's `logging`, and only you can say which.
 
 ## Kubernetes
 
@@ -89,7 +89,7 @@ structlog.configure(
 
 That emits `{"event": ..., "level": "warning", "timestamp": "2026-07-29T12:49:37.903273Z"}`, and `event`, `level`, and `timestamp` are all defaults. `format_exc_info` writes the traceback into `exception` as a string, which is a default `on_own_line` key, so exceptions print unwrapped below the message.
 
-Two things to watch. A bare `TimeStamper()` with no `fmt` emits a float UNIX timestamp, which is not a string and so is not treated as the timestamp. And structlog's out-of-the-box configuration uses `ConsoleRenderer`, not `JSONRenderer`, so a project that never calls `structlog.configure()` is emitting human-formatted text that `tail-jsonl` will pass through untouched.
+One thing to watch. structlog's out-of-the-box configuration uses `ConsoleRenderer`, not `JSONRenderer`, so a project that never calls `structlog.configure()` is emitting human-formatted text that `tail-jsonl` will pass through untouched. A bare `TimeStamper()` with no `fmt` emits a float UNIX timestamp, which needs no special handling because epoch values are converted for you.
 
 Run the app unbuffered so lines arrive as they are written:
 
@@ -105,9 +105,9 @@ pino is the one common emitter whose defaults do not map cleanly. A default line
 {"level":30,"time":1785329450889,"pid":24429,"hostname":"host","msg":"hello"}
 ```
 
-`msg` and `time` are already in the default key lists, but the values are wrong types for rendering: `level` is a number (10 trace, 20 debug, 30 info, 40 warn, 50 error, 60 fatal) and `time` is epoch milliseconds. Numbers are not picked up, so both land in the trailing data and the line renders with `<no timestamp>` and `[NOTSET ]`.
+`msg` and `time` are already in the default key lists, so this renders without any config: `time` is epoch milliseconds and becomes an ISO-8601 timestamp, and `level` shows as `30`. What you lose is severity. pino numbers its levels 10 trace, 20 debug, 30 info, 40 warn, 50 error, 60 fatal, and `tail-jsonl` will not assume that scale, so a numeric level gets no color and `-l/--min-level` cannot compare it.
 
-The clean fix is on the pino side (v9 and v10 syntax, `useLevelLabels` was removed):
+To get color and filtering back, emit level names on the pino side (v9 and v10 syntax, `useLevelLabels` was removed):
 
 ```js
 const logger = pino({
@@ -124,16 +124,15 @@ const logger = pino({
 
 That gives `{"level":"warn","time":"2026-07-29T12:50:50.890Z",...}`, which needs no `[keys]` config. Note that `formatters` are not applied when pino writes through a transport running in a worker thread, so levels can still arrive as numbers in that setup.
 
-When you cannot change the application, normalize in the pipe:
+When you cannot change the application, map the level in the pipe:
 
 ```sh
 node server.js | jq -c --unbuffered '
-  .time |= (if type == "number" then (. / 1000 | todateiso8601) else . end)
-  | .level |= ({"10":"debug","20":"debug","30":"info","40":"warn","50":"error","60":"error"}[tostring] // .)
+  .level |= ({"10":"trace","20":"debug","30":"info","40":"warn","50":"error","60":"fatal"}[tostring] // .)
 ' |& tail-jsonl
 ```
 
-`--unbuffered` keeps `jq` flushing per line. The level map collapses pino's `trace` into `debug` and `fatal` into `error` on purpose, because those two names render as `NOTSET`.
+`--unbuffered` keeps `jq` flushing per line. Every pino level name maps straight across, `trace` and `fatal` included, so nothing needs collapsing. There is no `.time` clause because epoch values are already handled.
 
 ## Nested payloads
 
@@ -146,7 +145,7 @@ level = ["log.level"]
 message = ["log.msg"]
 ```
 
-The extracted values are removed from the nested object, which is then rendered as whatever is left (an emptied wrapper shows up as `log={}`). Flatten upstream with `jq` if that bothers you.
+The extracted values are removed from the nested object, which is then rendered as whatever is left. A wrapper the extraction empties is dropped along with the keys, so `log={}` never appears.
 
 [cli]: https://tail-jsonl.kyleking.me/docs/CLI
 [troubleshooting]: https://tail-jsonl.kyleking.me/docs/TROUBLESHOOTING

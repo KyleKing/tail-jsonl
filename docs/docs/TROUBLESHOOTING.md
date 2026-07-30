@@ -39,7 +39,7 @@ The usual causes:
 
 A record that renders with `<no timestamp>` or `[NOTSET ]` parsed fine, but the key lookup missed. `--debug` shows what was found.
 
-Two distinct causes. The first is a name mismatch: the emitter uses a key that is not in the default lists (`timestamp`, `time`, `record.time.repr` for timestamps, `level`, `levelname`, `record.level.name` for levels). Point the `[keys]` config at the real names:
+The usual cause is a name mismatch: the emitter uses a key that is not in the default lists (`timestamp`, `time`, `record.time.repr` for timestamps, `level`, `levelname`, `record.level.name` for levels). Point the `[keys]` config at the real names:
 
 ```toml
 [keys]
@@ -48,9 +48,15 @@ level = ["severity", "level"]
 message = ["msg", "message", "event"]
 ```
 
-The second is a type mismatch, and no config can fix it. Only string values are used for the timestamp, level, and message, so pino's numeric `level` and epoch-millisecond `time`, or structlog's bare `TimeStamper()` float, are skipped and shown as ordinary data. Convert them upstream or with `jq` (see the pino recipe).
+The value's type is not a cause. Strings, numbers, booleans, and lists are all accepted, so pino's numeric `level` and epoch-millisecond `time`, and structlog's bare `TimeStamper()` float, are all detected. Only a nested object is skipped, because an object is not a value. Reach into one with a dotted key such as `log.level` instead.
 
-A level name that is not `debug`, `info`, `warn`/`warning`, or `error` renders as `[NOTSET ]` with the original value kept in a `_level_name` field. That includes `critical`, `fatal`, `trace`, and `notice`. Note that `-l/--min-level` uses a wider table than the renderer does, so `-l critical` filters correctly even though a `critical` record still renders as `NOTSET`. [CLI] explains why, and why `-l critical` keeps `trace` and `notice` records too.
+`[NOTSET ]` now means one thing: no level key was found. Any level name that was found prints as written, `critical`, `fatal`, `trace`, and `notice` included.
+
+## My level has no color
+
+Two cases. A numeric level (pino's `30`) is printed as the number and left uncolored on purpose, because 30 means info to pino and warning to Python's `logging`, so coloring it would be a guess. The pino recipe in [RECIPES] shows how to emit names instead.
+
+The other case is a name outside the table `tail-jsonl` knows: `critical`, `debug`, `error`, `exception`, `fatal`, `info`, `notice`, `trace`, `warn`, and `warning`. Anything else (`verbose`, `emerg`) prints as written in the fallback color. Both cases are also invisible to `-l/--min-level`, which keeps records whose level it cannot compare. [CLI] covers the level column in detail.
 
 ## Colors are missing or mangled
 

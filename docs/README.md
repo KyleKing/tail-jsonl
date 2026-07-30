@@ -68,7 +68,8 @@ my-app | tail-jsonl -e healthz -e '/metrics'          # drop lines matching a re
 my-app | tail-jsonl -i 'timeout|refused'              # keep only lines matching a regex
 my-app | tail-jsonl -l warning                        # drop records below a level
 my-app | tail-jsonl --field-selector 'service=^api$'  # keep records whose field matches
-my-app | tail-jsonl --timestamp-format '%H:%M:%S'     # shorten the timestamp
+my-app | tail-jsonl --time-format clock               # shorten the timestamp
+my-app | tail-jsonl --time-zone local                 # show times in your own zone
 my-app | tail-jsonl --hide-key pid --hide-key hostname
 my-app | tail-jsonl --debug                           # show what the parser found
 ```
