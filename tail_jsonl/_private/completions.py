@@ -101,18 +101,19 @@ def _zsh_value(option: _Option) -> str:
 
 
 def _zsh_spec(option: _Option) -> str:
+    first, *rest = option.flags
     if option.exclusive:
         prefix = "'(- *)'"
     elif option.repeatable:
         prefix = "'*'"
-    elif len(option.flags) > 1:
+    elif rest:
         prefix = f"'({' '.join(option.flags)})'"
     else:
         prefix = ''
     body = f'[{_zsh_escape(option.description)}]{_zsh_value(option)}'
-    if len(option.flags) > 1:
+    if rest:
         return f"{prefix}{{{','.join(option.flags)}}}'{body}'"
-    return f"{prefix}'{option.flags[0]}{body}'"
+    return f"{prefix}'{first}{body}'"
 
 
 def _zsh(parser: argparse.ArgumentParser) -> str:
