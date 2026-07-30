@@ -97,11 +97,16 @@ uv publish
 |-------------------------------------------|-----------:|--------:|---------:|---------:|
 | `tail_jsonl/__init__.py`                  | 4          | 0       | 0        | 100.0%   |
 | `tail_jsonl/_private/__init__.py`         | 0          | 0       | 0        | 100.0%   |
-| `tail_jsonl/_private/core.py`             | 59         | 4       | 0        | 89.9%    |
+| `tail_jsonl/_private/completions.py`      | 75         | 0       | 0        | 100.0%   |
+| `tail_jsonl/_private/core.py`             | 67         | 3       | 0        | 93.4%    |
+| `tail_jsonl/_private/filters.py`          | 27         | 0       | 0        | 100.0%   |
+| `tail_jsonl/_private/keys.py`             | 17         | 0       | 0        | 100.0%   |
+| `tail_jsonl/_private/timestamps.py`       | 77         | 0       | 0        | 100.0%   |
+| `tail_jsonl/_private/types.py`            | 8          | 0       | 0        | 100.0%   |
 | `tail_jsonl/_runtime_type_check_setup.py` | 13         | 0       | 37       | 100.0%   |
-| `tail_jsonl/config.py`                    | 24         | 0       | 0        | 100.0%   |
-| `tail_jsonl/scripts.py`                   | 19         | 1       | 20       | 87.0%    |
-| **Totals**                                | 119        | 5       | 57       | 92.4%    |
+| `tail_jsonl/config.py`                    | 87         | 0       | 0        | 100.0%   |
+| `tail_jsonl/scripts.py`                   | 39         | 1       | 28       | 95.3%    |
+| **Totals**                                | 414        | 4       | 65       | 98.4%    |
 
-Generated on: 2025-11-21
+Generated on: 2026-07-29
 <!-- {cte} -->

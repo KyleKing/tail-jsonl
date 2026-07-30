@@ -2,7 +2,32 @@
 
 ### Feat
 
+- share one level table and accept numeric field values
+- replace the timestamp flags with --time-zone and --time-format
+- generate bash and zsh completions from the argparse parser
+- add --local-time, --timestamp-format, and --hide-key
+- add include, exclude, field-selector, and min-level filters
 - implement --debug flag for troubleshooting
+
+### Fix
+
+- satisfy pyright when a zsh option has a single flag
+- remove containers left empty by key removal
+- print non-object JSON verbatim instead of crashing
+- **lint**: rename the fileinput handle to satisfy RUF052
+- **deps**: bump virtualenv to 21.7.0
+- **deps**: bump requests to 2.34.2
+- **deps**: bump pytest to 9.1.1
+- **deps**: bump pymdown-extensions to 11.0.1
+- **deps**: bump pygments to 2.20.0
+- **deps**: bump idna to 3.18
+- **deps**: bump filelock to 3.32.0
+- **deps**: bump urllib3 to 2.7.0
+
+### Refactor
+
+- move Record into types.py
+- Implement minor cleanup
 
 ## 1.4.2 (2025-09-10)
 
