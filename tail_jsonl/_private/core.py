@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import logging
 from typing import Any
 
 import dotted  # type: ignore[import-untyped]
@@ -12,21 +11,25 @@ from corallium.loggers.styles import get_level
 from rich.console import Console
 
 from tail_jsonl._private.filters import line_passes, record_passes
-from tail_jsonl._private.keys import hide_keys
+from tail_jsonl._private.keys import hide_keys, remove_key
 from tail_jsonl._private.timestamps import format_timestamp
 from tail_jsonl._private.types import Record
 from tail_jsonl.config import Config
 
+_POPPABLE = (bool, float, int, list, str)
+"""Types recognized in the timestamp, level, and message slots.
+
+Numbers are included so that emitters writing a numeric level or an epoch timestamp (pino, bunyan)
+render without configuration. A mapping is never poppable, because a nested object is not a value.
+"""
+
 
 def _dot_pop(data: dict, key: str) -> str | None:  # type: ignore[type-arg]
     value = dotted.get(data, key)
-    if isinstance(value, str):
-        dotted.remove(data, key)
-        return value or None
-    if isinstance(value, list):
-        dotted.remove(data, key)
-        return str(value)
-    return None
+    if not isinstance(value, _POPPABLE):
+        return None
+    remove_key(data, key, key)
+    return (value if isinstance(value, str) else str(value)) or None
 
 
 def _pop_key(data: dict, keys: list[str], index: int, fallback: str) -> Any:  # type: ignore[type-arg]
@@ -66,7 +69,7 @@ def _promote_dotted_keys(
                     highlight=False,
                 )
             data[dotted_key] = value if isinstance(value, str) else str(value)
-            dotted.remove(data, dotted_key)
+            remove_key(data, dotted_key, dotted_key)
 
 
 def record_from_line(data: dict, config: Config) -> Record:  # type: ignore[type-arg]
@@ -122,17 +125,13 @@ def print_record(line: str, console: Console, config: Config) -> None:
         return
 
     render = config.render
-    if render.formats_timestamp:
-        record.timestamp = format_timestamp(
-            record.timestamp,
-            local_time=render.local_time,
-            timestamp_format=render.timestamp_format,
-        )
+    record.timestamp = format_timestamp(
+        record.timestamp,
+        time_zone=render.time_zone,
+        time_format=render.time_format,
+    )
     if render.hides_keys:
         hide_keys(record.data, render.hidden_patterns)
-
-    if (this_level := get_level(name=record.level)) == logging.NOTSET and record.level:
-        record.data['_level_name'] = record.level
 
     _promote_dotted_keys(
         data=record.data,
@@ -144,11 +143,12 @@ def print_record(line: str, console: Console, config: Config) -> None:
     printer_kwargs = {
         'message': record.message,
         'is_header': False,
-        '_this_level': this_level,
+        '_this_level': get_level(name=record.level),
         '_is_text': False,
         '_console': console,
         '_styles': config.styles,
         '_keys_on_own_line': config.keys.on_own_line,
+        '_level_name': record.level or None,
         'timestamp': record.timestamp,
     }
     keys = set(printer_kwargs)

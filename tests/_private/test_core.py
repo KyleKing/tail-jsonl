@@ -61,6 +61,92 @@ def test_core_no_key_matches(console: Console):
     assert result.strip() == '<no timestamp>               [NOTSET ] <no message> key=None'
 
 
+@pytest.mark.parametrize(
+    ('level', 'expected'),
+    [
+        ('critical', '[CRITICL]'),
+        ('fatal', '[FATAL  ]'),
+        ('trace', '[TRACE  ]'),
+        ('notice', '[NOTICE ]'),
+        ('warn', '[WARN   ]'),
+        ('Error', '[ERROR  ]'),
+        ('emergency', '[EMERGEY]'),
+    ],
+)
+def test_core_renders_the_emitted_level_name(level, expected, console: Console):
+    print_record(json.dumps({'level': level, 'message': 'hi'}), console, Config())
+
+    result = console.end_capture()
+
+    assert expected in result
+    assert '_level_name' not in result
+
+
+def test_core_critical_does_not_raise(console: Console):
+    """Rich only builds a traceback inside an `except:` block."""
+    print_record('{"level":"critical","message":"boom"}', console, Config())
+
+    assert 'boom' in console.end_capture()
+
+
+def test_core_renders_a_numeric_level(console: Console):
+    """A bare number carries no severity, because pino and `logging` disagree on the scale."""
+    print_record('{"level":30,"msg":"served"}', console, Config())
+
+    result = console.end_capture()
+
+    assert '[30     ] served' in result
+    assert 'level=' not in result
+
+
+@pytest.mark.parametrize(
+    ('line', 'expected'),
+    [
+        ('{"message":42}', '42'),
+        ('{"message":1.5}', '1.5'),
+        ('{"message":true}', 'True'),
+        ('{"message":0}', '0'),
+    ],
+)
+def test_core_renders_numeric_slot_values(line, expected, console: Console):
+    print_record(line, console, Config())
+
+    result = console.end_capture()
+
+    assert expected in result
+    assert 'no message' not in result
+
+
+def test_core_pino_renders_without_configuration(console: Console):
+    print_record('{"level":30,"time":1709296245123,"msg":"request served","pid":1}', console, Config())
+
+    result = console.end_capture()
+
+    assert result.startswith('2024-03-01T12:30:45.123')
+    assert '[30     ] request served' in result
+    assert 'pid=1' in result
+
+
+def test_core_nested_extraction_prunes_the_parent(console: Console):
+    """`record.time.repr` is a default timestamp key, so its containers should not linger."""
+    line = '{"record":{"time":{"repr":"2024-03-01T12:30:45Z"}},"message":"hi"}'
+    print_record(line, console, Config())
+
+    result = console.end_capture()
+
+    assert result.startswith('2024-03-01T12:30:45Z')
+    assert 'record=' not in result
+
+
+def test_core_promotion_prunes_the_emptied_parent(console: Console):
+    print_record('{"level":"error","message":"boom","error":{"stack":"Traceback"}}', console, Config())
+
+    result = console.end_capture()
+
+    assert 'Traceback' in result
+    assert 'error={}' not in result
+
+
 def test_core_bad_json(console: Console):
     print_record('{"bad json": None}', console, Config())
 

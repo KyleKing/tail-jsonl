@@ -8,30 +8,21 @@ from dataclasses import dataclass, field
 from typing import Any
 
 import dotted  # type: ignore[import-untyped]
-from corallium.loggers.styles import Styles
+from corallium.loggers.styles import LEVELS, Styles, get_level
 from dotted.api import ParseError  # type: ignore[import-untyped]
 
-LEVEL_NAMES = ('critical', 'debug', 'error', 'info', 'warning')
-"""Level names accepted by `min_level`."""
+from tail_jsonl._private.timestamps import resolve_zone
 
-_LEVELS = {
-    'CRITICAL': logging.CRITICAL,
-    'DEBUG': logging.DEBUG,
-    'ERROR': logging.ERROR,
-    'FATAL': logging.CRITICAL,
-    'INFO': logging.INFO,
-    'WARN': logging.WARNING,
-    'WARNING': logging.WARNING,
-}
+LEVEL_NAMES = tuple(sorted(name.lower() for name in LEVELS))
+"""Level names accepted by `min_level`, shared with the renderer so the two agree."""
 
 
 def _parse_min_level(name: str) -> int:
-    try:
-        return _LEVELS[name.upper()]
-    except KeyError as err:
+    if (level := get_level(name=name)) == logging.NOTSET:
         expected = ', '.join(LEVEL_NAMES)
         msg = f'Unrecognized level {name!r}. Expected one of: {expected}'
-        raise ValueError(msg) from err
+        raise ValueError(msg)
+    return level
 
 
 def _parse_dotted_key(key: str) -> Any:
@@ -93,8 +84,7 @@ class Filters:
         self.include_patterns = [re.compile(_, flags) for _ in self.include]
         self.exclude_patterns = [re.compile(_, flags) for _ in self.exclude]
         self.selector_patterns = [
-            (key, re.compile(pattern, flags))
-            for key, pattern in map(_parse_selector, self.field_selectors)
+            (key, re.compile(pattern, flags)) for key, pattern in map(_parse_selector, self.field_selectors)
         ]
         self.min_level_value = _parse_min_level(self.min_level) if self.min_level else logging.NOTSET
         self.filters_line = bool(self.include_patterns or self.exclude_patterns)
@@ -113,19 +103,19 @@ class Render:
     Hidden keys are parsed on creation, so replace the instance rather than mutating an attribute.
     """
 
-    local_time: bool = False
-    timestamp_format: str | None = None
+    time_zone: str | None = None
+    time_format: str | None = None
     hidden_keys: list[str] = field(default_factory=list)
 
-    hidden_patterns: list[Any] = field(init=False, repr=False, default_factory=list)
-    formats_timestamp: bool = field(init=False, repr=False, default=False)
+    hidden_patterns: list[tuple[Any, str]] = field(init=False, repr=False, default_factory=list)
     hides_keys: bool = field(init=False, repr=False, default=False)
 
     def __post_init__(self) -> None:
-        """Parse the dotted keys and precompute whether any rendering option is active."""
-        self.hidden_patterns = [_parse_dotted_key(_) for _ in self.hidden_keys]
-        self.formats_timestamp = bool(self.local_time or self.timestamp_format)
+        """Parse the dotted keys and reject an unknown zone before the first line is read."""
+        self.hidden_patterns = [(_parse_dotted_key(_), _) for _ in self.hidden_keys]
         self.hides_keys = bool(self.hidden_patterns)
+        if self.time_zone:
+            resolve_zone(self.time_zone)
 
     @classmethod
     def from_dict(cls, data: dict) -> Render:  # type: ignore[type-arg]
