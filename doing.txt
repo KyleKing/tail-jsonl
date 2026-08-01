@@ -5,3 +5,8 @@ Deciding on tool's identity. See Claude
 - Register the PyPI trusted publisher and create the `pypi`/`testpypi` GitHub environments before the next release; `publish.yml` is now the release path and `poetry publish` is gone
 - `ROADMAP.md` is excluded from mdformat because its ordered lists number 1-9 across headings; restructure the cross-references if you want the hook back
 - Stale PR #22 still has red CI from 2025-11 and predates the uv migration; close it or rebase
+
+## 2026-08-01 (freshen 672bb50f)
+
+- Still open from 2026-07-27: the `pypi` and `testpypi` GitHub environments do not exist and the PyPI trusted publisher for `tail_jsonl` is unregistered, so the next tag push fails at `publish.yml`
+- Decide whether `docs/README.md` should go into calcipy_template's `_exclude`; `skip_if_exists_files` only protects locally modified files during `run_update`, so a template change still overwrites it
