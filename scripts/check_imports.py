@@ -4,4 +4,4 @@ from pprint import pprint
 
 from tail_jsonl.scripts import start
 
-pprint(locals())  # noqa: T203
+pprint(locals())  # ruff:ignore[p-print]

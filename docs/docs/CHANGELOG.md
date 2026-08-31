@@ -2,6 +2,7 @@
 
 ### Feat
 
+- add doneram config for GitHub Action and CDN pins
 - share one level table and accept numeric field values
 - replace the timestamp flags with --time-zone and --time-format
 - generate bash and zsh completions from the argparse parser

@@ -108,5 +108,5 @@ uv publish
 | `tail_jsonl/scripts.py`                   | 39         | 1       | 28       | 95.3%    |
 | **Totals**                                | 414        | 4       | 65       | 98.4%    |
 
-Generated on: 2026-07-29
+Generated on: 2026-08-31
 <!-- {cte} -->
