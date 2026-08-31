@@ -12,13 +12,13 @@
         <meta name="author" content="Kyle King">
       
       
-        <link rel="canonical" href="https://tail-jsonl.kyleking.me/docs/STYLE_GUIDE/">
+        <link rel="canonical" href="https://tail-jsonl.kyleking.me/docs/adr/">
       
       
-        <link rel="prev" href="../RECIPES/">
+        <link rel="prev" href="../TROUBLESHOOTING/">
       
       
-        <link rel="next" href="../TROUBLESHOOTING/">
+        <link rel="next" href="0001-stay-on-python-rather-than-porting-to-go/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Personal Style Guides - tail_jsonl</title>
+        <title>Architecture Decision Records - tail_jsonl</title>
       
     
     
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#personal-style-guides" class="md-skip">
+        <a href="#architecture-decision-records" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Personal Style Guides
+              Architecture Decision Records
             
           </span>
         </div>
@@ -465,37 +465,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Personal Style Guides
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../STYLE_GUIDE/" class="md-nav__link">
         
   
   
@@ -511,109 +484,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Git">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#commitizen-types-and-scopes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Commitizen Types and Scopes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#git-description-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git Description Guidelines
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-labels-and-milestones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Issue Labels and Milestones
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#external-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        External Links
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adrs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ADRs
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -651,18 +521,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" checked>
         
           
           <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
@@ -683,7 +555,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -698,10 +570,19 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../adr/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -717,6 +598,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -729,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../adr/0001-stay-on-python-rather-than-porting-to-go/" class="md-nav__link">
+      <a href="0001-stay-on-python-rather-than-porting-to-go/" class="md-nav__link">
         
   
   
@@ -1173,97 +1055,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Git">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#commitizen-types-and-scopes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Commitizen Types and Scopes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#git-description-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git Description Guidelines
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-labels-and-milestones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Issue Labels and Milestones
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#external-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        External Links
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adrs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ADRs
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1282,198 +1073,24 @@
   
 
 
-<h1 id="personal-style-guides">Personal Style Guides<a class="headerlink" href="#personal-style-guides" title="Permanent link">⚓︎</a></h1>
-<h2 id="git">Git<a class="headerlink" href="#git" title="Permanent link">⚓︎</a></h2>
-<p>We use <a href="https://github.com/commitizen-tools/commitizen">Commitizen</a> to manage both an auto-generated <a href="https://keepachangelog.com/en/1.0.0/">Changelog</a> and incrementing the release version following <a href="https://semver.org/">semver</a>. For both of these automated outputs to work well, please follow the <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> style, which is described in more detail below.</p>
-<h3 id="commitizen-types-and-scopes">Commitizen Types and Scopes<a class="headerlink" href="#commitizen-types-and-scopes" title="Permanent link">⚓︎</a></h3>
-<blockquote>
-<p><code>type(scope): description</code></p>
-</blockquote>
-<ul>
-<li><strong>Types</strong><ul>
-<li><em>fix</em>: A bug fix</li>
-<li><em>feat</em>: A new feature</li>
-<li><em>docs</em>: Documentation-only changes (code comments, separate docs)</li>
-<li><em>style</em>: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons)</li>
-<li><em>perf</em>: A code change that improves performance</li>
-<li><em>refactor</em>: A change to production code that is not a <em>fix</em>, <em>feat</em>, or <em>perf</em></li>
-<li><em>test</em>: Adding missing or correcting existing tests</li>
-<li><em>build</em>: Changes that affect the build system or external dependencies</li>
-<li><em>ci</em>: Changes to our CI configuration files and scripts</li>
-<li>A <code>!</code> can be used to indicate a breaking change (<code>refactor!: drop support for Node 6</code>)</li>
-<li><strong>SemVer Rules</strong><ul>
-<li>Based on commit type, the version will be auto-incremented: <code>fix : PATCH // feat : MINOR // BREAKING CHANGE : MAJOR</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Scopes</strong><ul>
-<li>A Class, File name, Issue Number, other appropriate noun. As examples: <code>build(uv): bump requests to v3</code> or <code>style(#32): add missing type annotations</code></li>
-</ul>
-</li>
-<li><strong>Tips</strong><ul>
-<li>What if a commit fits multiple types?<ul>
-<li>Go back and make multiple commits whenever possible. Part of the benefit of Conventional Commits is the focus on more organized and intentional changes</li>
-</ul>
-</li>
-<li>Use <code>git rebase -i</code> to fix commit names prior to merging if incorrect types/scopes are used</li>
-</ul>
-</li>
-</ul>
-<h3 id="git-description-guidelines">Git Description Guidelines<a class="headerlink" href="#git-description-guidelines" title="Permanent link">⚓︎</a></h3>
-<ul>
-<li><a href="https://writingfordevelopers.substack.com/p/how-to-write-a-commit-message">Commit message guidelines</a><ul>
-<li>Full sentence with verb (<em>lowercase</em>) and concise description. Below are modified examples for Conventional Commits<ul>
-<li><code>fix(roles): bug in admin role permissions</code></li>
-<li><code>feat(ui): implement new button design</code></li>
-<li><code>build(pip): upgrade package to remove vulnerabilities</code></li>
-<li><code>refactor: file structure to improve code readability</code></li>
-<li><code>perf(cli): rewrite methods</code></li>
-<li><code>feat(api): endpoints to implement new customer dashboard</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="https://chris.beams.io/posts/git-commit/">How to write a good commit message</a><ul>
-<li>A diff will tell you what changed, but only the commit message can properly tell you why.</li>
-<li>Keep in mind: <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">This</a> <a href="https://www.git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines">has</a> <a href="https://github.com/torvalds/subsurface-for-dirk/blob/master/README.md#contributing">all</a> <a href="http://who-t.blogspot.co.at/2009/12/on-commit-messages.html">been</a> <a href="https://github.com/erlang/otp/wiki/writing-good-commit-messages">said</a> <a href="https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages">before</a>.</li>
-<li>From the seven rules of a great Git commit message:<ul>
-<li>(2) <a href="https://chris.beams.io/posts/git-commit/#limit-50">Try for 50 characters, but consider 72 the hard limit</a></li>
-<li>(7) <a href="https://chris.beams.io/posts/git-commit/#why-not-how">Use the body to explain what and why vs. how</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="issue-labels-and-milestones">Issue Labels and Milestones<a class="headerlink" href="#issue-labels-and-milestones" title="Permanent link">⚓︎</a></h3>
-<p>Personal Guide</p>
-<ul>
-<li>For Issue Labels, see [labels.yml][labels]</li>
-<li>Milestones<ul>
-<li><strong>Current Tasks</strong>: main milestone (<em>name could change based on a specific project, sprint, or month</em>)</li>
-<li><strong>Next Tasks</strong></li>
-<li><strong>Blue Sky</strong></li>
-</ul>
-</li>
-</ul>
-<details>
-<summary>Research</summary>
-<ul>
-<li>[Sane GitHub Labels](https://medium.com/@dave_lunny/sane-github-labels-c5d2e6004b63) and see [sensible-github-labels](https://github.com/Relequestual/sensible-github-labels) for full descriptions of each</li>
-    <ul>
-        <li>“it is much more helpful to see the status and type of all issues at a glance.”</li>
-        <li>One of each:</li>
-        <ul>
-            <li>Status: …</li>
-                <ul><li>Abandoned, Accepted, Available, Blocked, Completed, In Progress, On Hold, Pending, Review Needed, Revision Needed</li></ul>
-            <li>Type: …</li>
-                <ul><li>Bug, Maintenance, Question, Enhancement</li></ul>
-            <li>Priority: …</li>
-                <ul><li>Critical, High, Medium, Low</li></ul>
-        </ul>
-    </ul>
-    <li>[Britecharts](https://britecharts.github.io/britecharts/github-labels.html)</li>
-    <ul>
-        <li>Status: …</li>
-            <ul>
-                <li>On Review – Request that we are pondering if including or not</li>
-                <li>Needs Reproducing – For bugs that need to be reproduced in order to get fixed</li>
-                <li>Needs Design – Feature that needs a design</li>
-                <li>Ready to Go – Issue that has been defined and is ready to get started with</li>
-                <li>In Progress – Issue that is being worked on right now.</li>
-                <li>Completed – Finished feature or fix</li>
-            </ul>
-        <li>Type: …</li>
-            <ul>
-                <li>Bug – An unexpected problem or unintended behavior</li>
-                <li>Feature – A new feature request</li>
-                <li>Maintenance – A regular maintenance chore or task, including refactors, build system, CI, performance improvements</li>
-                <li>Documentation – A documentation improvement task</li>
-                <li>Question – An issue or PR that needs more information or a user question</li>
-            </ul>
-        <li>Not Included</li>
-            <ul>
-                <li>Priority: They would add complexity and overhead due to the discussions, but could help with the roadmap</li>
-                <li>Technology Labels: It can create too much overhead, as properly tag with technologies all the issues could be time consuming</li>
-            </ul>
-        </ul>
-    </ul>
-    <li>[Ian Bicking Blog](https://www.ianbicking.org/blog/2014/03/use-github-issues-to-organize-a-project.html)</li>
-    <ul>
-        <li>Milestone Overview</li>
-        <ul>
-            <li>What are we doing right now?</li>
-            <li>What aren’t we doing right now?</li>
-                <ul>
-                    <li>2a. Stuff we’ll probably do soon</li>
-                    <li>2b. Stuff we probably won’t do soon</li>
-                </ul>
-            <li>What aren’t we sure about?</li>
-        </ul>
-        <li>Milestone Descriptions</li>
-        <ul>
-            <li>Stuff we are doing right now: this is the “main” milestone. We give it a name (like Alpha 2 or Strawberry Rhubarb Pie) and we write down what we are trying to accomplish with the milestone. We create a new milestone when we are ready for the next iteration.</li>
-            <li>Stuff we’ll probably do soon: this is a standing “**Next Tasks**” milestone. We never change or rename this milestone.</li>
-                <ul><li>We use a permanent “Next Tasks” milestone (as opposed to renaming it to “Alpha 3” or actual-next-iteration milestone) because we don’t want to presume or default to including something in the real next iteration. When we’re ready to start planning the next iteration we’ll create a new milestone, and only deliberately move things into that milestone.</li></ul>
-            <li>Stuff we probably won’t do soon: this is a standing “**Blue Sky**” milestone. We refer to these tickets and sometimes look through them, but they are easy to ignore, somewhat intentionally ignored.</li>
-            <li>What aren’t we sure about?: issues with no milestone.</li>
-        </ul>
-        <li>Label: “Needs Discussion” - (addressed in a triage meeting) - use liberally for either big or small tickets</li>
-        <li>“It’s better to give people more power: it’s actually helpful if people can overreach because it is an opportunity to establish where the limits really are and what purpose those limits have”</li>
-    </ul>
-</ul>
-</details>
-
-<h3 id="external-links">External Links<a class="headerlink" href="#external-links" title="Permanent link">⚓︎</a></h3>
-<p>Additional resources for Git best practices and commit message conventions.</p>
-<ul>
-<li>[Git: The Simple Guide][simple_git]</li>
-<li>[Commit Messages][gcmsg] and <a href="https://news.ycombinator.com/item?id=8874177">why use the present tense</a></li>
-<li><a href="https://github.com/erlang/otp/wiki/Writing-good-commit-messages">GitHub&rsquo;s Advice on GitHub</a></li>
-<li><a href="https://chris.beams.io/posts/git-commit/">Most Comprehensive Guide</a></li>
-<li><a href="https://git-scm.com/book/en/v2">Git Pro Book (free)</a><ul>
-<li><a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash">Bash Tab-Completion Snippet</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="python">Python<a class="headerlink" href="#python" title="Permanent link">⚓︎</a></h2>
-<p>This project follows standard Python conventions and uses automated tools for code quality.</p>
-<ul>
-<li><strong>Automated Tools</strong>: We use <code>ruff</code> for linting and formatting, configured in <code>pyproject.toml</code></li>
-<li><strong>Type Hints</strong>: Use type annotations where appropriate to improve code clarity and catch errors early</li>
-<li><strong>Docstrings</strong>: Follow standard conventions for documenting modules, classes, and functions</li>
-</ul>
-<p><strong>Additional Style Guide References</strong>:
-- <a href="https://gist.github.com/sloria/7001839">https://gist.github.com/sloria/7001839</a>
-- <a href="http://www.nilunder.com/blog/2013/08/03/pythonic-sensibilities/">http://www.nilunder.com/blog/2013/08/03/pythonic-sensibilities/</a>
-- <a href="https://innoq.github.io/cards42org_en/">https://innoq.github.io/cards42org_en/</a>
-- <a href="https://docs.openstack.org/hacking/latest/user/hacking.html#styleguide">https://docs.openstack.org/hacking/latest/user/hacking.html#styleguide</a>
-- <a href="https://www.python.org/doc/humor/">https://www.python.org/doc/humor/</a>
-- <a href="https://docs.python-guide.org/writing/reading/">https://docs.python-guide.org/writing/reading/</a>
-- <a href="https://realpython.com/python-refactoring/">https://realpython.com/python-refactoring/</a></p>
-<h2 id="adrs">ADRs<a class="headerlink" href="#adrs" title="Permanent link">⚓︎</a></h2>
-<p>Architecture Decision Records (ADRs) document important architectural decisions and their context. Use ADRs when making significant technical decisions that will impact the project long-term.</p>
-<p><strong>When to Create an ADR</strong>:
-- Choosing between major architectural patterns or frameworks
-- Adopting new technologies or deprecating existing ones
-- Making decisions that affect multiple components or the system as a whole
-- Resolving technical debates that need documentation for future reference</p>
-<p><strong>ADR Approaches</strong>:
-    - <a href="https://infraeng.dev/tech-spec">https://infraeng.dev/tech-spec</a> Template (And <a href="https://infraeng.dev/tech-spec-review/">associated review</a>) vs. <a href="https://infraeng.dev/decision-log/">https://infraeng.dev/decision-log/</a>
-    - Y-Statements: <a href="https://medium.com/olzzio/y-statements-10eb07b5a177">abbreviated shorthand</a>. Add this as a one-line decision option if a full ADR isn&rsquo;t needed (or when referencing an existing ADR) (<a href="https://scribe.rip/@docsoc/y-statements-10eb07b5a177">https://scribe.rip/@docsoc/y-statements-10eb07b5a177</a>)
-    - https://adr.github.io
-    - More formal implementation of <a href="https://adr.github.io/madr/">ADRs (MADR) that this is based on</a>. Template: <a href="https://github.com/adr/madr/blob/97fb8edec60b8dc70b8166ef62de34c4e26b46c0/template/adr-template.md">https://github.com/adr/madr/blob/97fb8edec60b8dc70b8166ef62de34c4e26b46c0/template/adr-template.md</a>
-    - <a href="https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-5639.md">https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-5639.md</a>
-- Examples
-    - <a href="https://github.com/pawamoy/mkdocstrings/issues/28">https://github.com/pawamoy/mkdocstrings/issues/28</a>
-    - <a href="https://github.com/arachne-framework/architecture/blob/060a956277a5ad71df93da49fee52463408841af/adr-002-configuration.md">https://github.com/arachne-framework/architecture/blob/060a956277a5ad71df93da49fee52463408841af/adr-002-configuration.md</a>
-    - <a href="https://github.com/arachne-framework/architecture/tree/060a956277a5ad71df93da49fee52463408841af">https://github.com/arachne-framework/architecture/tree/060a956277a5ad71df93da49fee52463408841af</a>
-    - <a href="https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-1010.md">https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-1010.md</a>
-    - <a href="https://docs-v1.prefect.io/core/pins/pin-01-introduce-pins.html">https://docs-v1.prefect.io/core/pins/pin-01-introduce-pins.html</a>
-    - <a href="https://peps.python.org/pep-0387">https://peps.python.org/pep-0387/</a>
-    - <a href="https://github.com/AICoE/aicoe-ci/blob/39de02af86a0d1f9dcd395fa88b858f1c6880411/docs/adr/0000-use-markdown-architectural-decision-records.md">https://github.com/AICoE/aicoe-ci/blob/39de02af86a0d1f9dcd395fa88b858f1c6880411/docs/adr/0000-use-markdown-architectural-decision-records.md</a>
-    - And many others!</p>
-<p>&lt;&ndash; Links &ndash;&gt;</p>
+<h1 id="architecture-decision-records">Architecture Decision Records<a class="headerlink" href="#architecture-decision-records" title="Permanent link">⚓︎</a></h1>
+<p>Decisions are numbered in the order they were accepted. Each record states the problem, the options considered, the decision, and its tradeoffs. Amend by adding a new ADR that supersedes an old one rather than rewriting history.</p>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Title</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="0001-stay-on-python-rather-than-porting-to-go/">0001</a></td>
+<td>Stay on Python and Rich rather than port to Go</td>
+<td>Measured throughput and startup, the cgo boundary in corallium, RE2 and strftime, where the remaining wins are</td>
+</tr>
+</tbody>
+</table>
 
 
 

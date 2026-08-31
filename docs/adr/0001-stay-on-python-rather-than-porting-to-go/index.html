@@ -12,31 +12,31 @@
         <meta name="author" content="Kyle King">
       
       
-        <link rel="canonical" href="https://tail-jsonl.kyleking.me/docs/STYLE_GUIDE/">
+        <link rel="canonical" href="https://tail-jsonl.kyleking.me/docs/adr/0001-stay-on-python-rather-than-porting-to-go/">
       
       
-        <link rel="prev" href="../RECIPES/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../TROUBLESHOOTING/">
+        <link rel="next" href="../../../reference/tail_jsonl/config/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Personal Style Guides - tail_jsonl</title>
+        <title>ADR 0001: Stay on Python and Rich rather than porting to Go - tail_jsonl</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -55,11 +55,11 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../../_styles/mkdocstrings.css">
+      <link rel="stylesheet" href="../../../_styles/mkdocstrings.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#personal-style-guides" class="md-skip">
+        <a href="#adr-0001-stay-on-python-and-rich-rather-than-porting-to-go" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="tail_jsonl" class="md-header__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
+    <a href="../../.." title="tail_jsonl" class="md-header__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Personal Style Guides
+              ADR 0001: Stay on Python and Rich rather than porting to Go
             
           </span>
         </div>
@@ -222,7 +222,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="tail_jsonl" class="md-nav__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
+    <a href="../../.." title="tail_jsonl" class="md-nav__button md-logo" aria-label="tail_jsonl" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -252,7 +252,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -328,7 +328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CHANGELOG/" class="md-nav__link">
+      <a href="../../CHANGELOG/" class="md-nav__link">
         
   
   
@@ -356,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CLI/" class="md-nav__link">
+      <a href="../../CLI/" class="md-nav__link">
         
   
   
@@ -384,7 +384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../CODE_TAG_SUMMARY/" class="md-nav__link">
+      <a href="../../CODE_TAG_SUMMARY/" class="md-nav__link">
         
   
   
@@ -412,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../DEVELOPER_GUIDE/" class="md-nav__link">
+      <a href="../../DEVELOPER_GUIDE/" class="md-nav__link">
         
   
   
@@ -440,7 +440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../RECIPES/" class="md-nav__link">
+      <a href="../../RECIPES/" class="md-nav__link">
         
   
   
@@ -448,6 +448,139 @@
     
   
     Recipes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STYLE_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personal Style Guides
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TROUBLESHOOTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adr
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Adr
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decision Records
   
 
     
@@ -484,7 +617,7 @@
   <span class="md-ellipsis">
     
   
-    Personal Style Guides
+    ADR 0001: Stay on Python and Rich rather than porting to Go
   
 
     
@@ -502,7 +635,7 @@
   <span class="md-ellipsis">
     
   
-    Personal Style Guides
+    ADR 0001: Stay on Python and Rich rather than porting to Go
   
 
     
@@ -528,71 +661,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
+  <a href="#problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Git
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Git">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#commitizen-types-and-scopes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Commitizen Types and Scopes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#git-description-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git Description Guidelines
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-labels-and-milestones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Issue Labels and Milestones
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#external-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        External Links
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
+        Problem
       
     </span>
   </a>
@@ -600,10 +672,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adrs" class="md-nav__link">
+  <a href="#measurements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADRs
+        Measurements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-full-port-would-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a full port would cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-cgo-variant-and-why-it-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cgo variant, and why it fails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options considered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
       
     </span>
   </a>
@@ -614,137 +741,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../TROUBLESHOOTING/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Adr
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Adr
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../adr/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Architecture Decision Records
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../adr/0001-stay-on-python-rather-than-porting-to-go/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    ADR 0001: Stay on Python and Rich rather than porting to Go
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -866,7 +862,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/config/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/config/" class="md-nav__link">
         
   
   
@@ -894,7 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/scripts/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/scripts/" class="md-nav__link">
         
   
   
@@ -969,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/completions/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/_private/completions/" class="md-nav__link">
         
   
   
@@ -997,7 +993,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/core/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/_private/core/" class="md-nav__link">
         
   
   
@@ -1025,7 +1021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/filters/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/_private/filters/" class="md-nav__link">
         
   
   
@@ -1053,7 +1049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/keys/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/_private/keys/" class="md-nav__link">
         
   
   
@@ -1081,7 +1077,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/timestamps/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/_private/timestamps/" class="md-nav__link">
         
   
   
@@ -1109,7 +1105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/tail_jsonl/_private/types/" class="md-nav__link">
+      <a href="../../../reference/tail_jsonl/_private/types/" class="md-nav__link">
         
   
   
@@ -1180,71 +1176,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#git" class="md-nav__link">
+  <a href="#problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Git
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Git">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#commitizen-types-and-scopes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Commitizen Types and Scopes
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#git-description-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Git Description Guidelines
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-labels-and-milestones" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Issue Labels and Milestones
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#external-links" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        External Links
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python
+        Problem
       
     </span>
   </a>
@@ -1252,10 +1187,65 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adrs" class="md-nav__link">
+  <a href="#measurements" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ADRs
+        Measurements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-a-full-port-would-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What a full port would cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-cgo-variant-and-why-it-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cgo variant, and why it fails
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Options considered
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
       
     </span>
   </a>
@@ -1282,198 +1272,92 @@
   
 
 
-<h1 id="personal-style-guides">Personal Style Guides<a class="headerlink" href="#personal-style-guides" title="Permanent link">⚓︎</a></h1>
-<h2 id="git">Git<a class="headerlink" href="#git" title="Permanent link">⚓︎</a></h2>
-<p>We use <a href="https://github.com/commitizen-tools/commitizen">Commitizen</a> to manage both an auto-generated <a href="https://keepachangelog.com/en/1.0.0/">Changelog</a> and incrementing the release version following <a href="https://semver.org/">semver</a>. For both of these automated outputs to work well, please follow the <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> style, which is described in more detail below.</p>
-<h3 id="commitizen-types-and-scopes">Commitizen Types and Scopes<a class="headerlink" href="#commitizen-types-and-scopes" title="Permanent link">⚓︎</a></h3>
-<blockquote>
-<p><code>type(scope): description</code></p>
-</blockquote>
+<h1 id="adr-0001-stay-on-python-and-rich-rather-than-porting-to-go">ADR 0001: Stay on Python and Rich rather than porting to Go<a class="headerlink" href="#adr-0001-stay-on-python-and-rich-rather-than-porting-to-go" title="Permanent link">⚓︎</a></h1>
+<p>Date: 2026-08-05 Status: Accepted</p>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">⚓︎</a></h2>
+<p>A partial Go port sits in <code>local-code/tail-jsonl-go</code>: a 282-line <code>main.go</code> stamped <code>1.3.0</code> that predates filters, time zone conversion, hidden keys, debug mode, and shell completions, plus a <code>tests/</code> directory that is a copy of the Python suite rather than a Go one. Before spending more on it we needed three answers. How much faster would a finished Go port actually be, which features would be lost or become harder to maintain, and could a Go core exposed to Python through cgo and ctypes serve <code>corallium</code> and <code>calcipy</code> at the same time so that <code>tail-jsonl</code> could drop its Python dependencies and its PyPI release entirely.</p>
+<h2 id="measurements">Measurements<a class="headerlink" href="#measurements" title="Permanent link">⚓︎</a></h2>
+<p>Same 20,000-line corpus (8 MB, mixed simple and wide records, generated by <code>benchmarks/throughput.py</code>), output to <code>/dev/null</code>, macOS arm64.</p>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>20k lines</th>
+<th>lines/sec</th>
+<th>per line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tail-jsonl</code> on Python 3.10 with Rich</td>
+<td>6.00s</td>
+<td>3,300</td>
+<td>300 µs</td>
+</tr>
+<tr>
+<td><code>tail-jsonl-go</code> as it stands, unbuffered <code>fmt.Printf</code></td>
+<td>0.79s</td>
+<td>25,000</td>
+<td>40 µs</td>
+</tr>
+<tr>
+<td>Buffered Go prototype written to find the ceiling</td>
+<td>0.13s</td>
+<td>154,000</td>
+<td>6.5 µs</td>
+</tr>
+<tr>
+<td>Same prototype flushing per line, as a live tail needs</td>
+<td>0.21s</td>
+<td>95,000</td>
+<td>10.5 µs</td>
+</tr>
+</tbody>
+</table>
+<p>Startup is 110ms per Python invocation against 3.5ms for a Go binary.</p>
+<p>The 154,000 figure is a ceiling rather than a forecast. The prototype skipped dotted paths, terminal-width wrapping, filters, zone conversion, and own-line keys. A faithful port would land somewhere around 30,000 to 80,000 lines per second, so roughly 10x to 25x.</p>
+<p><code>cProfile</code> over <code>print_record</code> puts 69% of per-line time in <code>rich_printer</code> and Rich&rsquo;s <code>Text</code> render and wrap path, 24% in the <code>dotted</code> library (<code>get</code>, <code>remove</code>, and <code>parse</code> on every key lookup), and <code>json.loads</code> low enough not to register. The speedup would come almost entirely from replacing Rich, which is also the part that would have to be rebuilt by hand.</p>
+<h2 id="what-a-full-port-would-cost">What a full port would cost<a class="headerlink" href="#what-a-full-port-would-cost" title="Permanent link">⚓︎</a></h2>
+<p>Ranked by how much maintenance each one adds:</p>
 <ul>
-<li><strong>Types</strong><ul>
-<li><em>fix</em>: A bug fix</li>
-<li><em>feat</em>: A new feature</li>
-<li><em>docs</em>: Documentation-only changes (code comments, separate docs)</li>
-<li><em>style</em>: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons)</li>
-<li><em>perf</em>: A code change that improves performance</li>
-<li><em>refactor</em>: A change to production code that is not a <em>fix</em>, <em>feat</em>, or <em>perf</em></li>
-<li><em>test</em>: Adding missing or correcting existing tests</li>
-<li><em>build</em>: Changes that affect the build system or external dependencies</li>
-<li><em>ci</em>: Changes to our CI configuration files and scripts</li>
-<li>A <code>!</code> can be used to indicate a breaking change (<code>refactor!: drop support for Node 6</code>)</li>
-<li><strong>SemVer Rules</strong><ul>
-<li>Based on commit type, the version will be auto-incremented: <code>fix : PATCH // feat : MINOR // BREAKING CHANGE : MAJOR</code></li>
+<li><code>corallium</code> stops being one source of truth. <code>rich_printer</code>, <code>Styles</code>, <code>get_level</code>, and the Tokyo Night palette are shared with the other Python tools, so a Go port forks them and every palette or level change has to be made twice</li>
+<li><code>dotted</code> has no Go equivalent. It handles escaped dots, wildcards, and slices, and it backs <code>--hide-key</code>, <code>--field-selector</code>, dotted-key promotion, and empty-parent pruning. The existing port&rsquo;s <code>strings.Split(key, ".")</code> walk is a different thing wearing the same name and would diverge on the cases in <code>tests/data/test-dot-notation.toml</code></li>
+<li>Python <code>re</code> becomes RE2, so lookaround and backreferences stop working in <code>--include</code>, <code>--exclude</code>, and <code>--field-selector</code>. RE2 gives linear-time matching in exchange, which removes catastrophic backtracking on user-supplied patterns</li>
+<li><code>--time-format</code> accepts any strftime pattern today, and Go&rsquo;s reference-layout formatting is incompatible, so preserving the documented contract needs a shim such as <code>lestrrat-go/strftime</code></li>
+<li>Completions are generated by introspecting argparse actions in <code>completions.py</code>. Go would mean moving to kong or cobra, which supplies completions but changes flag semantics, including repeatable <code>-e a -e b</code></li>
+<li>Rich&rsquo;s terminal handling covers width detection, word wrap, grapheme and east-asian width, <code>NO_COLOR</code> and <code>FORCE_COLOR</code>, and truecolor-to-256 degradation. Reachable with lipgloss, go-runewidth, and uniseg, plus a hand-rolled wrap</li>
+<li>Go map iteration is randomized, so extra fields would print in a different order on every line unless decoding goes through <code>json.Decoder.Token</code>. The existing port has this bug</li>
+<li>Unmarshalling into <code>interface{}</code> turns every integer into a <code>float64</code>, so numbers need <code>json.Number</code>. The existing port has this bug too</li>
+<li>IANA zones need <code>import _ "time/tzdata"</code>, about 450 KB, and ISO parsing becomes an explicit format list rather than <code>fromisoformat</code> leniency</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><strong>Scopes</strong><ul>
-<li>A Class, File name, Issue Number, other appropriate noun. As examples: <code>build(uv): bump requests to v3</code> or <code>style(#32): add missing type annotations</code></li>
-</ul>
-</li>
-<li><strong>Tips</strong><ul>
-<li>What if a commit fits multiple types?<ul>
-<li>Go back and make multiple commits whenever possible. Part of the benefit of Conventional Commits is the focus on more organized and intentional changes</li>
-</ul>
-</li>
-<li>Use <code>git rebase -i</code> to fix commit names prior to merging if incorrect types/scopes are used</li>
-</ul>
-</li>
-</ul>
-<h3 id="git-description-guidelines">Git Description Guidelines<a class="headerlink" href="#git-description-guidelines" title="Permanent link">⚓︎</a></h3>
+<p>The RE2 and strftime breaks are acceptable, because the only user of those features is the maintainer. That removes two of the nine items above without changing the shape of the rest.</p>
+<h2 id="the-cgo-variant-and-why-it-fails">The cgo variant, and why it fails<a class="headerlink" href="#the-cgo-variant-and-why-it-fails" title="Permanent link">⚓︎</a></h2>
+<p>The proposal was to move the base of <code>corallium</code> (styles, level lookup, configuration loading) into Go, expose it to Python through cgo and ctypes, and let <code>tail-jsonl-go</code> and <code>calcipy</code> share one implementation. Possibly moving <code>corallium</code> from Rich to lipgloss along the way.</p>
+<p>Measuring the shared surface first is what settles it. <code>corallium</code> is 2,674 lines. The part <code>tail-jsonl</code> uses is <code>styles.py</code> (112 lines), <code>rich_printer.py</code> (84 lines), and the <code>tomllib.py</code> shim (12 lines). Most of that is data: five hex colors, six style names, and a ten-entry map of level names to numbers, with <code>get_level</code> and <code>get_style</code> as dict lookups.</p>
+<p><code>calcipy</code> needs none of it. Its imports from <code>corallium</code> are <code>LOGGER</code> (9), <code>file_helpers</code> (8), <code>vcs</code> (3), <code>file_search</code> (3), <code>tomllib</code> (2), <code>markup_table</code> (2), <code>code_tag_collector</code> (2), <code>shell</code>, <code>sync_dependencies</code>, and <code>can_skip</code>. It imports <code>styles</code> and <code>rich_printer</code> zero times and uses <code>rich</code> directly zero times. Everything it does depend on is subprocess, pathlib, and pyproject parsing, which has no reason to leave Python and would be painful to return across an ABI.</p>
+<p><code>dotted</code> is also not <code>corallium</code>&rsquo;s. It is a third-party PyPI package that <code>tail-jsonl</code> depends on directly, so porting it is work with nothing upstream to share it with.</p>
+<p>The cost side is concrete. <code>corallium</code> ships today as one <code>py3-none-any</code> wheel. Adding <code>buildmode=c-shared</code> makes it platform-specific across macOS arm64 and x86_64, manylinux x86_64 and aarch64, musllinux, and Windows, which means six wheels, cibuildwheel, and <code>CGO_ENABLED=1</code> with a C toolchain in CI. Any platform without a wheel falls back to an sdist that needs Go installed to build a dev-tooling library that is in the dev group of every project in the ecosystem. A c-shared library exposing exactly one lipgloss call measures 3.2 MB, 2.9 MB stripped, per platform. Rich is 2.3 MB of pure Python in one wheel that works everywhere.</p>
+<p>Replacing Rich with lipgloss inside <code>corallium</code> is not available at any price, because lipgloss is a Go library and every styled string would cross the boundary with a <code>malloc</code> and <code>free</code> per segment. <code>corallium</code> also depends on Rich for things an ABI cannot carry: <code>Console</code> width and tty detection, <code>print_exception</code> (which <code>rich_printer</code> calls on CRITICAL), and <code>pretty_process.py</code>, which is built on <code>rich.progress</code> with stateful, animated, multiprocessing-aware bars. Rich is not the bottleneck where <code>corallium</code> runs either, since calcipy tasks are one-shot dev commands whose 110ms of startup disappears into the subprocess they are about to spawn.</p>
+<h2 id="options-considered">Options considered<a class="headerlink" href="#options-considered" title="Permanent link">⚓︎</a></h2>
+<ol>
+<li>Full standalone Go rewrite, copying the roughly 120 lines of palette and layout logic into Go and dropping PyPI</li>
+<li>Go core with a cgo and ctypes boundary inside <code>corallium</code>, so Python and Go share one implementation</li>
+<li>Keep the PyPI entry point but ship a compiled Go binary as package data and <code>os.execv</code> it from <code>scripts.py</code></li>
+<li>Stay on Python and spend the effort on the measured hot path instead</li>
+</ol>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">⚓︎</a></h2>
+<p>Option 4.</p>
+<p>The tool is a stdin filter for a live pipe. At 3,300 lines per second it already outruns any log stream a human reads, so the only gain that would change daily use is startup latency, and 110ms does not justify a rewrite of roughly 900 lines of Python plus the <code>corallium</code> pieces. Option 2 fails on its own terms, since it would build a permanent six-platform binary-wheel matrix into the library that every Python project here installs, in order to share 200 lines that are mostly constants. Option 1 is coherent and stays available if the tool ever grows into file scanning or the web viewer idea, where Go&rsquo;s concurrency would matter. Option 3 is the right mechanism if a Go implementation ever needs a Python entry point, because it needs no cgo, no ctypes, and no ABI.</p>
+<p>The performance work that remains is inside Python: caching parsed dotted patterns, and bypassing Rich&rsquo;s wrap path for the common single-line record. Together those target the 93% of per-line time that the profile attributes to Rich and <code>dotted</code>.</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">⚓︎</a></h2>
 <ul>
-<li><a href="https://writingfordevelopers.substack.com/p/how-to-write-a-commit-message">Commit message guidelines</a><ul>
-<li>Full sentence with verb (<em>lowercase</em>) and concise description. Below are modified examples for Conventional Commits<ul>
-<li><code>fix(roles): bug in admin role permissions</code></li>
-<li><code>feat(ui): implement new button design</code></li>
-<li><code>build(pip): upgrade package to remove vulnerabilities</code></li>
-<li><code>refactor: file structure to improve code readability</code></li>
-<li><code>perf(cli): rewrite methods</code></li>
-<li><code>feat(api): endpoints to implement new customer dashboard</code></li>
+<li><code>tail-jsonl</code> keeps its PyPI release, its <code>pipx</code> and <code>uv tool</code> install path, and the calcipy toolchain</li>
+<li><code>corallium</code> stays a pure-Python wheel and keeps Rich, so the palette and level map have exactly one implementation and stay a single source of truth by construction</li>
+<li><code>local-code/tail-jsonl-go</code> is a dead end as written and should be treated as a spike rather than a branch to finish. Its randomized field order and float-widened integers are the two bugs to remember if it is ever revived</li>
+<li>If a Go implementation is ever wanted, either for this tool or for the algorithmic parts of <code>calcipy</code> such as <code>code_tag_collector</code> and <code>file_search</code>, use a subprocess boundary rather than an ABI. A process boundary keeps static cross-compiled binaries, no CGO, no wheel matrix, and no ctypes memory discipline</li>
+<li>Rewriting the <code>--time-format</code> and regex contracts against Go semantics is no longer on the table, so strftime patterns and Python <code>re</code> syntax stay documented as they are</li>
+<li><code>benchmarks/throughput.py</code> and the Go prototypes reproduce every number above. Rerun the benchmark before revisiting this decision, because the Python figure is the one that would have to move</li>
 </ul>
-</li>
-</ul>
-</li>
-<li><a href="https://chris.beams.io/posts/git-commit/">How to write a good commit message</a><ul>
-<li>A diff will tell you what changed, but only the commit message can properly tell you why.</li>
-<li>Keep in mind: <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">This</a> <a href="https://www.git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project#_commit_guidelines">has</a> <a href="https://github.com/torvalds/subsurface-for-dirk/blob/master/README.md#contributing">all</a> <a href="http://who-t.blogspot.co.at/2009/12/on-commit-messages.html">been</a> <a href="https://github.com/erlang/otp/wiki/writing-good-commit-messages">said</a> <a href="https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages">before</a>.</li>
-<li>From the seven rules of a great Git commit message:<ul>
-<li>(2) <a href="https://chris.beams.io/posts/git-commit/#limit-50">Try for 50 characters, but consider 72 the hard limit</a></li>
-<li>(7) <a href="https://chris.beams.io/posts/git-commit/#why-not-how">Use the body to explain what and why vs. how</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="issue-labels-and-milestones">Issue Labels and Milestones<a class="headerlink" href="#issue-labels-and-milestones" title="Permanent link">⚓︎</a></h3>
-<p>Personal Guide</p>
-<ul>
-<li>For Issue Labels, see [labels.yml][labels]</li>
-<li>Milestones<ul>
-<li><strong>Current Tasks</strong>: main milestone (<em>name could change based on a specific project, sprint, or month</em>)</li>
-<li><strong>Next Tasks</strong></li>
-<li><strong>Blue Sky</strong></li>
-</ul>
-</li>
-</ul>
-<details>
-<summary>Research</summary>
-<ul>
-<li>[Sane GitHub Labels](https://medium.com/@dave_lunny/sane-github-labels-c5d2e6004b63) and see [sensible-github-labels](https://github.com/Relequestual/sensible-github-labels) for full descriptions of each</li>
-    <ul>
-        <li>“it is much more helpful to see the status and type of all issues at a glance.”</li>
-        <li>One of each:</li>
-        <ul>
-            <li>Status: …</li>
-                <ul><li>Abandoned, Accepted, Available, Blocked, Completed, In Progress, On Hold, Pending, Review Needed, Revision Needed</li></ul>
-            <li>Type: …</li>
-                <ul><li>Bug, Maintenance, Question, Enhancement</li></ul>
-            <li>Priority: …</li>
-                <ul><li>Critical, High, Medium, Low</li></ul>
-        </ul>
-    </ul>
-    <li>[Britecharts](https://britecharts.github.io/britecharts/github-labels.html)</li>
-    <ul>
-        <li>Status: …</li>
-            <ul>
-                <li>On Review – Request that we are pondering if including or not</li>
-                <li>Needs Reproducing – For bugs that need to be reproduced in order to get fixed</li>
-                <li>Needs Design – Feature that needs a design</li>
-                <li>Ready to Go – Issue that has been defined and is ready to get started with</li>
-                <li>In Progress – Issue that is being worked on right now.</li>
-                <li>Completed – Finished feature or fix</li>
-            </ul>
-        <li>Type: …</li>
-            <ul>
-                <li>Bug – An unexpected problem or unintended behavior</li>
-                <li>Feature – A new feature request</li>
-                <li>Maintenance – A regular maintenance chore or task, including refactors, build system, CI, performance improvements</li>
-                <li>Documentation – A documentation improvement task</li>
-                <li>Question – An issue or PR that needs more information or a user question</li>
-            </ul>
-        <li>Not Included</li>
-            <ul>
-                <li>Priority: They would add complexity and overhead due to the discussions, but could help with the roadmap</li>
-                <li>Technology Labels: It can create too much overhead, as properly tag with technologies all the issues could be time consuming</li>
-            </ul>
-        </ul>
-    </ul>
-    <li>[Ian Bicking Blog](https://www.ianbicking.org/blog/2014/03/use-github-issues-to-organize-a-project.html)</li>
-    <ul>
-        <li>Milestone Overview</li>
-        <ul>
-            <li>What are we doing right now?</li>
-            <li>What aren’t we doing right now?</li>
-                <ul>
-                    <li>2a. Stuff we’ll probably do soon</li>
-                    <li>2b. Stuff we probably won’t do soon</li>
-                </ul>
-            <li>What aren’t we sure about?</li>
-        </ul>
-        <li>Milestone Descriptions</li>
-        <ul>
-            <li>Stuff we are doing right now: this is the “main” milestone. We give it a name (like Alpha 2 or Strawberry Rhubarb Pie) and we write down what we are trying to accomplish with the milestone. We create a new milestone when we are ready for the next iteration.</li>
-            <li>Stuff we’ll probably do soon: this is a standing “**Next Tasks**” milestone. We never change or rename this milestone.</li>
-                <ul><li>We use a permanent “Next Tasks” milestone (as opposed to renaming it to “Alpha 3” or actual-next-iteration milestone) because we don’t want to presume or default to including something in the real next iteration. When we’re ready to start planning the next iteration we’ll create a new milestone, and only deliberately move things into that milestone.</li></ul>
-            <li>Stuff we probably won’t do soon: this is a standing “**Blue Sky**” milestone. We refer to these tickets and sometimes look through them, but they are easy to ignore, somewhat intentionally ignored.</li>
-            <li>What aren’t we sure about?: issues with no milestone.</li>
-        </ul>
-        <li>Label: “Needs Discussion” - (addressed in a triage meeting) - use liberally for either big or small tickets</li>
-        <li>“It’s better to give people more power: it’s actually helpful if people can overreach because it is an opportunity to establish where the limits really are and what purpose those limits have”</li>
-    </ul>
-</ul>
-</details>
-
-<h3 id="external-links">External Links<a class="headerlink" href="#external-links" title="Permanent link">⚓︎</a></h3>
-<p>Additional resources for Git best practices and commit message conventions.</p>
-<ul>
-<li>[Git: The Simple Guide][simple_git]</li>
-<li>[Commit Messages][gcmsg] and <a href="https://news.ycombinator.com/item?id=8874177">why use the present tense</a></li>
-<li><a href="https://github.com/erlang/otp/wiki/Writing-good-commit-messages">GitHub&rsquo;s Advice on GitHub</a></li>
-<li><a href="https://chris.beams.io/posts/git-commit/">Most Comprehensive Guide</a></li>
-<li><a href="https://git-scm.com/book/en/v2">Git Pro Book (free)</a><ul>
-<li><a href="https://git-scm.com/book/en/v2/Appendix-A%3A-Git-in-Other-Environments-Git-in-Bash">Bash Tab-Completion Snippet</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="python">Python<a class="headerlink" href="#python" title="Permanent link">⚓︎</a></h2>
-<p>This project follows standard Python conventions and uses automated tools for code quality.</p>
-<ul>
-<li><strong>Automated Tools</strong>: We use <code>ruff</code> for linting and formatting, configured in <code>pyproject.toml</code></li>
-<li><strong>Type Hints</strong>: Use type annotations where appropriate to improve code clarity and catch errors early</li>
-<li><strong>Docstrings</strong>: Follow standard conventions for documenting modules, classes, and functions</li>
-</ul>
-<p><strong>Additional Style Guide References</strong>:
-- <a href="https://gist.github.com/sloria/7001839">https://gist.github.com/sloria/7001839</a>
-- <a href="http://www.nilunder.com/blog/2013/08/03/pythonic-sensibilities/">http://www.nilunder.com/blog/2013/08/03/pythonic-sensibilities/</a>
-- <a href="https://innoq.github.io/cards42org_en/">https://innoq.github.io/cards42org_en/</a>
-- <a href="https://docs.openstack.org/hacking/latest/user/hacking.html#styleguide">https://docs.openstack.org/hacking/latest/user/hacking.html#styleguide</a>
-- <a href="https://www.python.org/doc/humor/">https://www.python.org/doc/humor/</a>
-- <a href="https://docs.python-guide.org/writing/reading/">https://docs.python-guide.org/writing/reading/</a>
-- <a href="https://realpython.com/python-refactoring/">https://realpython.com/python-refactoring/</a></p>
-<h2 id="adrs">ADRs<a class="headerlink" href="#adrs" title="Permanent link">⚓︎</a></h2>
-<p>Architecture Decision Records (ADRs) document important architectural decisions and their context. Use ADRs when making significant technical decisions that will impact the project long-term.</p>
-<p><strong>When to Create an ADR</strong>:
-- Choosing between major architectural patterns or frameworks
-- Adopting new technologies or deprecating existing ones
-- Making decisions that affect multiple components or the system as a whole
-- Resolving technical debates that need documentation for future reference</p>
-<p><strong>ADR Approaches</strong>:
-    - <a href="https://infraeng.dev/tech-spec">https://infraeng.dev/tech-spec</a> Template (And <a href="https://infraeng.dev/tech-spec-review/">associated review</a>) vs. <a href="https://infraeng.dev/decision-log/">https://infraeng.dev/decision-log/</a>
-    - Y-Statements: <a href="https://medium.com/olzzio/y-statements-10eb07b5a177">abbreviated shorthand</a>. Add this as a one-line decision option if a full ADR isn&rsquo;t needed (or when referencing an existing ADR) (<a href="https://scribe.rip/@docsoc/y-statements-10eb07b5a177">https://scribe.rip/@docsoc/y-statements-10eb07b5a177</a>)
-    - https://adr.github.io
-    - More formal implementation of <a href="https://adr.github.io/madr/">ADRs (MADR) that this is based on</a>. Template: <a href="https://github.com/adr/madr/blob/97fb8edec60b8dc70b8166ef62de34c4e26b46c0/template/adr-template.md">https://github.com/adr/madr/blob/97fb8edec60b8dc70b8166ef62de34c4e26b46c0/template/adr-template.md</a>
-    - <a href="https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-5639.md">https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-5639.md</a>
-- Examples
-    - <a href="https://github.com/pawamoy/mkdocstrings/issues/28">https://github.com/pawamoy/mkdocstrings/issues/28</a>
-    - <a href="https://github.com/arachne-framework/architecture/blob/060a956277a5ad71df93da49fee52463408841af/adr-002-configuration.md">https://github.com/arachne-framework/architecture/blob/060a956277a5ad71df93da49fee52463408841af/adr-002-configuration.md</a>
-    - <a href="https://github.com/arachne-framework/architecture/tree/060a956277a5ad71df93da49fee52463408841af">https://github.com/arachne-framework/architecture/tree/060a956277a5ad71df93da49fee52463408841af</a>
-    - <a href="https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-1010.md">https://github.com/ethereum/EIPs/blob/confluenceuser/EIPS/eip-1010.md</a>
-    - <a href="https://docs-v1.prefect.io/core/pins/pin-01-introduce-pins.html">https://docs-v1.prefect.io/core/pins/pin-01-introduce-pins.html</a>
-    - <a href="https://peps.python.org/pep-0387">https://peps.python.org/pep-0387/</a>
-    - <a href="https://github.com/AICoE/aicoe-ci/blob/39de02af86a0d1f9dcd395fa88b858f1c6880411/docs/adr/0000-use-markdown-architectural-decision-records.md">https://github.com/AICoE/aicoe-ci/blob/39de02af86a0d1f9dcd395fa88b858f1c6880411/docs/adr/0000-use-markdown-architectural-decision-records.md</a>
-    - And many others!</p>
-<p>&lt;&ndash; Links &ndash;&gt;</p>
 
 
 
@@ -1523,14 +1407,14 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["toc.autohide"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["toc.autohide"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.6.0/tablesort.min.js"></script>
       
-        <script src="../../_javascript/tables.js"></script>
+        <script src="../../../_javascript/tables.js"></script>
       
     
   </body>
